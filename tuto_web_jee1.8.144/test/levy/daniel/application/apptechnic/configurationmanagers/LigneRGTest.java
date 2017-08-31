@@ -104,7 +104,7 @@ public class LigneRGTest {
 		
 		final LigneRG ligneRG 
 			= new LigneRG(1L
-					, true, false
+					, true, true
 					, RG_CLIENT_01
 					, 1
 					, RG_CLIENT_01_MESSAGE

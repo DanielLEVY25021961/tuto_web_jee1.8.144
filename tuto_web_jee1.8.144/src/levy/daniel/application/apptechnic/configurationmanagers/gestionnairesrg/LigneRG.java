@@ -59,6 +59,13 @@ public class LigneRG
 	
 	
 	/**
+	 * VIRGULE_ESPACE : String :<br/>
+	 * ", ".<br/>
+	 */
+	public static final String VIRGULE_ESPACE = ", ";
+		
+	
+	/**
 	 * id : Long :<br/>
 	 * ID en base.<br/>
 	 */
@@ -599,57 +606,57 @@ static {
 		if (this.id != null) {
 			builder.append("id=");
 			builder.append(this.id);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.actif != null) {
 			builder.append("actif=");
 			builder.append(this.actif);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.activiteControleAttribut != null) {
 			builder.append("activiteControleAttribut=");
 			builder.append(this.activiteControleAttribut);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.activiteRG != null) {
 			builder.append("activiteRG=");
 			builder.append(this.activiteRG);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.nomRG != null) {
 			builder.append("nomRG=");
 			builder.append(this.nomRG);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.typeControleInt != null) {
 			builder.append("typeControleInt=");
 			builder.append(this.typeControleInt);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.typeControle != null) {
 			builder.append("typeControle=");
 			builder.append(this.typeControle);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.messageRG != null) {
 			builder.append("messageRG=");
 			builder.append(this.messageRG);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.nomObjetMetier != null) {
 			builder.append("nomObjetMetier=");
 			builder.append(this.nomObjetMetier);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.nomAttributObjetMetier != null) {
 			builder.append("nomAttributObjetMetier=");
 			builder.append(this.nomAttributObjetMetier);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.classeControle != null) {
 			builder.append("classeControle=");
 			builder.append(this.classeControle);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.methodeControle != null) {
 			builder.append("methodeControle=");
@@ -665,18 +672,14 @@ static {
 
 	/**
 	 * method getEnTeteCsv() :<br/>
+	 * Retourne l'en-tête pour les fichiers csv avec séparateur ';'.<br/>
 	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
 	 * RG implémentée;clé du type de contrôle;type de contrôle;Message d'erreur;
 	 * Objet Métier concerné;Attribut concerné;Classe implémentant la RG;
 	 * Méthode implémentant la RG;".<br/>
 	 * <br/>
 	 *
-	 * @return : String : "id;Actif;
-	 * activité des contrôles sur l'attribut;activité de la RG;
-	 * RG implémentée;clé du type de contrôle;type de contrôle
-	 * ;Message d'erreur;
-	 * Objet Métier concerné;Attribut concerné;Classe implémentant la RG;
-	 * Méthode implémentant la RG;".<br/>
+	 * @return : String : en-tête pour les fichiers csv.<br/>
 	 */
 //	@Transient
 	@Override

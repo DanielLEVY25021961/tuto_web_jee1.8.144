@@ -1,5 +1,8 @@
 package levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -64,6 +67,31 @@ public class GestionnaireRGTest {
 		
 	} // Fin de testAfficherListeRGImplementeesCsv().______________________
 
+
+	
+	/**
+	 * method testExpressionReguliere() :<br/>
+	 * .<br/>
+	 * <br/>
+	 * :  :  .<br/>
+	 */
+	@Test
+	public void testExpressionReguliere() {
+		
+		/* Pattern "que des lettres". 
+		 * + signifie au moins une lettre. */
+		final Pattern pattern = Pattern.compile("\\D+");
+		
+		/* Moteur de recherche Matcher. */
+		final Matcher matcher = pattern.matcher(" ");
+		
+		/* boolean qui stipule si le pattern est respecté. */
+		final boolean match = matcher.matches();
+		
+		System.out.println(match);
+		
+	} // Fin de testExpressionReguliere()._________________________________
+	
 	
 
 } // FIN DE LA CLASSE GestionnaireRGTest.------------------------------------

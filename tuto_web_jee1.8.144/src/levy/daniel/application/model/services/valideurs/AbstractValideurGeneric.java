@@ -73,8 +73,58 @@ public abstract class AbstractValideurGeneric<T>
 	protected transient Map<String, Map<String, String>> erreurs 
 			= new ConcurrentHashMap<String, Map<String, String>>();
 	
+	
+	/**
+	 * controles : Map<String,Map<String,LigneRapportValidation>> :<br/>
+	 * map&lt;String, map&lt;String, LigneRapportValidation&gt;&gt; 
+	 * contenant les rapports de contrôle (validation) avec :
+	 * <ul>
+	 * <li>String : le nom de l'attribut de l'Objet métier concerné 
+	 * par le rapport de contrôle (par exemple "prénom").</li>
+	 * <li>map&lt;String, LigneRapportValidation&gt; : une map contenant :
+	 * <ul>
+	 * <li>String : le nom de la RG violée (par exemple 
+	 * "RG_CLIENT_NOM_01 : le nom du client doit être renseigné.").</li>
+	 * <li>LigneRapportValidation : Pure fabrication encapsulant 
+	 * tous les éléments d'information relatifs à un contrôle 
+	 * (validation d'une RG).</li>
+	 * <br/>
+	 * Une LigneRapportValidation encapsule : <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * </ul>
+	 * </ul>
+	 * </ul>
+	 */
+	protected transient Map<String, Map<String, LigneRapportValidation>> controles 
+	= new ConcurrentHashMap<String, Map<String, LigneRapportValidation>>();
 
+	
+	/**
+	 * controlesList : List&lt;LigneRapportValidation&gt; :<br/>
+	 * Liste des Pures fabrications encapsulant 
+	 * tous les éléments d'information relatifs à un contrôle 
+	 * (validation d'une RG).</li>
+	 * <br/>
+	 * Une LigneRapportValidation encapsule : <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * </ul>
+	 * </ul>
+	 * </ul>
+	 */
+	protected transient List<LigneRapportValidation> controlesList 
+		= new ArrayList<LigneRapportValidation>();
 
+	
 	/**
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
@@ -202,6 +252,26 @@ public abstract class AbstractValideurGeneric<T>
 	public final Map<String, Map<String, String>> getErreurs() {
 		return this.erreurs;
 	} // Fin de getErreurs().______________________________________________
+
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Map<String, Map<String, LigneRapportValidation>> getControles() {
+		return this.controles;
+	} // Fin de getControles().____________________________________________
+
+
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final List<LigneRapportValidation> getControlesList() {
+		return this.controlesList;
+	} // Fin de getControlesList().________________________________________
 
 		
 	

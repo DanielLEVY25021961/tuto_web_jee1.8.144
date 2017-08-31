@@ -236,8 +236,8 @@ static {
 	 */
 	private static String fournirCheminRessourceExterneRG() {
 					
-		return "D:/Donnees/eclipse/eclipseworkspace_neon/"
-					+ "tuto_web_jee1.8.144/ressources_externes";
+		return "C:/Users/dan/git/tuto_web_jee1.8.144.git/"
+				+ "tuto_web_jee1.8.144/ressources_externes";
 					
 	} // Fin de fournirCheminRessourceExterneRG()._________________________
 	
@@ -278,8 +278,8 @@ static {
 						, 1
 						, RG_CLIENT_NOM_01_MESSAGE
 						, "Client", "Nom"
-						, "ClientService"
-						, "validerNom(...)");
+						, "ValideurClient"
+						, "validerRGClientNom01(...)");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_01
@@ -293,8 +293,8 @@ static {
 						, 2
 						, RG_CLIENT_NOM_02_MESSAGE
 						, "Client", "Nom"
-						, "ClientService"
-						, "validerNom(...)");
+						, "ValideurClient"
+						, "validerRGClientNom02(...)");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_02
