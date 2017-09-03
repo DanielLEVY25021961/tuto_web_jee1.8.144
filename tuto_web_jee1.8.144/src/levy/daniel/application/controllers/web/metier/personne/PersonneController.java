@@ -104,16 +104,20 @@ public class PersonneController extends HttpServlet {
 				
 		final String message = stb.toString();
 		
+//		final String arianeEntree = (String) pReq.getAttribute("ariane");
+//		System.out.println("arianeEntree : " + arianeEntree);
+		final String ariane = "personne";
+		
 		/* Passe message à l'attribut attrMessageServlet de la requête. */
 		pReq.setAttribute("attrMessageServlet", message);
-		
+		pReq.setAttribute("ariane", ariane);
 		
 		// BEAN.
 		final PersonneGenius premierBeanPapy 
 			= new PersonneGenius("Papy", "Gonzales", true);
 		pReq.setAttribute("attrPremierBeanPapy", premierBeanPapy);
 		
-		/* URL : context/entree */
+		/* URL : context/personne */
 		this.getServletContext()
 			.getRequestDispatcher("/WEB-INF/vues/web/metier/personne/personne.jsp")
 			.forward(pReq, pResp);

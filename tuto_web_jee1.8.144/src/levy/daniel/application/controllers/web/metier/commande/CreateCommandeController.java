@@ -294,6 +294,9 @@ public class CreateCommandeController extends HttpServlet {
 		 * de création de commande par l'internaute. */
 		if (initialisation) {
 			
+			final String ariane = "créer une commande";
+			pReq.setAttribute("ariane", ariane);
+			
 			/* Aiguillage vers la cible. */
 			/* Tranfert de la requête/reponse. */
 			this.getServletContext()
@@ -518,6 +521,9 @@ public class CreateCommandeController extends HttpServlet {
 		// ************************************************************
 		if (formulaireValide) {
 			
+			final String ariane = "commande";
+			pReq.setAttribute("ariane", ariane);
+			
 			/* Chemin de la jsp à atteindre si OK.*/
 			/* Aiguillage vers la cible. */
 			/* Tranfert de la requête/reponse. */
@@ -529,7 +535,9 @@ public class CreateCommandeController extends HttpServlet {
 			
 		} // Fin de if (formulaireValide).________________________
 		
-			
+		final String ariane = "créer une commande";
+		pReq.setAttribute("ariane", ariane);
+		
 		/* Chemin de la jsp à atteindre si KO.*/
 		/* Aiguillage vers la cible. */
 		/* Tranfert de la requête/reponse. */

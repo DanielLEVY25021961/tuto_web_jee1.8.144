@@ -98,11 +98,13 @@ public class AccueilController extends HttpServlet {
 			
 			stb.append(message2);
 		}
-				
+		
+		final String ariane = "accueil";
 		final String message = stb.toString();
 		
 		/* Passe message à l'attribut attrMessageServlet de la requête. */
 		pReq.setAttribute("attrMessageServlet", message);
+		pReq.setAttribute("ariane", ariane);
 		
 		/* URL : context/entree */
 		this.getServletContext()

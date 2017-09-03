@@ -2,8 +2,15 @@ package levy.daniel.application.model.services.valideurs;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
@@ -20,6 +27,8 @@ import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.
  *<br/>
  * 
  * - Mots-clé :<br/>
+ * Tri d'une Collection, Collections.sort(List...), <br/>
+ * Tri de Map, SortedMap, TreeMap, <br/>
  * <br/>
  *
  * - Dépendances :<br/>
@@ -123,6 +132,28 @@ public abstract class AbstractValideurGeneric<T>
 	 */
 	protected transient List<LigneRapportValidation> controlesList 
 		= new ArrayList<LigneRapportValidation>();
+
+	
+	/**
+	 * POINT_VIRGULE : char :<br/>
+	 * ';'.<br/>
+	 */
+	public static final char POINT_VIRGULE = ';';
+	
+	
+	/**
+	 * SAUT_LIGNE : String :<br/>
+	 * "\n".<br/>
+	 */
+	public static final String SAUT_LIGNE = "\n";
+	
+
+	/**
+	 * SAUT_LIGNE_HTML : String :<br/>
+	 * "<br/>".<br/>
+	 */
+	public static final String SAUT_LIGNE_HTML = "<br/>";
+	
 
 	
 	/**
@@ -234,7 +265,451 @@ public abstract class AbstractValideurGeneric<T>
 	} // Fin de fournirStringListeCsvRGImplementees()._____________________
 
 
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final String fournirStringListeCsvRGImplementeesAvecEntete() {
+		
+		/* retourne null si . */
+		if (this.listeRGImplementees == null) {
+			return null;
+		}
+		
+		final StringBuilder stb = new StringBuilder();
+		
+		stb.append(this.fournirEnTeteCsvRGImplementees());
+		stb.append(SAUT_LIGNE);
+		stb.append(this.fournirStringListeCsvRGImplementees());
+		
+		return stb.toString();
+		
+	} // Fin de fournirStringListeCsvRGImplementeesAvecEntete().___________
 	
+
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Map<String, String> fournirMapErreursAttribut(
+			final String pAttribut) {
+		
+		/* retourne null si pAttribut == null. */
+		if (pAttribut == null) {
+			return null;
+		}
+		
+		/* retourne null si this.erreurs == null. */
+		if (this.erreurs == null) {
+			return null;
+		}
+		
+		return this.erreurs.get(pAttribut);
+		
+	} // Fin de fournirMapErreursAttribut(...).____________________________
+	
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final String fournirStringErreursAttribut(
+			final String pAttribut
+				, final String pSautLigne) {
+		
+		/* retourne null si pAttribut == null. */
+		if (pAttribut == null) {
+			return null;
+		}
+		
+		/* retourne null si this.erreurs == null. */
+		if (this.erreurs == null) {
+			return null;
+		}
+		
+		final Map<String, String> mapErr 
+			= this.fournirMapErreursAttribut(pAttribut);
+		
+		final Collection<String> collErr 
+			= this.fournirListeMessagesErreurs(mapErr);
+		
+		final String resultat 
+			= this.fournirStringMessagesErreur(collErr, pSautLigne);
+		
+		return resultat;
+		
+	} // Fin de fournirStringErreursAttribut(...)._________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Collection<String> fournirListeMessagesErreurs(
+			final Map<String, String> pMap) {
+		
+		/* retourne null si pMap == null. */
+		if (pMap == null) {
+			return null;
+		}
+		
+		final Collection<String> collMessages = pMap.values();
+		
+		/* Tri de la Collection. */
+		final List<String> listMessages 
+			= new ArrayList<String>(collMessages);
+		
+		Collections.sort(listMessages);
+		
+		return listMessages;
+		
+	} // Fin de fournirListeMessagesErreurs(...).__________________________
+	
+	
+	
+	/**
+	 * method fournirStringMessagesErreur(
+	 * Collection&lt;String&gt; pStrings
+	 * , String pSautLigne) :<br/>
+	 * Retourne les messages contenus dans 
+	 * la Collection&lt;String&gt; pStrings sous forme 
+	 * d'une unique String incorporant des sauts de ligne ("\n" ou "br").<br/>
+	 * <br/>
+	 * retourne null si pStrings == null.<br/>
+	 * <br/>
+	 *
+	 * @param pStrings : Collection&lt;String&gt;.<br/>
+	 * @param pSautLigne : String : "\n" ou "br".<br/>
+	 * 
+	 * @return : String : Messages d'erreur sous forme de String.<br/>
+	 */
+	private String fournirStringMessagesErreur(
+			final Collection<String> pStrings
+				, final String pSautLigne) {
+		
+		/* retourne null si pStrings == null. */
+		if (pStrings == null) {
+			return null;
+		}
+		
+		final StringBuilder stb = new StringBuilder();
+		
+		final Iterator<String> ite = pStrings.iterator();
+		
+		final int tailleCollection = pStrings.size();
+		int compteur = 0;
+		
+		while (ite.hasNext()) {
+			
+			compteur++;
+			final String messageErreur = ite.next();
+			stb.append(messageErreur);
+			
+			if (compteur < tailleCollection) {
+				stb.append(pSautLigne);
+			}
+		}
+		
+		return stb.toString();
+		
+	} // Fin de fournirStringMessagesErreur(...).__________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final String afficherErreurs() {
+		
+		final StringBuilder stb = new StringBuilder();
+		
+		/* Tri de la Map*/
+		final SortedMap<String, Map<String, String>> mapTriee 
+			= new TreeMap<String, Map<String, String>>(this.erreurs);
+		
+		final Set<Entry<String, Map<String, String>>> entrySet 
+			= mapTriee.entrySet();
+		
+		final Iterator<Entry<String, Map<String, String>>> ite 
+			= entrySet.iterator();
+				
+		while (ite.hasNext()) {
+			
+			final Entry<String, Map<String, String>> entry = ite.next();
+			
+			final String nomAttribut = entry.getKey();
+			
+			final Map<String, String> erreurAttr = entry.getValue();
+			
+			final int tailleMap = erreurAttr.size();
+			
+			/* Tri de la Map. */
+			final SortedMap<String, String> erreurAttrTrie 
+				= new TreeMap<String, String>(erreurAttr);
+			
+			final Set<Entry<String, String>> entrySet1 
+				= erreurAttrTrie.entrySet();
+			
+			final Iterator<Entry<String, String>> ite1 
+				= entrySet1.iterator();
+			
+			int compteur = 0;
+			
+			while (ite1.hasNext()) {
+				
+				compteur++;
+				
+				final Entry<String, String> entry1 = ite1.next();
+				
+				final String nomRG = entry1.getKey();
+				final String messageErr = entry1.getValue();
+				
+				stb.append(nomAttribut);
+				stb.append(POINT_VIRGULE);
+				stb.append(nomRG);
+				stb.append(POINT_VIRGULE);
+				stb.append(messageErr);
+				stb.append(POINT_VIRGULE);
+				
+				if (compteur < tailleMap) {
+					stb.append(SAUT_LIGNE);
+				}				
+			}			
+		}
+		
+		return stb.toString();
+		
+	} // Fin de afficherErreurs()._________________________________________
+	
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Map<String, LigneRapportValidation> 
+				fournirMapControlesAttribut(
+							final String pAttribut) {
+		
+		/* retourne null si pAttribut == null. */
+		if (pAttribut == null) {
+			return null;
+		}
+		
+		/* retourne null si this.controles == null. */
+		if (this.controles == null) {
+			return null;
+		}
+		
+		return this.controles.get(pAttribut);
+		
+	} // Fin de fournirMapControlesAttribut(...).__________________________
+
+	
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final String fournirStringControlesAttribut(
+			final String pAttribut
+				, final String pSautLigne) {
+		
+		/* retourne null si pAttribut == null. */
+		if (pAttribut == null) {
+			return null;
+		}
+		
+		/* retourne null si this.controles == null. */
+		if (this.controles == null) {
+			return null;
+		}
+		
+		final Map<String, LigneRapportValidation> mapControlesAttr 
+			= this.fournirMapControlesAttribut(pAttribut);
+		
+		final Collection<LigneRapportValidation> collectionControles 
+			= this.fournirListeMessagesControles(mapControlesAttr);
+		
+		final String resultat 
+		= this.fournirStringMessagesControle(
+				collectionControles, pSautLigne);
+		
+		return resultat;
+		
+	} // Fin de fournirStringControlesAttribut(...)._______________________
+
+	
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Collection<LigneRapportValidation> 
+			fournirListeMessagesControles(
+					final Map<String, LigneRapportValidation> pMap) {
+		
+		/* retourne null si pMap == null. */
+		if (pMap == null) {
+			return null;
+		}
+		
+		final Collection<LigneRapportValidation> collectionLignes 
+			= pMap.values();
+		
+		/* Tri d'une Collection. */
+		final List<LigneRapportValidation> listLignes 
+			= new ArrayList<LigneRapportValidation>(collectionLignes);
+		
+		Collections.sort(listLignes);
+		
+		return listLignes;
+		
+	} // Fin de fournirListeMessagesControles(...).________________________
+	
+
+	
+	/**
+	 * method fournirStringMessagesControle(
+	 * Collection&lt;LigneRapportValidation&gt; pLignesRapport
+	 * , String pSautLigne) :<br/>
+	 * <ul>
+	 * <li>Retourne les messages de contrôle contenus dans 
+	 * la Collection&lt;LigneRapportValidation&gt; pLignesRapport 
+	 * sous forme d'une unique String incorporant des sauts de ligne 
+	 * ("\n" ou "br").</li>
+	 * <li>Retourne nomRG;Résultat du contrôle;message du contrôle;</li>
+	 * </ul>
+	 * retourne null si pLignesRapport == null.<br/>
+	 * <br/>
+	 *
+	 * @param pLignesRapport : Collection&lt;LigneRapportValidation&gt;.<br/>
+	 * @param pSautLigne : String : "\n" ou "br".<br/>
+	 * 
+	 * @return : String : Messages de contrôle sous forme de String.<br/>
+	 */
+	private String fournirStringMessagesControle(
+			final Collection<LigneRapportValidation> pLignesRapport
+				, final String pSautLigne) {
+		
+		/* retourne null si pLignesRapport == null. */
+		if (pLignesRapport == null) {
+			return null;
+		}
+		
+		final StringBuilder stb = new StringBuilder();
+		
+		final Iterator<LigneRapportValidation> ite 
+			= pLignesRapport.iterator();
+		
+		final int tailleCollection = pLignesRapport.size();
+		int compteur = 0;
+		
+		while (ite.hasNext()) {
+			
+			compteur++;
+			final LigneRapportValidation ligneRapport = ite.next();
+			
+			final String nomRG = ligneRapport.getNomRG();
+			final String resultat = ligneRapport.getResultatValidationRG();
+			final String messageControle 
+				= ligneRapport.getMessageErreurValidation();
+			
+			stb.append(nomRG);
+			stb.append(POINT_VIRGULE);
+			stb.append(resultat);
+			stb.append(POINT_VIRGULE);
+			stb.append(messageControle);
+			stb.append(POINT_VIRGULE);
+			
+			if (compteur < tailleCollection) {
+				stb.append(pSautLigne);
+			}
+		}
+		
+		return stb.toString();
+		
+	} // Fin de fournirStringMessagesControle(...).________________________
+	
+
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final String afficherControles() {
+		
+		final StringBuilder stb = new StringBuilder();
+		
+		/* Tri de la Map*/
+		final SortedMap<String, Map<String, LigneRapportValidation>> mapTriee 
+		= new TreeMap<String, Map<String, LigneRapportValidation>>(this.controles);
+		
+		final Set<Entry<String, Map<String, LigneRapportValidation>>> entrySet 
+			= mapTriee.entrySet();
+		
+		final Iterator<Entry<String, Map<String, LigneRapportValidation>>> ite 
+			= entrySet.iterator();
+				
+		while (ite.hasNext()) {
+			
+			final Entry<String, Map<String, LigneRapportValidation>> entry 
+				= ite.next();
+			
+			final String nomAttribut = entry.getKey();
+			
+			final Map<String, LigneRapportValidation> controleAttr 
+				= entry.getValue();
+			
+			/* Tri de la Map. */
+			final SortedMap<String, LigneRapportValidation> controleAttrTrie 
+			= new TreeMap<String, LigneRapportValidation>(controleAttr);
+			
+			final Set<Entry<String, LigneRapportValidation>> entrySet1 
+				= controleAttrTrie.entrySet();
+			
+			final Iterator<Entry<String, LigneRapportValidation>> ite1 
+				= entrySet1.iterator();
+			
+			while (ite1.hasNext()) {
+				
+				final Entry<String, LigneRapportValidation> entry1 
+					= ite1.next();
+				
+				final String nomRG = entry1.getKey();
+				final LigneRapportValidation messageContr 
+					= entry1.getValue();
+				
+				stb.append(nomAttribut);
+				stb.append(POINT_VIRGULE);
+				stb.append(nomRG);
+				stb.append(POINT_VIRGULE);
+				
+				if (messageContr != null) {
+					
+					stb.append(messageContr.getResultatValidationRG());
+					stb.append(POINT_VIRGULE);
+					stb.append(messageContr.getMessageErreurValidation());
+					stb.append(POINT_VIRGULE);
+					
+				}
+				
+				stb.append(SAUT_LIGNE);
+			}
+			
+		}
+		
+		return stb.toString();
+		
+	} // Fin de afficherControles()._______________________________________
+
+
+
 	/**
 	 * {@inheritDoc}
 	 */

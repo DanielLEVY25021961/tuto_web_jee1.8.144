@@ -19,12 +19,29 @@ DIRECTIVE DE PAGE spécifiant :
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" href="static/css/style_coyote.css" />
 		<title>personne.jsp</title>
 	
 	</head>
 	
 	<body>
 	
+		<%-- FIL D'ARIANE --%>
+		<div class="ariane">
+			<p>
+				<img alt="accueil" src="static/images/home.png" />
+				<span class="filariane">
+					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
+				</span>
+				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span class="filariane">
+					<a href="<c:url value="/personne" />"><c:out value="${ ariane }" /></a>
+				</span>				
+			</p>
+			<c:set var="ariane" value="accueil" scope="session" />
+		</div>
+		
+		
 		<h1>Personne.jsp (sous WEB-INF/vues/metier/personne/)</h1>
 
 
@@ -84,6 +101,10 @@ DIRECTIVE DE PAGE spécifiant :
 			nom : <c:out value="${requestScope.attrPremierBeanPapy.nom}" default="Gonzalez" escapeXml="true"/><br/>
 			génial ? : <c:out value="${requestScope.attrPremierBeanPapy.genius}" default="false" escapeXml="true"/><br/>
 		</p>
+		
+		<div>
+			<p><a href="<c:url value="/entree" />">Retour à l'accueil</a></p>
+		</div>
 		
 	</body>
 	

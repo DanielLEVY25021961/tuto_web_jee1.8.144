@@ -10,7 +10,12 @@ DIRECTIVE DE PAGE spécifiant :
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     isELIgnored="false" pageEncoding="UTF-8"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- DTD pour  XHTML 1.0 Transitional -->    
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+
+<!-- DTD pour HTML 5 -->
+<!DOCTYPE html>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -22,6 +27,26 @@ DIRECTIVE DE PAGE spécifiant :
 	
 	<body>
 	
+<%-- FIL D'ARIANE --%>
+
+		<div class="ariane">
+			<p>
+				<img alt="accueil" src="static/images/home.png" />
+				<span class="filariane">
+					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
+				</span>
+				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span class="filariane">
+					<a href="<c:url value="/createCommande" />"><c:out value="créer une commande" /></a>
+				</span>
+				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span class="filariane">
+					<a href="<c:url value="/afficherCommande" />"><c:out value="commande" /></a>
+				</span>								
+			</p>
+			<c:set var="ariane" value="accueil" scope="session" />
+		</div>	
+	
 		<%-- Affichage de la chaîne "message" transmise par la servlet --%>
 		<%-- TEST SUR LE VIDE --%>
 	    <c:if test="${not empty message }" >
@@ -30,7 +55,7 @@ DIRECTIVE DE PAGE spécifiant :
 
 		<div class="client">
 	        <%-- Puis affichage des données enregistrées dans le bean "commande" transmis par la servlet --%>
-	        <h1><u>Client</u></h1>
+	        <h1><span class="souligne">Client</span></h1>
 	        <%-- Les 5 expressions suivantes accèdent aux propriétés du client, qui est lui-même une propriété du bean commande --%>
 	        <p>Nom : <c:out value="${ requestScope.commande.client.nom }" default="" escapeXml="true" /></p>
 	        <p>Prénom : <c:out value="${ requestScope.commande.client.prenom }" default="" escapeXml="true" /></p>
@@ -40,7 +65,7 @@ DIRECTIVE DE PAGE spécifiant :
 		</div>
 		
 		<div class="commande">
-	        <h1><u>Commande</u></h1>
+	        <h1><span class="souligne">Commande</span></h1>
 	        <p>Date  : <c:out value="${ requestScope.commande.dateCommande }" default="" escapeXml="true" /></p> 
 	        <p>Montant  : <c:out value="${ requestScope.commande.montant }" default="" escapeXml="true" /> euros</p> 
 	        <p>Mode de paiement  : <c:out value="${ requestScope.commande.modePaiement }" default="" escapeXml="true" /></p> 
@@ -48,6 +73,13 @@ DIRECTIVE DE PAGE spécifiant :
 	        <p>Mode de livraison  : <c:out value="${ requestScope.commande.modeLivraison }" default="" escapeXml="true" /></p> 
 	        <p>Statut de la livraison  : <c:out value="${ requestScope.commande.statutLivraison }" default="" escapeXml="true" /></p>
         </div> 
+        
+        <div>
+			<p>
+				<a href="<c:url value="/entree" />">Retour à l'accueil</a>
+			</p>
+		</div>
+        
 		
 	</body>
 	

@@ -10,7 +10,11 @@ DIRECTIVE DE PAGE spécifiant :
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- DTD pour  XHTML 1.0 Transitional -->    
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+
+<!-- DTD pour HTML 5 -->
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -24,7 +28,7 @@ DIRECTIVE DE PAGE spécifiant :
 	             
 		<%-- affichage des données enregistrées dans le bean "client" 
 		transmis par la servlet --%>
-        <h1><u>Client</u></h1>
+        <h1><span class="souligne">Client</span></h1>
         <%-- Les 5 expressions suivantes accèdent aux propriétés 
         du client dans le scope de la request --%>
         <p>Nom : <c:out value="${ requestScope.client.nom }" default="" escapeXml="true" /></p>

@@ -40,14 +40,18 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 
 	// ************************ATTRIBUTS************************************/
 
-		
 	/**
-	 * METHODE_VALIDER_NOM : String :<br/>
-	 * "Méthode validerNom(...)".<br/>
+	 * NOM : String :<br/>
+	 * "nom".<br/>
 	 */
-	public static final String METHODE_VALIDER_NOM 
-		= "Méthode validerNom(...)";
-
+	public static final String NOM = "nom";
+	
+	
+	/**
+	 * PRENOM : String :<br/>
+	 * "prenom".<br/>
+	 */
+	public static final String PRENOM = "prenom";
 
 	/**
 	 * LOG : Log : 
@@ -64,10 +68,8 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 	 * CONSTRUCTEUR D'ARITE NULLE.<br/>
 	 * <br/>
 	 */
-	public ValideurClient() {
-		
-		super();
-		
+	public ValideurClient() {		
+		super();		
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 	
 	
@@ -80,7 +82,11 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 			final AbstractClient pClient) 
 			throws MalformedURLException {
 		
+		/* nom. */
 		this.validerNom(pClient);
+		
+		/* prenom. */
+		this.validerPrenom(pClient);
 		
 		return this.erreurs;
 		
@@ -124,10 +130,10 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 					pClient, mapErreursNom, mapControlesNom);
 		
 		/* Alimentation de la map this.erreurs. */
-		this.erreurs.put("nom", mapErreursNom);
+		this.erreurs.put(NOM, mapErreursNom);
 		
 		/* Alimentation de la Map this.controles. */
-		this.controles.put("nom", mapControlesNom);
+		this.controles.put(NOM, mapControlesNom);
 		
 		return isValideRGClientNom01 && isValideRGClientNom02;
 		
@@ -260,6 +266,8 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 	 * method validerRGClientNom02() :<br/>
 	 * .<br/>
 	 * <br/>
+	 * retourne true si pClient == null.<br/>
+	 * retourne true si nom == null.<br/>
 	 *
 	 * @param pClient : AbstractClient.<br/>
 	 * @param pMapErreursNom : Map&lt;String, String&gt; : 
@@ -285,13 +293,35 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 		
 		/* Extraction de l'attribut du bean 'nom'. */
 		final String nom = pClient.getNom();
-				
+						
 		/* RG_CLIENT_NOM_02. */
 		final LigneRG ligneRGClient02 
 			= GestionnaireRG.getLigneRG(GestionnaireRG.RG_CLIENT_NOM_02);
 		
 		/* alimente this.listeRGImplementees. */
 		this.alimenterListeRGImplementees(ligneRGClient02);
+		
+		/* retourne true si nom == null. */
+		if (nom == null) {
+			
+			/* Remplissage de la map contenant les contrôles 
+			 * associées à l'attribut 'nom'. */
+			final LigneRapportValidation ligneRapportValidation 
+			= new LigneRapportValidation(
+					"OK"
+					, "Le champ nom est blank (null ou vide). Donc pas de chiffres !"
+					, ligneRGClient02);
+			
+			pMapControlesNom.put(
+					GestionnaireRG.RG_CLIENT_NOM_02
+					, ligneRapportValidation);
+			
+			/* remplissage de la liste des contrôles. */
+			this.controlesList.add(ligneRapportValidation);
+			
+			return true;
+			
+		}
 
 		/* Récupération de l'activité de la règle. */
 		final Boolean actif = ligneRGClient02.getActif();
@@ -299,8 +329,9 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 		if (actif) {
 			
 			/* Pattern "que des lettres". 
-			 * + signifie au moins une lettre. */
-			final Pattern pattern = Pattern.compile("\\D+");
+			 * '+' signifie au moins une lettre. */
+			/* '*' signifie 0 à n lettres. */
+			final Pattern pattern = Pattern.compile("\\D*");
 			
 			/* Moteur de recherche Matcher. */
 			final Matcher matcher = pattern.matcher(nom);
@@ -338,21 +369,42 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 			// PAS DE VIOLATION DE LA REGLE.
 			} else {
 				
-				/* Remplissage de la map contenant les contrôles 
-				 * associées à l'attribut 'nom'. */
-				final LigneRapportValidation ligneRapportValidation 
-				= new LigneRapportValidation(
-						"OK"
-						, "Le champ nom ne contient que des lettres : " + nom
-						, ligneRGClient02);
-				
-				pMapControlesNom.put(
-						GestionnaireRG.RG_CLIENT_NOM_02
-						, ligneRapportValidation);
-				
-				/* remplissage de la liste des contrôles. */
-				this.controlesList.add(ligneRapportValidation);
-				
+				if (!StringUtils.isBlank(nom)) {
+					
+					/* Remplissage de la map contenant les contrôles 
+					 * associées à l'attribut 'nom'. */
+					final LigneRapportValidation ligneRapportValidation 
+					= new LigneRapportValidation(
+							"OK"
+							, "Le champ nom ne contient que des lettres : " + nom
+							, ligneRGClient02);
+					
+					pMapControlesNom.put(
+							GestionnaireRG.RG_CLIENT_NOM_02
+							, ligneRapportValidation);
+					
+					/* remplissage de la liste des contrôles. */
+					this.controlesList.add(ligneRapportValidation);
+					
+				} else {
+					
+					/* Remplissage de la map contenant les contrôles 
+					 * associées à l'attribut 'nom'. */
+					final LigneRapportValidation ligneRapportValidation 
+					= new LigneRapportValidation(
+							"OK"
+							, "Le champ nom est blank (null ou vide). Donc pas de chiffres !"
+							, ligneRGClient02);
+					
+					pMapControlesNom.put(
+							GestionnaireRG.RG_CLIENT_NOM_02
+							, ligneRapportValidation);
+					
+					/* remplissage de la liste des contrôles. */
+					this.controlesList.add(ligneRapportValidation);
+					
+				}
+								
 				resultat = true;
 			}
 		
@@ -381,6 +433,216 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 		return resultat;
 		
 	} // Fin de validerRGClientNom02(...)._________________________________
+	
+
+	
+	/**
+	 * method validerPrenom(AbstractClient pClient) :<br/>
+	 * .<br/>
+	 * <br/>
+	 *
+	 * @param pClient
+	 * @return :  :  .<br/>
+	 * @throws MalformedURLException 
+	 */
+	public boolean validerPrenom(
+			final AbstractClient pClient) 
+			throws MalformedURLException {
+		
+		final Map<String, String> mapErreurs 
+		= new ConcurrentHashMap<String, String>();
+		
+		final Map<String, LigneRapportValidation> mapControles 
+		= new ConcurrentHashMap<String, LigneRapportValidation>();
+		
+		/* Vérification de la RG_CLIENT_PRENOM_03. */
+		final boolean isValideRGClientPrenom03 
+			= this.validerRGClientPrenom03(
+					pClient, mapErreurs, mapControles);
+		
+		/* Alimentation de la map this.erreurs. */
+		this.erreurs.put(PRENOM, mapErreurs);
+		
+		/* Alimentation de la Map this.controles. */
+		this.controles.put(PRENOM, mapControles);
+		
+		return isValideRGClientPrenom03;
+
+	} // Fin de validerPrenom(...).________________________________________
+	
+	
+	
+	
+	/**
+	 * method validerRGClientPrenom03() :<br/>
+	 * .<br/>
+	 * <br/>
+	 * retourne true si pClient == null.<br/>
+	 * retourne true si prenom == null.<br/>
+	 * <br/>
+	 *
+	 * @param pClient
+	 * @param pMapErreurs
+	 * @param pMapControles
+	 * @return boolean
+	 * @throws MalformedURLException :  :  .<br/>
+	 */
+	public boolean validerRGClientPrenom03(
+			final AbstractClient pClient
+			, final Map<String, String> pMapErreurs
+			, final Map<String, LigneRapportValidation> pMapControles) 
+					throws MalformedURLException {
+		
+		/* retourne true si pClient == null. */
+		if (pClient == null) {
+			return true;
+		}
+		
+		boolean resultat = true;
+		
+		/* Extraction de l'attribut du bean 'prenom'. */
+		final String prenom = pClient.getPrenom();
+				
+		/* RG_CLIENT_PRENNOM_03. */
+		final LigneRG ligneRGClient03 
+			= GestionnaireRG.getLigneRG(GestionnaireRG.RG_CLIENT_PRENOM_03);
+		
+		/* alimente this.listeRGImplementees. */
+		this.alimenterListeRGImplementees(ligneRGClient03);
+		
+		/* retourne true si prenom == null. */
+		if (prenom == null) {
+			
+			/* Remplissage de la map contenant les contrôles 
+			 * associées à l'attribut 'nom'. */
+			final LigneRapportValidation ligneRapportValidation 
+			= new LigneRapportValidation(
+					"OK"
+					, "Le champ prenom est blank (null ou vide). Donc pas de chiffres !"
+					, ligneRGClient03);
+			
+			pMapControles.put(
+					GestionnaireRG.RG_CLIENT_PRENOM_03
+					, ligneRapportValidation);
+			
+			/* remplissage de la liste des contrôles. */
+			this.controlesList.add(ligneRapportValidation);
+			
+			return true;
+			
+		}
+
+		/* Récupération de l'activité de la règle. */
+		final Boolean actif = ligneRGClient03.getActif();
+		
+		if (actif) {
+			
+			/* Pattern "que des lettres". 
+			 * '+' signifie au moins une lettre. */
+			/* '*' signifie 0 à n lettres. */
+			final Pattern pattern = Pattern.compile("\\D*");
+			
+			/* Moteur de recherche Matcher. */
+			final Matcher matcher = pattern.matcher(prenom);
+			
+			/* boolean qui stipule si le pattern est respecté. */
+			final boolean match = matcher.matches();
+			
+			// CAS DE VIOLATION DE LA REGLE.
+			/* RG_CLIENT_PRENOM_03 : le prénom du client ne doit contenir que des lettres. */
+			if (!match) {
+				
+				/* Remplissage de la map contenant les erreurs 
+				 * associées à l'attribut 'nom'. */
+				pMapErreurs.put(
+						GestionnaireRG.RG_CLIENT_PRENOM_03
+						, GestionnaireRG.RG_CLIENT_PRENOM_03_MESSAGE);
+				
+				/* Remplissage de la map contenant les contrôles 
+				 * associées à l'attribut 'nom'. */
+				final LigneRapportValidation ligneRapportValidation 
+				= new LigneRapportValidation(
+						"KO"
+						, "Le champ prénom ne contient pas que des lettres : " + prenom
+						, ligneRGClient03);
+				
+				pMapControles.put(
+						GestionnaireRG.RG_CLIENT_PRENOM_03
+						, ligneRapportValidation);
+				
+				/* remplissage de la liste des contrôles. */
+				this.controlesList.add(ligneRapportValidation);
+								
+				resultat = false;
+			
+			// PAS DE VIOLATION DE LA REGLE.
+			} else {
+				
+				if (!StringUtils.isBlank(prenom)) {
+					
+					/* Remplissage de la map contenant les contrôles 
+					 * associées à l'attribut 'prenom'. */
+					final LigneRapportValidation ligneRapportValidation 
+					= new LigneRapportValidation(
+							"OK"
+							, "Le champ prenom ne contient que des lettres : " + prenom
+							, ligneRGClient03);
+					
+					pMapControles.put(
+							GestionnaireRG.RG_CLIENT_PRENOM_03
+							, ligneRapportValidation);
+					
+					/* remplissage de la liste des contrôles. */
+					this.controlesList.add(ligneRapportValidation);
+					
+				} else {
+					
+					/* Remplissage de la map contenant les contrôles 
+					 * associées à l'attribut 'nom'. */
+					final LigneRapportValidation ligneRapportValidation 
+					= new LigneRapportValidation(
+							"OK"
+							, "Le champ prenom est blank (null ou vide). Donc pas de chiffres !"
+							, ligneRGClient03);
+					
+					pMapControles.put(
+							GestionnaireRG.RG_CLIENT_PRENOM_03
+							, ligneRapportValidation);
+					
+					/* remplissage de la liste des contrôles. */
+					this.controlesList.add(ligneRapportValidation);
+					
+				}
+								
+				resultat = true;
+			}
+		
+		// CONTROLE INACTIF.
+		} else {
+			
+			/* Remplissage de la map contenant les contrôles 
+			 * associées à l'attribut 'nom'. */
+			final LigneRapportValidation ligneRapportValidation 
+			= new LigneRapportValidation(
+					"Sans Objet (non effectué)"
+					, "Le format du champ prenom n'est pas contrôlé"
+					, ligneRGClient03);
+			
+			pMapControles.put(
+					GestionnaireRG.RG_CLIENT_PRENOM_03
+					, ligneRapportValidation);
+			
+			/* remplissage de la liste des contrôles. */
+			this.controlesList.add(ligneRapportValidation);
+			
+			resultat = true;
+			
+		}
+				
+		return resultat;
+			
+	} // Fin de validerRGClientPrenom03(...).______________________________
+	
 	
 	
 } // FIN DE LA CLASSE ValideurClient.----------------------------------------
