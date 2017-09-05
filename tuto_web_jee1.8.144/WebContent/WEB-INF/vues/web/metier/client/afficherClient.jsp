@@ -25,6 +25,25 @@ DIRECTIVE DE PAGE spécifiant :
 	</head>
 	
 	<body>
+
+		<%-- FIL D'ARIANE --%>
+		<div class="ariane">
+			<p>
+				<img alt="accueil" src="static/images/home.png" />
+				<span class="filariane">
+					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
+				</span>
+				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span class="filariane">
+					<a href="<c:url value="/createClient" />"><c:out value="créer client" /></a>
+				</span>	
+				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span class="filariane">
+					<a href="<c:url value="/afficherClient" />"><c:out value="client" /></a>
+				</span>				
+			</p>
+			<c:set var="ariane" value="créer un client" scope="session" />
+		</div>
 		
 		<div>
             
@@ -35,6 +54,13 @@ DIRECTIVE DE PAGE spécifiant :
             <c:import url="/WEB-INF/vues/web/metier/client/fragmentAfficherClient.jsp" />
 
         </div>
+ 
+         <!-- LIENS -->
+        <div>
+			<p>
+				<a href="<c:url value="/entree" />">Retour à l'accueil</a>
+			</p>
+		</div>
         
 	</body>
 	

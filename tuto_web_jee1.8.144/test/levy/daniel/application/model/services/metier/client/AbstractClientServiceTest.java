@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import levy.daniel.application.model.metier.client.AbstractClient;
 import levy.daniel.application.model.metier.client.impl.Client;
+import levy.daniel.application.model.services.metier.IServiceGeneric;
 import levy.daniel.application.model.services.metier.client.impl.ClientService;
 
 /**
@@ -81,6 +82,30 @@ public class AbstractClientServiceTest {
 		
 	} // Fin de testFournirListeCsvRGImplementees()._______________________
 
+	
+	
+	/**
+	 * method testValidate() :<br/>
+	 * .<br/>
+	 * <br/>
+	 *
+	 * @throws MalformedURLException :  :  .<br/>
+	 */
+	@Test
+	public void testValidate() throws MalformedURLException {
+		
+		final AbstractClient client 
+			= new Client("Zorro27", "Daniel 27", null, null, null);
+		
+		final IServiceGeneric<AbstractClient> service 
+			= new ClientService();
+		
+		service.validate(client);
+		
+		
+		
+	} // Fin de testValidate().____________________________________________
+	
 	
 
 } // FIN DE LA CLASSE AbstractClientServiceTest.-----------------------------

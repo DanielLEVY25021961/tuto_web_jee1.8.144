@@ -39,7 +39,7 @@ DIRECTIVE DE PAGE spécifiant :
 					<a href="<c:url value="/createCommande" />"><c:out value="${ ariane }" /></a>
 				</span>				
 			</p>
-			<c:set var="ariane" value="accueil" scope="session" />
+			<c:set var="ariane" value="créer une commande" scope="session" />
 		</div>
 		
 
@@ -89,6 +89,7 @@ DIRECTIVE DE PAGE spécifiant :
 
         </div>
         
+        <!-- LIENS -->
         <div>
 			<p>
 				<a href="<c:url value="/entree" />">Retour à l'accueil</a>

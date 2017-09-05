@@ -31,19 +31,21 @@ DIRECTIVE DE PAGE spécifiant :
 
            <legend>Informations client</legend>
 
-           <label for="nomClient">Nom <span class="requis">*</span></label>
+           <label for="nomClient">Nom <span class="requis">*</span><span> : </span></label>
            <input type="text" id="nomClient" name="nomClient" value="${ requestScope.client.nom }" placeholder="nom du client" size="40" maxlength="40" />
+           <span class="requis"><c:out value="${ erreurs.nom }" /></span>
            <br />
-           <label for="prenomClient">Prénom </label>
+           <label for="prenomClient">Prénom<span> : </span></label>
            <input type="text" id="prenomClient" name="prenomClient" value="${ requestScope.client.prenom }" size="20" maxlength="20" />
+           <span class="erreurs"><c:out value="${ erreurs.prenom }" /></span>
            <br />
-           <label for="adresseClient">Adresse de livraison <span class="requis">*</span></label>
+           <label for="adresseClient">Adresse de livraison <span class="requis">*</span><span> : </span></label>
            <input type="text" id="adresseClient" name="adresseClient" value="${ requestScope.client.adresseLivraison }" size="20" maxlength="20" />
            <br />
-          <label for="telephoneClient">Numéro de téléphone <span class="requis">*</span></label>
+          <label for="telephoneClient">Numéro de téléphone <span class="requis">*</span><span> : </span></label>
            <input type="text" id="telephoneClient" name="telephoneClient" value="${ requestScope.client.telephone }" size="20" maxlength="20" />
            <br />
-           <label for="emailClient">Adresse email</label>
+           <label for="emailClient">Adresse email<span> : </span></label>
            <input type="email" id="emailClient" name="emailClient" value="${ requestScope.client.email }" size="20" maxlength="60" />
            <br />
 

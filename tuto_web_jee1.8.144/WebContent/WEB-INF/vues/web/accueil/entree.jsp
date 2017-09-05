@@ -66,6 +66,7 @@ DIRECTIVE DE PAGE spécifiant :
 		<div>
 			<p><a href="<c:url value="/personne" />">voir une personne</a></p>
 			<p><a href="<c:url value="/createCommande" />">Créer une Commande</a></p>
+			<p><a href="<c:url value="/createClient" />">Créer un Client</a></p>
 		</div>
 		
 		

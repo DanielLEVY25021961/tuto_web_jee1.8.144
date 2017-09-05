@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.LigneRG;
+import levy.daniel.application.model.services.valideurs.IValideurGeneric;
+import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
 
 /**
  * class IServiceGeneric :<br/>
@@ -145,7 +147,19 @@ public interface IServiceGeneric<T> {
 	 */
 	String founirNomClasse();
 
+	
 
+	/**
+	 * method getValideur() :<br/>
+	 * Getter du Valideur dédié à la validation de l'objet métier 
+	 * de type paramétré T traité par ce service.<br/>
+	 * <br/>
+	 *
+	 * @return valideur : IValideurGeneric<T>.<br/>
+	 */
+	IValideurGeneric<T> getValideur();
+	
+	
 	
 	/**
 	 * method getListeRGImplementees() :<br/>
@@ -185,6 +199,78 @@ public interface IServiceGeneric<T> {
 	 * @return erreurs : map&lt;String, map&lt;String, String&gt;&gt;.<br/>
 	 */
 	Map<String, Map<String, String>> getErreurs();
+	
+	
+	
+	/**
+	 * method getControles() :<br/>
+	 * Getter de la map&lt;String, map&lt;String
+	 * , LigneRapportValidation&gt;&gt; 
+	 * contenant les rapports de contrôle (validation) avec :
+	 * <ul>
+	 * <li>String : le nom de l'attribut de l'Objet métier concerné 
+	 * par le rapport de contrôle (par exemple "prénom").</li>
+	 * <li>map&lt;String, LigneRapportValidation&gt; : une map contenant :
+	 * <ul>
+	 * <li>String : le nom de la RG violée (par exemple 
+	 * "RG_CLIENT_NOM_01 : le nom du client doit être renseigné.").</li>
+	 * <li>LigneRapportValidation : Pure fabrication encapsulant 
+	 * tous les éléments d'information relatifs à un contrôle 
+	 * (validation d'une RG).</li>
+	 * <br/>
+	 * Une LigneRapportValidation encapsule : <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * </ul>
+	 * </ul>
+	 * </ul>
+	 * <br/>
+	 *
+	 * @return controles : map&lt;String, map&lt;String
+	 * , LigneRapportValidation&gt;&gt;.<br/>
+	 */
+	Map<String, Map<String, LigneRapportValidation>> getControles();
+	
+
+	
+	/**
+	 * method getControlesList() :<br/>
+	 * Getter de la Liste des Pures fabrications encapsulant 
+	 * tous les éléments d'information relatifs à un contrôle 
+	 * (validation d'une RG).</li>
+	 * <br/>
+	 * Une LigneRapportValidation encapsule : <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * </ul>
+	 * </ul>
+	 * </ul>
+	 * <br/>
+	 *
+	 * @return controlesList : 
+	 * List&lt;LigneRapportValidation&gt;.<br/>
+	 */
+	List<LigneRapportValidation> getControlesList();
+
+	
+	
+	/**
+	 * method getValide() :<br/>
+	 * Getter du Boolean qui stipule si le contrôle effectué 
+	 * par le validateur est sans erreur ou pas.<br/>
+	 * <br/>
+	 *
+	 * @return valide : Boolean.<br/>
+	 */
+	Boolean getValide();
 	
 	
 	

@@ -135,6 +135,14 @@ public abstract class AbstractValideurGeneric<T>
 
 	
 	/**
+	 * valide : Boolean :<br/>
+	 * Boolean qui stipule si le contrôle effectué par le validateur 
+	 * est sans erreur ou pas.<br/>
+	 */
+	protected transient Boolean valide;
+	
+
+	/**
 	 * POINT_VIRGULE : char :<br/>
 	 * ';'.<br/>
 	 */
@@ -185,6 +193,44 @@ public abstract class AbstractValideurGeneric<T>
 	public abstract Map<String, Map<String, String>> validate(T pObject) 
 			throws MalformedURLException;
 
+
+	
+	/**
+	 * method determinerSiControleValide() :<br/>
+	 * Détermine si le controle est OK 
+	 * (map d'erreurs vide pour tous les attributs dans this.erreurs) 
+	 * ou pas.<br/>
+	 * <br/>
+	 *
+	 * @return : Boolean : true aucun attribut ne comporte d'erreur.<br/>
+	 */
+	private Boolean determinerSiControleValide() {
+		
+		boolean resultat = true;
+		
+		final Set<Entry<String, Map<String, String>>> entrySet 
+			= this.erreurs.entrySet();
+		
+		final Iterator<Entry<String, Map<String, String>>> ite 
+			= entrySet.iterator();
+				
+		while (ite.hasNext()) {
+			
+			final Entry<String, Map<String, String>> entry = ite.next();
+						
+			final Map<String, String> erreurAttr = entry.getValue();
+			
+			if (!erreurAttr.isEmpty()) {
+				resultat = false;
+				break;
+			}
+			
+		}
+		
+		return resultat;
+		
+	} // Fin de determinerSiControleValide().______________________________
+	
 	
 	
 	/**
@@ -748,6 +794,20 @@ public abstract class AbstractValideurGeneric<T>
 		return this.controlesList;
 	} // Fin de getControlesList().________________________________________
 
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Boolean getValide() {
 		
+		this.valide = this.determinerSiControleValide();
+		
+		return this.valide;
+		
+	} // Fin de getValide()._______________________________________________
+
+
 	
 } // FIN DE LA CLASSE AbstractValideurGeneric.-------------------------------

@@ -469,5 +469,17 @@ public interface IValideurGeneric<T> {
 	List<LigneRapportValidation> getControlesList();
 	
 	
+	
+	/**
+	 * method getValide() :<br/>
+	 * Getter du Boolean qui stipule si le contrôle effectué 
+	 * par le validateur est sans erreur ou pas.<br/>
+	 * <br/>
+	 *
+	 * @return valide : Boolean.<br/>
+	 */
+	Boolean getValide();
+	
+
 
 } // FIN DE L'INTERFACE IValideurGeneric.------------------------------------

@@ -79,13 +79,19 @@ public class ValideurClientTest {
 	@Test
 	public void testValiderNom() throws MalformedURLException {
 		
-		final AbstractClient client = new Client("Zorro27", "Daniel 27", null, null, null);
+		final AbstractClient client = new Client("Zorro", "Daniel ", null, null, null);
 		
 		final IValideurGeneric<AbstractClient> valideurClient = new ValideurClient();
 		
+				
 		/* Validation du client. */
 		valideurClient.validate(client);
 		
+		/* VALIDE. */
+		final Boolean valide = valideurClient.getValide();		
+		System.out.println("VALIDE ? : " + valide);
+		
+		System.out.println();
 		System.out.println("ERREURS : ");
 		System.out.println(valideurClient.afficherErreurs());
 		/* nom;RG_CLIENT_NOM_01 : le nom du client doit être renseigné.;Le nom n'est pas renseigné (obligatoire).; */
@@ -140,6 +146,10 @@ public class ValideurClientTest {
 		/* Validation du client. */
 		valideurClient.validate(client);
 		
+		/* VALIDE. */
+		final Boolean valide = valideurClient.getValide();		
+		System.out.println("VALIDE ? : " + valide);
+
 		System.out.println("ERREURS : ");
 		System.out.println(valideurClient.afficherErreurs());
 		/* nom;RG_CLIENT_NOM_01 : le nom du client doit être renseigné.;Le nom n'est pas renseigné (obligatoire).; */

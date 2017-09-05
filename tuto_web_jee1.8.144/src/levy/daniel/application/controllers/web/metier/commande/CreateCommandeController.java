@@ -174,7 +174,21 @@ public class CreateCommandeController extends HttpServlet {
 	 */
 	public static final String ATTR_ERREUR = "erreur";
 	
+	
+	/**
+	 * ATTR_ARIANE : String :<br/>
+	 * "ariane".<br/>
+	 */
+	public static final String ATTR_ARIANE = "ariane";
 
+	
+	/**
+	 * MESSAGE_ARIANE : String :<br/>
+	 * "créer une commande".<br/>
+	 */
+	public static final String MESSAGE_ARIANE = "créer une commande";
+
+	
 	/**
 	 * VUE_CREATE_COMMANDE : String :<br/>
 	 * Vue à atteindre lors du premier appel du formulaire.<br/>
@@ -294,8 +308,8 @@ public class CreateCommandeController extends HttpServlet {
 		 * de création de commande par l'internaute. */
 		if (initialisation) {
 			
-			final String ariane = "créer une commande";
-			pReq.setAttribute("ariane", ariane);
+			/* FIL D'ARIANE. */
+			pReq.setAttribute(ATTR_ARIANE, MESSAGE_ARIANE);
 			
 			/* Aiguillage vers la cible. */
 			/* Tranfert de la requête/reponse. */
@@ -521,8 +535,9 @@ public class CreateCommandeController extends HttpServlet {
 		// ************************************************************
 		if (formulaireValide) {
 			
+			/* Fil d'ariane. */
 			final String ariane = "commande";
-			pReq.setAttribute("ariane", ariane);
+			pReq.setAttribute(ATTR_ARIANE, ariane);
 			
 			/* Chemin de la jsp à atteindre si OK.*/
 			/* Aiguillage vers la cible. */
@@ -535,8 +550,8 @@ public class CreateCommandeController extends HttpServlet {
 			
 		} // Fin de if (formulaireValide).________________________
 		
-		final String ariane = "créer une commande";
-		pReq.setAttribute("ariane", ariane);
+		/* Fil d'Ariane*/
+		pReq.setAttribute(ATTR_ARIANE, MESSAGE_ARIANE);
 		
 		/* Chemin de la jsp à atteindre si KO.*/
 		/* Aiguillage vers la cible. */
