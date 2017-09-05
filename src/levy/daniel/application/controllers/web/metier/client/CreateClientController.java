@@ -250,6 +250,7 @@ public class CreateClientController extends HttpServlet {
 		 * des paramètres transmis est vide; */
 		final boolean initialisation 
 			= this.enumSize(parametresTransmis) == 0;
+		
 
 		// ****************************************************************
 		// INITIALISATION.

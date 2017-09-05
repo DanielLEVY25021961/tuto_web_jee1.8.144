@@ -257,7 +257,7 @@ static {
 	 */
 	private static String fournirCheminRessourceExterneRG() {
 					
-		return "./ressources_externes";
+		return "D:/Donnees/eclipse/eclipseworkspace_neon/tuto_web_jee1.8.144/ressources_externes";
 					
 	} // Fin de fournirCheminRessourceExterneRG()._________________________
 	

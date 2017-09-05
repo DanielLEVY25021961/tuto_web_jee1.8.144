@@ -20,7 +20,7 @@ DIRECTIVE DE PAGE spécifiant :
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link type="text/css" rel="stylesheet" href="static/css/style_coyote.css" />
+		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/css/style_coyote.css" />
 		<title>createClient.jsp</title>
 	</head>
 	
@@ -29,11 +29,11 @@ DIRECTIVE DE PAGE spécifiant :
 		<%-- FIL D'ARIANE --%>
 		<div class="ariane">
 			<p>
-				<img alt="accueil" src="static/images/home.png" />
+				<img alt="accueil" src="<%=request.getContextPath()%>/static/images/home.png" />
 				<span class="filariane">
 					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
 				</span>
-				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span><img src="<%=request.getContextPath()%>/static/images/arrow-right.png" alt="flèche droite" /></span>
 				<span class="filariane">
 					<a href="<c:url value="/createClient" />"><c:out value="${ ariane }" /></a>
 				</span>				

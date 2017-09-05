@@ -54,7 +54,7 @@
 		<servlet-name>AccueilController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/</url-pattern>
+		<url-pattern>/entree</url-pattern>
 	</servlet-mapping>
 
 
@@ -103,7 +103,7 @@
 		<servlet-name>CreateCommandeController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createCommande</url-pattern>
+		<url-pattern>/entree/createCommande</url-pattern>
 	</servlet-mapping>
 
 	
@@ -129,7 +129,7 @@
 		<servlet-name>CreateClientController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createClient</url-pattern>
+		<url-pattern>/entree/createClient</url-pattern>
 	</servlet-mapping>
 
 
@@ -184,7 +184,7 @@
 	
 	<welcome-file-list>
 		
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>

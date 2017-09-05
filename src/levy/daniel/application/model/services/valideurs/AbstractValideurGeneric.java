@@ -111,8 +111,9 @@ public abstract class AbstractValideurGeneric<T>
 	 */
 	protected transient Map<String, Map<String, LigneRapportValidation>> controles 
 	= new ConcurrentHashMap<String, Map<String, LigneRapportValidation>>();
-
 	
+			
+			
 	/**
 	 * controlesList : List&lt;LigneRapportValidation&gt; :<br/>
 	 * Liste des Pures fabrications encapsulant 
