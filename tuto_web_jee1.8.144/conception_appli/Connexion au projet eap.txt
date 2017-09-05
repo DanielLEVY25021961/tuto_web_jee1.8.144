@@ -1,4 +1,0 @@
-Login : admin
-Password : password
-
-Le repository EAP est dans ./conception_appli
