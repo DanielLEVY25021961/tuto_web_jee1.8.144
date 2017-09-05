@@ -35,7 +35,7 @@ DIRECTIVE DE PAGE spécifiant :
 				</span>
 				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/personne" />"><c:out value="${ ariane }" /></a>
+					<a href="<c:url value="/entree/personne" />"><c:out value="${ ariane }" /></a>
 				</span>				
 			</p>
 			<c:set var="ariane" value="accueil" scope="session" />
