@@ -37,11 +37,11 @@ DIRECTIVE DE PAGE spécifiant :
 				</span>
 				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/createCommande" />"><c:out value="créer une commande" /></a>
+					<a href="<c:url value="/entree/createCommande" />"><c:out value="créer une commande" /></a>
 				</span>
 				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/afficherCommande" />"><c:out value="commande" /></a>
+					<a href="<c:url value="/entree/afficherCommande" />"><c:out value="commande" /></a>
 				</span>								
 			</p>
 			<c:set var="ariane" value="accueil" scope="session" />

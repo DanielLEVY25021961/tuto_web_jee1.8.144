@@ -35,11 +35,11 @@ DIRECTIVE DE PAGE spécifiant :
 				</span>
 				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/createClient" />"><c:out value="créer client" /></a>
+					<a href="<c:url value="/entree/createClient" />"><c:out value="créer client" /></a>
 				</span>	
 				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/afficherClient" />"><c:out value="client" /></a>
+					<a href="<c:url value="/entree/afficherClient" />"><c:out value="client" /></a>
 				</span>				
 			</p>
 			<c:set var="ariane" value="créer un client" scope="session" />
