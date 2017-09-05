@@ -1,8 +1,5 @@
 package levy.daniel.application.model.services.metier.client;
 
-import java.net.MalformedURLException;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -73,15 +70,28 @@ public abstract class AbstractClientService
 	 * {@inheritDoc}
 	 * @throws MalformedURLException 
 	 */
-	@Override
-	public Map<String, Map<String, String>> validate(
-			final AbstractClient pClient) throws MalformedURLException {
-					
-		this.valideur.validate(pClient);
-		
-		return this.erreurs;
-		
-	} // Fin de valisate(...)._____________________________________________
+//	@Override
+//	public Map<String, Map<String, String>> validate(
+//			final AbstractClient pClient) throws MalformedURLException {
+//		
+//		this.valideur.validate(pClient);
+//		
+//		/* Remplit this.erreurs. */
+//		this.erreurs.putAll(this.valideur.getErreurs());
+//		
+//		/* Remplit this.Controle */
+//		this.controles.putAll(this.valideur.getControles());
+//		
+//		/* Remplit this.listeRGImplementees. */
+//		this.listeRGImplementees.addAll(
+//				this.valideur.getListeRGImplementees());
+//		
+//		/* Remplit this.controlesList. */
+//		this.controlesList.addAll(this.valideur.getControlesList());
+//		
+//		return this.erreurs;
+//		
+//	} // Fin de valisate(...)._____________________________________________
 	
 
 	

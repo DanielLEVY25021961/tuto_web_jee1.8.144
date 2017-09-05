@@ -58,6 +58,23 @@ public final class GestionnaireRGClient {
 	
 
 	/**
+	 * validerPrenomClient : Boolean :<br/>
+	 * Boolean activant globalement les contrôles 
+	 * sur le prénom du client.<br/>
+	 */
+	private static Boolean validerPrenomClient;
+	
+	
+	/**
+	 * validerRGClientPrenom03 : Boolean :<br/>
+	 * Boolean activant la RG-Client-Prenom-03 : 
+	 * "le prénom du client ne doit contenir 
+	 * que des lettres" sur le nom du client.<br/>
+	 */
+	private static Boolean validerRGClientPrenom03;
+	
+	
+	/**
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
@@ -69,7 +86,12 @@ public final class GestionnaireRGClient {
 	static {
 		
 		try {
+			
+			/* nom. */
 			lireControleNomActif();
+			
+			/* prénom. */
+			lireControlePrenomActif();
 			
 		} catch (MalformedURLException malformedURLexc) {
 			
@@ -105,6 +127,8 @@ public final class GestionnaireRGClient {
 	 * <ul>
 	 * Lit dans rg.properties les valeurs de : 
 	 * <li>validerNomClient</li>
+	 * <li>validerRGClientNom01</li>
+	 * <li>validerRGClientNom02</li>
 	 * </ul>
 	 * @throws MalformedURLException 
 	 */
@@ -121,7 +145,7 @@ public final class GestionnaireRGClient {
 						.getString(fournirCleControleNom()); 
 				
 				validerNomClient 
-					= Boolean.valueOf(validerNomClientString);
+					= Boolean.valueOf(validerNomClientString.trim());
 				
 			}
 			
@@ -133,7 +157,7 @@ public final class GestionnaireRGClient {
 						.getString(fournirCleControleRGClientNom01());
 				
 				validerRGClientNom01 
-					= Boolean.valueOf(validerRGClient01String);
+					= Boolean.valueOf(validerRGClient01String.trim());
 				
 			}
 			
@@ -145,7 +169,7 @@ public final class GestionnaireRGClient {
 						.getString(fournirCleControleRGClientNom02());
 				
 				validerRGClientNom02 
-					= Boolean.valueOf(validerRGClient02String);
+					= Boolean.valueOf(validerRGClient02String.trim());
 				
 			}
 			
@@ -153,6 +177,51 @@ public final class GestionnaireRGClient {
 				
 	} // Fin de lireControleNomActif().____________________________________
 
+
+	
+	/**
+	 * method lireControlePrenomActif() :<br/>
+	 * <ul>
+	 * Lit dans rg.properties les valeurs de : 
+	 * <li>validerPrenomClient</li>
+	 * <li>validerRGClientPrenom03</lil>
+	 * </ul>
+	 *
+	 * @throws MalformedURLException
+	 */
+	private static void lireControlePrenomActif() 
+			throws MalformedURLException {
+		
+		synchronized (GestionnaireRGClient.class) {
+			
+			/* validation globale sur le prénom : validerPrenomClient. */
+			if (validerPrenomClient == null) {
+				
+				final String validerPrenomClientString 
+					= GestionnaireRG.getBundleExterneRG()
+						.getString(fournirCleControlePrenom()); 
+				
+				validerPrenomClient 
+					= Boolean.valueOf(validerPrenomClientString.trim());
+				
+			}
+			
+			/* validerRGClientPrenom03. */
+			if (validerRGClientPrenom03 == null) {
+				
+				final String validerRGClient03String 
+					= GestionnaireRG.getBundleExterneRG()
+						.getString(fournirCleControleRGClientPrenom03());
+				
+				validerRGClientPrenom03 
+					= Boolean.valueOf(validerRGClient03String.trim());
+				
+			}
+			
+		} // Fin de bloc synchronized.__________________________
+		
+	} // Fin de lireControlePrenomActif()._________________________________
+	
 	
 	
 	/**
@@ -194,6 +263,34 @@ public final class GestionnaireRGClient {
 	private static String fournirCleControleRGClientNom02() {
 		return "client.nom.rgclientnom02.actif";
 	} // Fin de fournirCleControleRGClientNom02()._________________________
+	
+
+	
+	/**
+	 * method fournirCleControlePrenom() :<br/>
+	 * Retourne la clé de validerPrenomClient dans rg.properties.<br/>
+	 * "client.prenom.actif".<br/>
+	 * <br/>
+	 *
+	 * @return : String : "client.prenom.actif".<br/>
+	 */
+	private static String fournirCleControlePrenom() {
+		return "client.prenom.actif";
+	} // Fin de fournirCleControlePrenom().________________________________
+
+	
+	
+	/**
+	 * method fournirCleControleRGClientPrenom03() :<br/>
+	 * Retourne la clé de validerRGClientPrenom03 dans rg.properties.<br/>
+	 * "client.prenom.rgclientprenom03.actif".<br/>
+	 * <br/>
+	 *
+	 * @return : String : "client.prenom.rgclientprenom03.actif".<br/>
+	 */
+	private static String fournirCleControleRGClientPrenom03() {
+		return "client.prenom.rgclientprenom03.actif";
+	} // Fin de fournirCleControleRGClientPrenom03().______________________
 	
 	
 	
@@ -314,6 +411,89 @@ public final class GestionnaireRGClient {
 			final Boolean pValiderRGClientNom02) {
 		validerRGClientNom02 = pValiderRGClientNom02;
 	} // Fin de setValiderRGClientNom02(...).______________________________
+
+
+	
+	/**
+	 * method getValiderPrenomClient() :<br/>
+	 * Getter du Boolean activant globalement 
+	 * les contrôles sur le prénom du client.<br/>
+	 * <br/>
+	 *
+	 * @return validerPrenomClient : Boolean.<br/>
+	 * @throws MalformedURLException 
+	 */
+	public static Boolean getValiderPrenomClient() 
+			throws MalformedURLException {
+		
+		if (validerPrenomClient == null) {
+			lireControlePrenomActif();
+		}
+		
+		return validerPrenomClient;
+		
+	} // Fin de getValiderPrenomClient().__________________________________
+
+
+
+	
+	/**
+	* method setValiderPrenomClient(
+	* Boolean pValiderPrenomClient) :<br/>
+	* Setter du Boolean activant globalement 
+	* les contrôles sur le prénom du client.<br/>
+	* <br/>
+	*
+	* @param pValiderPrenomClient : Boolean : 
+	* valeur à passer à validerPrenomClient.<br/>
+	*/
+	public static void setValiderPrenomClient(
+			final Boolean pValiderPrenomClient) {
+		validerPrenomClient = pValiderPrenomClient;
+	} // Fin de setValiderPrenomClient(...)._______________________________
+
+
+	
+	/**
+	 * method getValiderRGClientPrenom03() :<br/>
+	 * Getter du Boolean activant la RG-Client-Prenom-03 : 
+	 * "le prénom du client ne doit contenir 
+	 * que des lettres" sur le prénom du client.<br/>
+	 * <br/>
+	 *
+	 * @return validerRGClientPrenom03 : Boolean.<br/>
+	 * @throws MalformedURLException 
+	 */
+	public static Boolean getValiderRGClientPrenom03() 
+			throws MalformedURLException {
+		
+		if (validerRGClientPrenom03 == null) {
+			lireControlePrenomActif();
+		}
+		
+		return validerRGClientPrenom03;
+		
+	} // Fin de getValiderRGClientPrenom03().______________________________
+
+
+
+	
+	/**
+	* method setValiderRGClientPrenom03(
+	* Boolean pValiderRGClientPrenom03) :<br/>
+	* Setter du Boolean activant la RG-Client-Prenom-03 : 
+	* "le prénom du client ne doit contenir 
+	* que des lettres" sur le prénom du client.<br/>
+	* <br/>
+	*
+	* @param pValiderRGClientPrenom03 : Boolean : 
+	* valeur à passer à validerRGClientPrenom03.<br/>
+	*/
+	public static void setValiderRGClientPrenom03(
+			final Boolean pValiderRGClientPrenom03) {
+		validerRGClientPrenom03 = pValiderRGClientPrenom03;
+	} // Fin de setValiderRGClientPrenom03(...).___________________________
+	
 	
 	
 	

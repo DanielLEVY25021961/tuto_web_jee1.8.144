@@ -17,9 +17,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>accueil.html</title>
+		<title>accueil.jsp sous context/static/html</title>
 	</head>
 	<body>
-		<p>Page d'Accueil HTML générée depuis une JSP</p>
+		<h1>Page d'Accueil HTML générée depuis une JSP sous context/static/html</h1>
 	</body>
 </html>

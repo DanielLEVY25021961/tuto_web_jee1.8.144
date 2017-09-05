@@ -11,19 +11,38 @@ DIRECTIVE DE PAGE spécifiant :
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	isELIgnored="false" pageEncoding="UTF-8"%>
 	
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- DTD pour  XHTML 1.0 Transitional -->    
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+
+<!-- DTD pour HTML 5 -->
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>entrée.jsp</title>
+		<link type="text/css" rel="stylesheet" href="static/css/style_coyote.css" />
+		<title>context/WEB-INF/vues/web/accueil/entree.jsp</title>
 	
 	</head>
 	
 	<body>
-		<h1>Point d'entrée de l'Application (sous WEB-INF)</h1>
+	
+		<%-- FIL D'ARIANE --%>
+		<div class="ariane">
+			<p>
+				<img alt="accueil" src="static/images/home.png" />
+				<span class="filariane">
+					<a href="<c:url value="/entree" />"><c:out value="${ariane}" /></a>
+				</span>
+			</p>
+			<c:set var="ariane" value="accueil" scope="session" />
+		</div>
+		
+		
+		
+		<h1>Point d'entrée de l'Application (sous context/WEB-INF/vues/web/accueil/entree.jsp)</h1>
 		
 		<%--============================= --%>
 		<%-- CODE JAVA INSERE DANS LA JSP --%>
@@ -41,6 +60,15 @@ DIRECTIVE DE PAGE spécifiant :
 		String affich = "Paramètre 'auteur' récupéré directement dans la requête GET" 
 		+ "(http:///localhost:8080/tuto_web_jee1.8.144/entree?auteur= Daniel Lévy) : "; 
 		out.println(affich + paramAuteur); %>
+		
+		<br/><br/>
+		
+		<div>
+			<p><a href="<c:url value="/personne" />">voir une personne</a></p>
+			<p><a href="<c:url value="/createCommande" />">Créer une Commande</a></p>
+			<p><a href="<c:url value="/createClient" />">Créer un Client</a></p>
+		</div>
+		
 		
 	</body>
 	

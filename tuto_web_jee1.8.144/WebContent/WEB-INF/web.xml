@@ -7,10 +7,135 @@
 	<!-- Nom de l'application -->
 	<display-name>tuto_web_jee1.8.144</display-name>
 
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
 
-						<!-- ================== -->
-						<!-- DEFINITION SERVLET -->
-						<!-- ================== -->
+			<!-- ============================================== -->
+			<!-- SERVLET AccueilController. URL : /entree  		-->
+			<!-- ============================================== -->	
+	<!-- Définition de la Servlet (Contrôleur). -->
+	<servlet>
+		
+		<description>Point d'entrée officiel de l'application</description>
+				
+		<!-- nom de la Servlet -->
+		<servlet-name>AccueilController</servlet-name>
+		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
+		<servlet-class>levy.daniel.application.controllers.web.accueil.AccueilController</servlet-class>
+		
+		<init-param>
+			<description>nom de l'auteur</description>
+			<param-name>auteur</param-name>
+			<param-value>Lévy</param-value>
+		</init-param>
+		
+		<!-- Chargement de la Servlet dès le démarrage du serveur juste après celle de numéro 0 -->
+		<load-on-startup>1</load-on-startup>
+		
+	</servlet>
+		
+	<!-- Mapping de la Servlet par rapport à une URL -->
+	<servlet-mapping>
+		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
+		<servlet-name>AccueilController</servlet-name>
+		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
+		<!-- pour atteindre la Servlet.								-->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+
+			<!-- ============================================== -->
+			<!-- SERVLET PersonneController. URL : /personne  		-->
+			<!-- ============================================== -->	
+	
+	<!-- Définition de la Servlet (Contrôleur). -->
+	<servlet>	
+		<description>Accès à une Personne</description>
+				
+		<!-- nom de la Servlet -->
+		<servlet-name>PersonneController</servlet-name>
+		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
+		<servlet-class>levy.daniel.application.controllers.web.metier.personne.PersonneController</servlet-class>		
+	</servlet>
+	
+		<!-- Mapping de la Servlet par rapport à une URL -->
+	<servlet-mapping>
+		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
+		<servlet-name>PersonneController</servlet-name>
+		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
+		<!-- pour atteindre la Servlet.								-->
+		<url-pattern>/personne</url-pattern>
+	</servlet-mapping>
+	
+
+			<!-- ======================================================== -->
+			<!-- SERVLET CreateCommandeController. URL : /createCommande  -->
+			<!-- ======================================================== -->	
+
+	<!-- Définition de la Servlet (Contrôleur). -->
+	<servlet>	
+		<description>Accès la création d'une commande</description>
+				
+		<!-- nom de la Servlet -->
+		<servlet-name>CreateCommandeController</servlet-name>
+		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
+		<servlet-class>levy.daniel.application.controllers.web.metier.commande.CreateCommandeController</servlet-class>		
+	</servlet>
+	
+		<!-- Mapping de la Servlet par rapport à une URL -->
+	<servlet-mapping>
+		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
+		<servlet-name>CreateCommandeController</servlet-name>
+		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
+		<!-- pour atteindre la Servlet.								-->
+		<url-pattern>/createCommande</url-pattern>
+	</servlet-mapping>
+
+	
+			<!-- ======================================================== -->
+			<!-- SERVLET CreateClientController. URL : /createClient      -->
+			<!-- ======================================================== -->	
+	
+	<!-- Définition de la Servlet (Contrôleur). -->
+	<servlet>
+	
+		<description>Accès la création d'un client</description>
+				
+		<!-- nom de la Servlet -->
+		<servlet-name>CreateClientController</servlet-name>
+		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
+		<servlet-class>levy.daniel.application.controllers.web.metier.client.CreateClientController</servlet-class>
+		
+	</servlet>
+	
+	<!-- Mapping de la Servlet par rapport à une URL -->
+	<servlet-mapping>
+		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
+		<servlet-name>CreateClientController</servlet-name>
+		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
+		<!-- pour atteindre la Servlet.								-->
+		<url-pattern>/createClient</url-pattern>
+	</servlet-mapping>
+
+
+			<!-- ============================================== -->
+			<!-- SERVLET ServletJ2eeAccueil. URL : /accueil  	-->
+			<!-- ============================================== -->
 	<!-- Définition de la Servlet (Contrôleur). -->
 	<servlet>
 	
@@ -32,93 +157,6 @@
 		
 	</servlet>
 	
-	<!-- Définition de la Servlet (Contrôleur). -->
-	<servlet>
-	
-		<description>Point d'entrée officiel de l'application</description>
-				
-		<!-- nom de la Servlet -->
-		<servlet-name>AccueilController</servlet-name>
-		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
-		<servlet-class>levy.daniel.application.controllers.web.accueil.AccueilController</servlet-class>
-		
-		<init-param>
-			<description>nom de l'auteur</description>
-			<param-name>auteur</param-name>
-			<param-value>Lévy</param-value>
-		</init-param>
-		
-		<!-- Chargement de la Servlet dès le démarrage du serveur juste après celle de numéro 0 -->
-		<load-on-startup>1</load-on-startup>
-		
-	</servlet>
-	
-	<!-- Définition de la Servlet (Contrôleur). -->
-	<servlet>
-	
-		<description>Accès à une Personne</description>
-				
-		<!-- nom de la Servlet -->
-		<servlet-name>PersonneController</servlet-name>
-		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
-		<servlet-class>levy.daniel.application.controllers.web.metier.personne.PersonneController</servlet-class>
-		
-		<init-param>
-			<description>nom de l'auteur</description>
-			<param-name>auteur</param-name>
-			<param-value>Lévy</param-value>
-		</init-param>
-		
-		<!-- Chargement de la Servlet dès le démarrage du serveur juste après celle de numéro 0 -->
-		<load-on-startup>1</load-on-startup>
-		
-	</servlet>
-
-	<!-- Définition de la Servlet (Contrôleur). -->
-	<servlet>
-	
-		<description>Accès la création d'une commande</description>
-				
-		<!-- nom de la Servlet -->
-		<servlet-name>CreateCommandeController</servlet-name>
-		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
-		<servlet-class>levy.daniel.application.controllers.web.metier.commande.CreateCommandeController</servlet-class>
-		
-		<init-param>
-			<description>nom de l'auteur</description>
-			<param-name>auteur</param-name>
-			<param-value>Lévy</param-value>
-		</init-param>
-		
-		<!-- Chargement de la Servlet dès le démarrage du serveur juste après celle de numéro 0 -->
-		<load-on-startup>1</load-on-startup>
-		
-	</servlet>
-	
-	<!-- Définition de la Servlet (Contrôleur). -->
-	<servlet>
-	
-		<description>Accès la création d'un client</description>
-				
-		<!-- nom de la Servlet -->
-		<servlet-name>CreateClientController</servlet-name>
-		<!-- Classe de la Servlet (avec des séparateurs . et sans .class) -->
-		<servlet-class>levy.daniel.application.controllers.web.metier.client.CreateClientController</servlet-class>
-		
-		<init-param>
-			<description>nom de l'auteur</description>
-			<param-name>auteur</param-name>
-			<param-value>Lévy</param-value>
-		</init-param>
-		
-		<!-- Chargement de la Servlet dès le démarrage du serveur juste après celle de numéro 0 -->
-		<load-on-startup>1</load-on-startup>
-		
-	</servlet>
-
-						<!-- ============================ -->
-						<!-- MAPPING SERVLET avec des URL -->
-						<!-- ============================ -->	
 	<!-- Mapping de la Servlet par rapport à une URL -->
 	<servlet-mapping>
 		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
@@ -127,43 +165,7 @@
 		<!-- pour atteindre la Servlet.								-->
 		<url-pattern>/accueil</url-pattern>
 	</servlet-mapping>
-	
-	<!-- Mapping de la Servlet par rapport à une URL -->
-	<servlet-mapping>
-		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
-		<servlet-name>AccueilController</servlet-name>
-		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
-		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/entree</url-pattern>
-	</servlet-mapping>
-	
-	<!-- Mapping de la Servlet par rapport à une URL -->
-	<servlet-mapping>
-		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
-		<servlet-name>PersonneController</servlet-name>
-		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
-		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/personne</url-pattern>
-	</servlet-mapping>
 
-	<!-- Mapping de la Servlet par rapport à une URL -->
-	<servlet-mapping>
-		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
-		<servlet-name>CreateCommandeController</servlet-name>
-		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
-		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createCommande</url-pattern>
-	</servlet-mapping>
-	
-	<!-- Mapping de la Servlet par rapport à une URL -->
-	<servlet-mapping>
-		<!-- Correspond au nom d'une Servlet dans la partie Définition -->
-		<servlet-name>CreateClientController</servlet-name>
-		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
-		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createClient</url-pattern>
-	</servlet-mapping>
-	
 
 		<!-- ======================================== -->
 		<!-- DIRECTIVES A INCLURE DANS TOUTES LES JSP -->
@@ -174,9 +176,14 @@
 			<include-prelude>/WEB-INF/vues/web/taglibs.jsp</include-prelude>
 		</jsp-property-group>	
 	</jsp-config>
+
+
+		<!-- ======================================== -->
+		<!-- Fichiers accédés directement -->
+		<!-- ======================================== -->
 	
 	<welcome-file-list>
-		<welcome-file>static/html/accueil.html</welcome-file>
+		
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>

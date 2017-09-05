@@ -2,6 +2,7 @@ package levy.daniel.application.controllers.web.metier.client;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,8 @@ import org.apache.commons.logging.LogFactory;
 
 import levy.daniel.application.model.metier.client.AbstractClient;
 import levy.daniel.application.model.metier.client.impl.Client;
+import levy.daniel.application.model.services.metier.IServiceGeneric;
+import levy.daniel.application.model.services.metier.client.impl.ClientService;
 
 /**
  * class CreateClientController :<br/>
@@ -105,6 +108,15 @@ public class CreateClientController extends HttpServlet {
 
 	
 	/**
+	 * ATTR_ERREURS : String :<br/>
+	 * Nom de l'attribut rajouté à la request 
+	 * et transmis à une cible (JSP, ...).<br/>
+	 * "erreurs".<br/>
+	 */
+	public static final String ATTR_ERREURS = "erreurs";
+
+	
+	/**
 	 * ATTR_ERREUR : String :<br/>
 	 * Nom de l'attribut rajouté à la request 
 	 * et transmis à une cible (JSP, ...).<br/>
@@ -114,13 +126,27 @@ public class CreateClientController extends HttpServlet {
 
 	
 	/**
+	 * ATTR_ARIANE : String :<br/>
+	 * "ariane".<br/>
+	 */
+	public static final String ATTR_ARIANE = "ariane";
+
+	
+	/**
+	 * MESSAGE_ARIANE : String :<br/>
+	 * "créer un client".<br/>
+	 */
+	public static final String MESSAGE_ARIANE = "créer un client";
+	
+	
+	/**
 	 * VUE_CREATE_CLIENT : String :<br/>
 	 * "/WEB-INF/vues/web/metier/client/formulaires/createClient.jsp".<br/>
 	 */
 	public static final String VUE_CREATE_CLIENT 
 		= "/WEB-INF/vues/web/metier/client/formulaires/createClient.jsp";
 
-	
+		
 	/**
 	 * VUE_CIBLE_OK : String :<br/>
 	 * Vue à atteindre si le formulaire est valide.<br/>
@@ -174,6 +200,14 @@ public class CreateClientController extends HttpServlet {
 	 */
 	public static final String MESSAGE_CREATION_KO 
 		= "KO - Impossible de créer le client !";
+
+	
+	/**
+	 * service : IServiceGeneric<AbstractClient> :<br/>
+	 * Service.<br/>
+	 */
+	public transient IServiceGeneric<AbstractClient> service 
+		= new ClientService();
 	
 	
 	/**
@@ -210,6 +244,7 @@ public class CreateClientController extends HttpServlet {
 		final Enumeration<String> parametresTransmis 
 			= pReq.getParameterNames();
 		
+		
 		/* Si l'internaute demande le formulaire de création 
 		 * pour la première fois, l'énumération 
 		 * des paramètres transmis est vide; */
@@ -224,14 +259,13 @@ public class CreateClientController extends HttpServlet {
 		 * de création de commande par l'internaute. */
 		if (initialisation) {
 			
-			/* Chemin de la jsp à atteindre la première fois.*/
-			final String cibleRedirectionInitialisation 
-				= VUE_CREATE_CLIENT;
+			/* FIL D'ARIANE. */
+			pReq.setAttribute(ATTR_ARIANE, MESSAGE_ARIANE);
 			
 			/* Aiguillage vers la cible. */
 			/* Tranfert de la requête/reponse. */
 			this.getServletContext()
-				.getRequestDispatcher(cibleRedirectionInitialisation)
+				.getRequestDispatcher(VUE_CREATE_CLIENT)
 					.forward(pReq, pResp);
 			
 			return;
@@ -288,48 +322,7 @@ public class CreateClientController extends HttpServlet {
 			paramEmailClient = paramEmailClientForm.trim();
 		}
 		
-		
-		String messageUtilisateur = null;
-		boolean formulaireValide = false;
-
-		
-		// ****************************************************************
-		// VALIDATION DU FORMULAIRE.
-		// ****************************************************************
-		
-		/* VERIFICATION DU REMPLISSAGE. ********************************/		
-		final StringBuilder messageUtilisateurStb = new StringBuilder();
-		
-		final boolean bonRemplissageClient 
-			= this.verifierChampsObligatoiresClient(
-				paramNomClient
-				, paramAdresseClient
-					, paramTelephoneClient
-						, messageUtilisateurStb);
-
-		
-		// ****************************************************************
-		// CONSTITUTION DU MESSAGE UTILISATEUR.
-		// ****************************************************************
-		formulaireValide = bonRemplissageClient;
-		
-		
-		if (formulaireValide) {
-			
-			messageUtilisateurStb.append(SAUT_LIGNE_HTML);
-			messageUtilisateurStb.append(MESSAGE_CREATION_OK);
-			
-			messageUtilisateur = messageUtilisateurStb.toString();
-		}
-		else {
-								
-			messageUtilisateurStb.append(SAUT_LIGNE_HTML);
-			messageUtilisateurStb.append(MESSAGE_CREATION_KO);
-			
-			messageUtilisateur = messageUtilisateurStb.toString();
-		}
-		
-		
+						
 		// ****************************************************************
 		/* CREATION DES BEANS. */
 		// ****************************************************************
@@ -340,7 +333,41 @@ public class CreateClientController extends HttpServlet {
 					, paramAdresseClient, paramTelephoneClient
 						, paramEmailClient);
 
+
+		String messageUtilisateur = null;
+		boolean formulaireValide = false;
+
 		
+		// ****************************************************************
+		// VALIDATION DU FORMULAIRE.
+		// ****************************************************************
+		// APPEL DU SERVICE.
+		final Map<String, Map<String, String>> erreurs 
+			= this.service.validate(client);
+		
+		formulaireValide = this.service.getValide();
+		
+		
+		/* VERIFICATION DU REMPLISSAGE. ********************************/		
+		final StringBuilder messageUtilisateurStb = new StringBuilder();
+		
+		// ****************************************************************
+		// CONSTITUTION DU MESSAGE UTILISATEUR.
+		// ****************************************************************
+
+		if (formulaireValide) {
+			
+			messageUtilisateurStb.append(MESSAGE_CREATION_OK);
+			
+			messageUtilisateur = messageUtilisateurStb.toString();
+		}
+		else {
+								
+			messageUtilisateurStb.append(MESSAGE_CREATION_KO);
+			
+			messageUtilisateur = messageUtilisateurStb.toString();
+		}
+
 		// ************************************************************
 		// AJOUT DU BEAN, DU MESSAGE et de l'ERREUR 
 		// AUX ATTRIBUTS DE LA REQUETE.
@@ -348,11 +375,16 @@ public class CreateClientController extends HttpServlet {
 		pReq.setAttribute(ATTR_CLIENT, client);
 		pReq.setAttribute(ATTR_MESSAGE, messageUtilisateur);
 		pReq.setAttribute(ATTR_ERREUR, formulaireValide);
+		pReq.setAttribute(ATTR_ERREURS, erreurs);
 
 		// ************************************************************
 		// AIGUILLAGE VERS LA CIBLE et transfert de la requête/reponse.
 		// ************************************************************
 		if (formulaireValide) {
+			
+			/* Fil d'ariane. */
+			final String ariane = "client";
+			pReq.setAttribute(ATTR_ARIANE, ariane);
 			
 			/* Chemin de la jsp à atteindre si OK.*/
 			/* Aiguillage vers la cible. */
@@ -365,7 +397,9 @@ public class CreateClientController extends HttpServlet {
 			
 		} // Fin de if (formulaireValide).________________________
 		
-			
+		/* Fil d'Ariane*/
+		pReq.setAttribute(ATTR_ARIANE, MESSAGE_ARIANE);
+	
 		/* Chemin de la jsp à atteindre si KO.*/		
 		/* Aiguillage vers la cible. */
 		/* Tranfert de la requête/reponse. */
@@ -377,98 +411,7 @@ public class CreateClientController extends HttpServlet {
 	} // Fin de doGet(...).________________________________________________
 	
 
-	
-	
-	/**
-	 * method verifierChampsObligatoiresClient(
-	 * String pNom
-	 * , String pAdresse
-	 * , String pTelephone
-	 * , StringBuilder pStb) :<br/>
-	 * <ul>
-	 * <li>Vérifie que les champs obligatoires (nom, adresse, téléphone) 
-	 * pour un client sont bien remplis.</li>
-	 * <li>Retourne true si les champs sont bien remplis.</li>
-	 * <li>décore le StringBuilder pStb avec des messages utilisateur.</li>
-	 * </ul>
-	 * <br/>
-	 *
-	 * @param pNom : String : nom du client.<br/>
-	 * @param pAdresse : String : adresse de livraison du client.<br/>
-	 * @param pTelephone : String : téléphone du client.<br/> 
-	 * @param pStb : StringBuilder : 
-	 * StringBuilder encapsulant le message utilisateur.<br/>
-	 * 
-	 * @return : boolean : true si tout est bien rempli.<br/>
-	 */
-	private boolean verifierChampsObligatoiresClient(
-			final String pNom
-				, final String pAdresse
-					, final String pTelephone
-						, final StringBuilder pStb) {
 		
-		String messageClient = null;
-
-		/* nom. */
-		if (StringUtils.isBlank(pNom)) {
-			
-			final String messageNom 
-				= "Le nom n'est pas renseigné (obligatoire).";
-			pStb.append(messageNom);
-			
-		}
-		
-		/* adresse. */
-		if (StringUtils.isBlank(pAdresse)) {
-			
-			final String messageAdresse 
-				= "L'adresse n'est pas renseignée (obligatoire).";
-			
-			if (StringUtils.isBlank(pNom)) {
-				pStb.append(SAUT_LIGNE_HTML);
-				pStb.append(messageAdresse);
-			} else {
-				pStb.append(messageAdresse);
-			}
-			
-		}
-		
-		/* telephone. */
-		if (StringUtils.isBlank(pTelephone)) {
-			
-			final String messageTelephone 
-			= "Le téléphone n'est pas renseigné (obligatoire).";
-			
-			if (StringUtils.isBlank(pNom) || StringUtils.isBlank(pAdresse)) {
-				pStb.append(SAUT_LIGNE_HTML);
-				pStb.append(messageTelephone);
-			} else {
-				pStb.append(messageTelephone);
-			}
-		}
-		
-		
-		if (StringUtils.isBlank(pNom) 
-				|| StringUtils.isBlank(pAdresse) 
-					|| StringUtils.isBlank(pTelephone)) {
-			
-			messageClient = DEBUT_MESSAGE_ERREUR + "le client.";
-			
-			pStb.append(SAUT_LIGNE_HTML);
-			pStb.append(messageClient);
-			
-			return false;
-		}
-		
-		messageClient = "Client bien renseigné";
-		pStb.append(messageClient);
-		
-		return true;
-		
-	} // Fin de verifierChampsObligatoiresClient(...)._____________________
-	
-
-	
 	/**
 	 * method enumSize(
 	 * Enumeration&lt;String&gt; pEnum) :<br/>

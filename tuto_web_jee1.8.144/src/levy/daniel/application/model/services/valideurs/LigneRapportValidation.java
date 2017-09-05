@@ -10,7 +10,16 @@ import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.
 
 /**
  * class LigneRapportValidation :<br/>
- * .<br/>
+ * Pure fabrication encapsulant tous les éléments 
+ * d'information relatifs à un contrôle (validation d'une RG).<br/>
+ * <br/>
+ * Une LigneRapportValidation encapsule : <br/>
+ * "id;nom de la RG;Résultat de la Validation;
+ * Message d'Erreur du contrôle;Actif;
+ * activité des contrôles sur l'attribut;activité de la RG;
+ * clé du type de contrôle;type de contrôle;Message d'erreur;
+ * Objet Métier concerné;Attribut concerné;
+ * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
  * <br/>
  *
  * - Exemple d'utilisation :<br/>
@@ -29,7 +38,8 @@ import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.
  *
  */
 public class LigneRapportValidation 
-	implements Serializable, Comparable<LigneRapportValidation>, Cloneable {
+	implements Serializable, Comparable<LigneRapportValidation>, Cloneable
+				, IExportateurCsv, IExportateurJTable {
 
 	// ************************ATTRIBUTS************************************/
 	
@@ -45,6 +55,20 @@ public class LigneRapportValidation
 	 * ';'.<br/>
 	 */
 	public static final char POINT_VIRGULE = ';';
+	
+	
+	/**
+	 * VIRGULE_ESPACE : String :<br/>
+	 * ", ".<br/>
+	 */
+	public static final String VIRGULE_ESPACE = ", ";
+	
+	
+	/**
+	 * NULL : String :<br/>
+	 * "null".<br/>
+	 */
+	public static final String NULL = "null";
 	
 	
 	/**
@@ -365,6 +389,14 @@ public class LigneRapportValidation
 	
 	/**
 	 * {@inheritDoc}
+	 * <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * <br/>
 	 */
 	@Override
 	public String toString() {
@@ -376,52 +408,63 @@ public class LigneRapportValidation
 		if (this.id != null) {
 			builder.append("id=");
 			builder.append(this.id);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.nomRG != null) {
 			builder.append("nomRG=");
 			builder.append(this.nomRG);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.resultatValidationRG != null) {
 			builder.append("resultatValidationRG=");
 			builder.append(this.resultatValidationRG);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.messageErreurValidation != null) {
 			builder.append("messageErreurValidation=");
 			builder.append(this.messageErreurValidation);
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 		}
 		if (this.ligneRG != null) {
 			
 			builder.append("RG active=");
-			this.ligneRG.getActif();			
-			builder.append(", ");
+			builder.append(this.ligneRG.getActif());			
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("activiteControleAttribut=");
 			builder.append(this.ligneRG.getActiviteControleAttribut());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("activiteRG=");
 			builder.append(this.ligneRG.getActiviteRG());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("typeControleInt=");			
 			builder.append(this.ligneRG.getTypeControleInt());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("typeControle=");
 			builder.append(this.ligneRG.getTypeControle());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("messageRG=");
 			builder.append(this.ligneRG.getMessageRG());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
 			
 			builder.append("nomObjetMetier=");
 			builder.append(this.ligneRG.getNomObjetMetier());
-			builder.append(", ");
+			builder.append(VIRGULE_ESPACE);
+			
+			builder.append("nomAttributObjetMetier=");
+			builder.append(this.ligneRG.getNomAttributObjetMetier());
+			builder.append(VIRGULE_ESPACE);
+			
+			builder.append("classeControle=");
+			builder.append(this.ligneRG.getClasseControle());
+			builder.append(VIRGULE_ESPACE);
+			
+			builder.append("methodeControle=");
+			builder.append(this.ligneRG.getMethodeControle());
 			
 		}
 		
@@ -433,6 +476,315 @@ public class LigneRapportValidation
 
 
 
+	/**
+	 * method getEnTeteCsv() :<br/>
+	 * Retourne l'en-tête pour les fichiers csv avec séparateur ';'.<br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * <br/>
+	 *
+	 * @return : String : en-tête pour les fichiers csv.<br/>
+	 */
+//	@Transient
+	@Override
+	public String getEnTeteCsv() {
+		
+		return "id;nom de la RG;Résultat de la Validation;"
+				+ "Message d'Erreur du contrôle;Actif;"
+				+ "activité des contrôles sur l'attribut;activité de la RG;"
+				+ "clé du type de contrôle;"
+				+ "type de contrôle;"
+				+ "Message d'erreur;Objet Métier concerné;"
+				+ "Attribut concerné;Classe implémentant la RG;"
+				+ "Méthode implémentant la RG;";
+		
+	} // Fin de getEnTeteCsv().____________________________________________
+	
+	
+	
+	/**
+	 * method toStringCsv() :<br/>
+	 * LigneRG sous forme de Csv avec séparateur ';'.<br/>
+	 * <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * <br/>
+	 *
+	 * @return : String : LigneRG sous forme de Csv 
+	 * avec séparateur ';'.<br/>
+	 */
+	@Override
+	public String toStringCsv() {
+		
+		final StringBuilder builder = new StringBuilder();
+		
+		builder.append(this.id);
+		builder.append(POINT_VIRGULE);
+		builder.append(this.nomRG);
+		builder.append(POINT_VIRGULE);
+		builder.append(this.resultatValidationRG);
+		builder.append(POINT_VIRGULE);
+		builder.append(this.messageErreurValidation);
+		builder.append(POINT_VIRGULE);
+		
+		if (this.ligneRG != null) {
+			
+			builder.append(this.ligneRG.getActif());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getActiviteControleAttribut());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getActiviteRG());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getTypeControleInt());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getTypeControle());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getMessageRG());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getNomObjetMetier());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getNomAttributObjetMetier());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getClasseControle());
+			builder.append(POINT_VIRGULE);
+			builder.append(this.ligneRG.getMethodeControle());
+			builder.append(POINT_VIRGULE);
+			
+		} else {
+			
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			builder.append(NULL);
+			builder.append(POINT_VIRGULE);
+			
+		}
+		
+		return builder.toString();
+		
+	} // Fin de toStringCsv()._____________________________________________
+	
+	
+
+	/**
+	 * {@inheritDoc}
+	 * <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * <br/>
+	 */
+//	@Transient
+	@Override
+	public String getEnTeteColonne(
+			final int pI) {
+		
+		String entete = null;
+		
+		switch (pI) {
+		
+		case 0:
+			entete = "id";
+			break;
+			
+		case 1:
+			entete = "nom de la RG";
+			break;
+			
+		case 2:
+			entete = "Résultat de la Validation";
+			break;
+			
+		case 3:
+			entete = "Message d'Erreur du contrôle";
+			break;
+			
+		case 4:
+			entete = "Actif";
+			break;
+			
+		case 5:
+			entete = "activité des contrôles sur l'attribut";
+			break;
+			
+		case 6:
+			entete = "activité de la RG";
+			break;
+			
+		case 7:
+			entete = "clé du type de contrôle";
+			break;
+			
+		case 8:
+			entete = "type de contrôle";
+			break;
+			
+		case 9:
+			entete = "Message d'erreur";
+			break;
+			
+		case 10:
+			entete = "Objet Métier concerné";
+			break;
+			
+		case 11:
+			entete = "Attribut concerné";
+			break;
+			
+		case 12:
+			entete = "Classe implémentant la RG";
+			break;
+			
+		case 13:
+			entete = "Méthode implémentant la RG";
+			break;
+			
+		default:
+			entete = "invalide";
+			break;
+		
+		} // Fin du Switch._________________________________
+		
+		return entete;
+		
+	} // Fin de getEnTeteColonne(...)._____________________________________
+
+
+
+	/**
+	 * {@inheritDoc}
+	 * <br/>
+	 * "id;nom de la RG;Résultat de la Validation;
+	 * Message d'Erreur du contrôle;Actif;
+	 * activité des contrôles sur l'attribut;activité de la RG;
+	 * clé du type de contrôle;type de contrôle;Message d'erreur;
+	 * Objet Métier concerné;Attribut concerné;
+	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * <br/>
+	 */
+//	@Transient
+	@Override
+	public Object getValeurColonne(
+			final int pI) {
+			
+		Object valeur = null;
+		
+		switch (pI) {
+		
+		case 0:
+			valeur = this.id;
+			break;
+
+		case 1:
+			valeur = this.nomRG;
+			break;
+
+		case 2:
+			valeur = this.resultatValidationRG;
+			break;
+			
+		case 3:
+			valeur = this.messageErreurValidation;
+			break;
+			
+		case 4:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getActif();
+			} 		
+			break;
+			
+		case 5:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getActiviteControleAttribut();
+			}
+			break;
+			
+		case 6:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getActiviteRG();
+			}
+			break;
+			
+		case 7:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getTypeControleInt();
+			}	
+			break;
+			
+		case 8:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getTypeControle();
+			}	
+			break;
+			
+		case 9:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getMessageRG();
+			}	
+			break;
+			
+		case 10:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getNomObjetMetier();
+			}
+			break;
+			
+		case 11:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getNomAttributObjetMetier();
+			}
+			break;
+
+		case 12:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getClasseControle();
+			}	
+			break;
+
+		case 13:
+			if (this.ligneRG != null) {
+				valeur = this.ligneRG.getMethodeControle();
+			}
+			break;
+
+		default:
+			valeur = "invalide";
+			break;	
+			
+		} // Fin du Switch._________________________________
+		
+		return valeur;
+		
+	} // Fin de getValeurColonne(...)._____________________________________
+
+
+	
 	/**
 	 * method getId() :<br/>
 	 * Getter de l'ID en base.<br/>

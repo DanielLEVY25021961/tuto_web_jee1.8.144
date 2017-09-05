@@ -83,6 +83,28 @@ public final class GestionnaireRG {
 	public static final String RG_CLIENT_NOM_02_MESSAGE 
 		= "le nom du client ne doit contenir que des lettres "
 				+ "(pas de chiffres).";
+
+	
+	/**
+	 * RG_CLIENT_PRENOM_03 : String :<br/>
+	 * Règle de Gestion.<br/>
+	 * "RG_CLIENT_PRENOM_03 : le prénom du client ne doit contenir 
+	 * que des lettres.".<br/>
+	 */
+	public static final String RG_CLIENT_PRENOM_03 
+		= "RG_CLIENT_PRENOM_03 : le prénom du client ne doit contenir "
+				+ "que des lettres.";
+
+	
+	/**
+	 * RG_CLIENT_PRENOM_03_MESSAGE : String :<br/>
+	 * Message à l'attention de l'utilisateur.<br/>
+	 * "le prénom du client ne doit contenir que des lettres 
+	 * (pas de chiffres)."<br/>
+	 */
+	public static final String RG_CLIENT_PRENOM_03_MESSAGE 
+		= "le prénom du client ne doit contenir que des lettres "
+				+ "(pas de chiffres).";
 	
 
 	/**
@@ -122,7 +144,9 @@ public final class GestionnaireRG {
 static {
 	
 	try {
+		
 		remplirMapRG();
+		
 	} catch (MalformedURLException malformedURLexc) {
 		
 		final String message 
@@ -236,8 +260,8 @@ static {
 	 */
 	private static String fournirCheminRessourceExterneRG() {
 					
-		return "D:/Donnees/eclipse/eclipseworkspace_neon/"
-					+ "tuto_web_jee1.8.144/ressources_externes";
+		return "C:/Users/dan/git/tuto_web_jee1.8.144.git/"
+				+ "tuto_web_jee1.8.144/ressources_externes";
 					
 	} // Fin de fournirCheminRessourceExterneRG()._________________________
 	
@@ -278,8 +302,8 @@ static {
 						, 1
 						, RG_CLIENT_NOM_01_MESSAGE
 						, "Client", "Nom"
-						, "ClientService"
-						, "validerNom(...)");
+						, "ValideurClient"
+						, "validerRGClientNom01(...)");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_01
@@ -293,12 +317,27 @@ static {
 						, 2
 						, RG_CLIENT_NOM_02_MESSAGE
 						, "Client", "Nom"
-						, "ClientService"
-						, "validerNom(...)");
+						, "ValideurClient"
+						, "validerRGClientNom02(...)");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_02
 						, ligneRgClient02);
+			
+			/* RG_CLIENT_PRENOM_03. */
+			final LigneRG ligneRgClient03 
+				= new LigneRG(getValiderPrenomClient()
+						, getValiderRGClientPrenom03()
+						, RG_CLIENT_PRENOM_03
+						, 2
+						, RG_CLIENT_PRENOM_03_MESSAGE
+						, "Client", "Prenom"
+						, "ValideurClient"
+						, "validerRGClientPrenom03(...)");
+			
+			mapRG.put(
+					GestionnaireRG.RG_CLIENT_PRENOM_03
+						, ligneRgClient03);
 			
 			return mapRG;
 			
@@ -511,6 +550,42 @@ static {
 		return GestionnaireRGClient.getValiderRGClientNom02();
 		
 	} // Fin de getValiderRGClientNom02()._________________________________
+
+
+	/**
+	 * method getValiderPrenomClient() :<br/>
+	 * Getter du Boolean activant globalement 
+	 * les contrôles sur le prénom du client.<br/>
+	 * <br/>
+	 *
+	 * @return validerPrenomClient : Boolean.<br/>
+	 * @throws MalformedURLException 
+	 */
+	public static Boolean getValiderPrenomClient() 
+			throws MalformedURLException {
+		
+		return GestionnaireRGClient.getValiderPrenomClient();
+		
+	} // Fin de getValiderPrenomClient().__________________________________
+	
+	
+	
+	/**
+	 * method getValiderRGClientPrenom03() :<br/>
+	 * Getter du Boolean activant la RG-Client-Prenom-03 : 
+	 * "le prénom du client ne doit contenir 
+	 * que des lettres" sur le prénom du client.<br/>
+	 * <br/>
+	 *
+	 * @return validerRGClientPrenom03 : Boolean.<br/>
+	 * @throws MalformedURLException 
+	 */
+	public static Boolean getValiderRGClientPrenom03() 
+			throws MalformedURLException {
+		
+		return GestionnaireRGClient.getValiderRGClientPrenom03();
+		
+	} // Fin de getValiderRGClientPrenom03().______________________________
 
 
 	

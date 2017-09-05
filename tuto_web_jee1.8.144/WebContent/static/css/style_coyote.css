@@ -4,6 +4,7 @@ body, p, legend, label, input {
     font: normal 10pt verdana, helvetica, sans-serif;
 }
 
+
 /* Forms ---------------------------------------------------------------- */
 
 fieldset {
@@ -63,6 +64,10 @@ form input.sansLabel {
 }
 
 
+.erreurs {
+    color: #c00;
+}
+
 .erreur {
     color: #900;
 }
@@ -90,4 +95,30 @@ form input.sansLabel {
 	padding: 10px;
     border: 1px #0568CD solid;
     margin: 10px;
+}
+
+.souligne {
+	font-style: normal;         /* Removes italics */
+  	text-decoration: underline; /* Makes underline */
+}
+
+.ariane {
+	font-style: normal;         /* Removes italics */
+	font-size:7pt;
+	font: normal 7pt verdana, helvetica, sans-serif;
+	color:#0000ff;
+	padding: 6px;
+    border: 1px #0568CD solid;
+    margin: 10px;
+    text-decoration:none;
+	
+}
+.filariane {
+	border: none;
+	font-size:7pt;
+	font: normal 7pt verdana, helvetica, sans-serif;
+	color:#0000ff;
+	padding: 6px;
+	margin: 2px;
+    text-decoration:none;
 }
