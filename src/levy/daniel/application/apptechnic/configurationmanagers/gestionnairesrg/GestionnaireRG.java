@@ -260,8 +260,7 @@ static {
 	 */
 	private static String fournirCheminRessourceExterneRG() {
 					
-		return "C:/Users/dan/git/tuto_web_jee1.8.144.git/"
-				+ "tuto_web_jee1.8.144/ressources_externes";
+		return "./tuto_web_jee1.8.144/ressources_externes";
 					
 	} // Fin de fournirCheminRessourceExterneRG()._________________________
 	
