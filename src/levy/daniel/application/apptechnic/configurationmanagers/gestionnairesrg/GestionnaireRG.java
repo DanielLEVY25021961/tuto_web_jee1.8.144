@@ -250,17 +250,14 @@ static {
 	 * method fournirCheminRessourceExterneRG() :<br/>
 	 * fournit le chemin (externe au projet) du répertoire 
 	 * contenant le fichier rg.properties.<br/>
-	 * "D:/Donnees/eclipse/eclipseworkspace_neon/tuto_web_jee1.8.144
-	 * /ressources_externes".<br/>
+	 * "./ressources_externes".<br/>
 	 * <br/>
 	 *
-	 * @return : String : "D:/Donnees/eclipse/
-	 * eclipseworkspace_neon/tuto_web_jee1.8.144/
-	 * ressources_externes".<br/>
+	 * @return : String : "./ressources_externes".<br/>
 	 */
 	private static String fournirCheminRessourceExterneRG() {
 					
-		return "./tuto_web_jee1.8.144/ressources_externes";
+		return "./ressources_externes";
 					
 	} // Fin de fournirCheminRessourceExterneRG()._________________________
 	
