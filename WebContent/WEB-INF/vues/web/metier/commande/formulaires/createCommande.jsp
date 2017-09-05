@@ -21,7 +21,7 @@ DIRECTIVE DE PAGE spécifiant :
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link type="text/css" rel="stylesheet" href="static/css/style_coyote.css" />
+		<link type="text/css" rel="stylesheet" href="<c:url value="/static/css/style_coyote.css" />" />
 		<title>createCommande.jsp</title>
 	</head>
 	
@@ -30,11 +30,11 @@ DIRECTIVE DE PAGE spécifiant :
 		<%-- FIL D'ARIANE --%>
 		<div class="ariane">
 			<p>
-				<img alt="accueil" src="static/images/home.png" />
+				<img alt="accueil" src="<c:url value="/static/images/home.png" />" />
 				<span class="filariane">
 					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
 				</span>
-				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
 					<a href="<c:url value="/createCommande" />"><c:out value="${ ariane }" /></a>
 				</span>				
