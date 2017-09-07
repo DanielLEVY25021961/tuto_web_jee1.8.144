@@ -1,0 +1,24 @@
+Name;Notes;Type;Stereotype
+EX-FONCT-LISTE_RG-01 : Connaitre la liste des RG implémentées dans l'application;La MOA et les développeurs ont besoin d'accéder rapidement la <b>liste des Règles de Gestion (RG) </b>implémentées dans l'application.;Requirement;FunctionalRequirement
+EX-FONCT-PARAMETRAGE_RG-02 : paramétrer les contrôles des RG;"La MOA a besoin de <b>paramétrer le contrôle effectif</b> (activation) des RG dans l'application.
+
+La MOA doit pouvoir décider que certaines RG (par exemple ""le nom d'un client ne doit pas comporter de chiffres"") ne seront plus contrôlées dans l'application.
+
+L'application doit donc fournir à la MOA un dispositif de paramétrage de l'activité des contrôles des RG.";Requirement;FunctionalRequirement
+EX-FONCT-LISTE_RG-03 : Connaitre la liste des RG actives;La MOA a besoin d'accéder à la <b>liste des RG actives</b> (c'est à dire contrôlées) dans l'application;Requirement;FunctionalRequirement
+EX-FONCT-RAPPORT_RG-04 : voir les rapports de contrôle des RG;Les utilisateurs ont besoin d'avoir accès aux <b>rapports de contrôle</b> des RG.;Requirement;FunctionalRequirement
+EX-TEC-LISTE_RG-05 : publier la liste des RG implémentées dans l'application;L'application doit fournir un <b>dispositif pour lister l'ensemble des RG implémentées </b>dans l'application.;Requirement;ImplementationRequirement
+EX-TEC-IMPLEMENTATION_RG-09 : savoir où et comment sont implémentées les RG;Les développeurs et la Maîtrise d'Oeuvre (MOE) ont besoin de savoir <b><i>où et comment</i></b> ont été implémentés les contrôles des RG dans l'application.;Requirement;ImplementationRequirement
+EX-TEC-PARAMETRAGE_RG-06 : publier le paramétrage des contrôles;"La MOA doit pouvoir paramétrer le contrôle des RG, c'est à dire décider quelles sont les RG qui seront effectivement contrôlées dans l'application.
+
+L'application doit donc<b> fournir un dispositif permettant à la MOA d'activer/désactiver un contrôle</b> <i>sans être obligé d'accéder au serveur applicatif</i> et <i>sans nouvelle livraison</i> de l'application.
+
+Le dispositif doit donc être <i>externalisé (hors classpath)</i> afin de ne pas figurer dans un livrable (jar ou war). L'incorporation du dispositif dans le livrable imposerait au minimum de devoir accéder à l'application, décompresser le livrable, le modifier, puis le recompresser.
+
+Le dispositif ne doit pas nécessiter d'intervention des développeurs et de nouvelle livraison de l'application pour prendre en compte l'activation/désactivation des RG.";Requirement;ImplementationRequirement
+EX-TEC-PUBLICATION-RG-07 : publier l'activation des RG;"L'application devra fournir un <b>dispositif de publication de l'activation</b> des RG.
+
+La MOA doit savoir à tout moment quelles sont les RG contrôlées ou pas.";Requirement;ImplementationRequirement
+EX-TEC-PUBLICATION-RG-08 : stocker et publier les rapports de contrôle pour chaque utilisateur;"L'application doit fournir un <b>rapport de contrôle</b> à l'attention de <i>chaque utilisateur</i> (qui remplit un formulaire ou soumet un lot de données par exemple).
+
+L'application doit stocker les rapports de contrôle pendant un certain temps en vue de leur fourniture.";Requirement;ImplementationRequirement
