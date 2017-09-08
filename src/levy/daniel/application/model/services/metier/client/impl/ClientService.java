@@ -64,13 +64,11 @@ public class ClientService extends AbstractClientService {
 	
 
 	
+
 	/**
-	 * method founirNomClasse() :<br/>
-	 * Retourne le nom de la présente classe.<br/>
-	 * "Classe AbstractClientService".<br/>
+	 * {@inheritDoc}
 	 * <br/>
-	 *
-	 * @return : String : nom de la présente classe.<br/>
+	 * "Classe ClientService".<br/>
 	 */
 	@Override
 	public String founirNomClasse() {

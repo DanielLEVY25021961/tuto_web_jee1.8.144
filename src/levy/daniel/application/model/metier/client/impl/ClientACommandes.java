@@ -135,6 +135,7 @@ public class ClientACommandes extends AbstractClient {
 	 * CONSTRUCTEUR COMPLET BASE.<br/>
 	 * AVEC ID en base.<br/>
 	 * AVEC listeCommandes.<br/>
+	 * instancie une nouvelle listCommandes si pListCommandes == null.<br/>
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base.<br/> 
@@ -156,7 +157,14 @@ public class ClientACommandes extends AbstractClient {
 		
 		super(pId, pNom, pPrenom, pAdresseLivraison, pTelephone, pEmail);
 		
-		this.listCommandes = pListCommandes;
+		/* instancie une nouvelle listCommandes 
+		 * si pListCommandes == null.  */
+		if (pListCommandes == null) {
+			this.listCommandes = new ArrayList<>();
+		} else {
+			this.listCommandes = pListCommandes;
+		}
+		
 		
 	} // Fin du CONSTRUCTEUR COMPLET BASE._________________________________
 	
