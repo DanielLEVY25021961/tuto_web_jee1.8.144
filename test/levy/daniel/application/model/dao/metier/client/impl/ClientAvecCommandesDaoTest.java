@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import levy.daniel.application.model.metier.client.IClient;
+import levy.daniel.application.model.metier.client.AbstractClient;
 import levy.daniel.application.model.metier.client.impl.ClientACommandes;
 import levy.daniel.application.model.metier.commande.impl.Commande;
 
@@ -70,20 +70,26 @@ public class ClientAvecCommandesDaoTest {
 		final List<Commande> list  
 		= new ArrayList<Commande>();
 		
-		DateTime date1 =  new DateTime();
+		final DateTime date1 =  new DateTime();
 		
 		final Commande commande1 = new Commande(date1, 55.69D, "CB", "en cours", "48h chrono", "en cours", null);
-		final Commande commande2 = new Commande(date1, 75.69D, "CB", "en cours", "48h chrono", "en cours", null);
+		final Commande commande2 = new Commande(date1, 75.69D, "CB", "parti", "48h chrono", "parti", null);
 		
 		list.add(commande1);
 		list.add(commande2);
 		
-		final IClient client = new ClientACommandes(
+		final AbstractClient client = new ClientACommandes(
 				"Zorro", "papy"
 				, "10 rue des pins", "0164589874", "papy.gonzales@free.fr"
 				, list);
 		
-	}
+		final ClientAvecCommandesDao dao = new ClientAvecCommandesDao();
+		
+		dao.create(client);
+		
+		System.out.println(client.toString());
+		
+	} // Fin de testCreate().______________________________________________
 
 
 }

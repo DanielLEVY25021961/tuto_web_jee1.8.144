@@ -143,12 +143,12 @@ public class AbstractClient
 
 		super();
 
-		id = pId;
-		nom = pNom;
-		prenom = pPrenom;
-		adresseLivraison = pAdresseLivraison;
-		telephone = pTelephone;
-		email = pEmail;
+		this.id = pId;
+		this.nom = pNom;
+		this.prenom = pPrenom;
+		this.adresseLivraison = pAdresseLivraison;
+		this.telephone = pTelephone;
+		this.email = pEmail;
 
 	} // Fin du CONSTRUCTEUR COMPLET BASE._________________________________
 
@@ -162,9 +162,9 @@ public class AbstractClient
 
 		int result = 1;
 
-		result = prime * result + (nom == null ? 0 : nom.hashCode());
-		result = prime * result + (prenom == null ? 0 : prenom.hashCode());
-		result = prime * result + (email == null ? 0 : email.hashCode());
+		result = prime * result + (this.nom == null ? 0 : this.nom.hashCode());
+		result = prime * result + (this.prenom == null ? 0 : this.prenom.hashCode());
+		result = prime * result + (this.email == null ? 0 : this.email.hashCode());
 
 		return result;
 
@@ -191,29 +191,29 @@ public class AbstractClient
 		final AbstractClient other = (AbstractClient) pObj;
 
 		/* nom. */
-		if (nom == null) {
+		if (this.nom == null) {
 			if (other.nom != null) {
 				return false;
 			}
-		} else if (!nom.equals(other.nom)) {
+		} else if (!this.nom.equals(other.nom)) {
 			return false;
 		}
 
 		/* prenom. */
-		if (prenom == null) {
+		if (this.prenom == null) {
 			if (other.prenom != null) {
 				return false;
 			}
-		} else if (!prenom.equals(other.prenom)) {
+		} else if (!this.prenom.equals(other.prenom)) {
 			return false;
 		}
 
 		/* email. */
-		if (email == null) {
+		if (this.email == null) {
 			if (other.email != null) {
 				return false;
 			}
-		} else if (!email.equals(other.email)) {
+		} else if (!this.email.equals(other.email)) {
 			return false;
 		}
 
@@ -321,34 +321,34 @@ public class AbstractClient
 
 		builder.append("AbstractClient [");
 
-		if (id != null) {
+		if (this.id != null) {
 			builder.append("id=");
-			builder.append(id);
+			builder.append(this.id);
 			builder.append(", ");
 		}
-		if (nom != null) {
+		if (this.nom != null) {
 			builder.append("nom=");
-			builder.append(nom);
+			builder.append(this.nom);
 			builder.append(", ");
 		}
-		if (prenom != null) {
+		if (this.prenom != null) {
 			builder.append("prenom=");
-			builder.append(prenom);
+			builder.append(this.prenom);
 			builder.append(", ");
 		}
-		if (adresseLivraison != null) {
+		if (this.adresseLivraison != null) {
 			builder.append("adresseLivraison=");
-			builder.append(adresseLivraison);
+			builder.append(this.adresseLivraison);
 			builder.append(", ");
 		}
-		if (telephone != null) {
+		if (this.telephone != null) {
 			builder.append("telephone=");
-			builder.append(telephone);
+			builder.append(this.telephone);
 			builder.append(", ");
 		}
-		if (email != null) {
+		if (this.email != null) {
 			builder.append("email=");
-			builder.append(email);
+			builder.append(this.email);
 		}
 
 		builder.append(']');
@@ -374,17 +374,17 @@ public class AbstractClient
 
 		final StringBuilder builder = new StringBuilder();
 
-		builder.append(id);
+		builder.append(this.id);
 		builder.append(';');
-		builder.append(nom);
+		builder.append(this.nom);
 		builder.append(';');
-		builder.append(prenom);
+		builder.append(this.prenom);
 		builder.append(';');
-		builder.append(adresseLivraison);
+		builder.append(this.adresseLivraison);
 		builder.append(';');
-		builder.append(telephone);
+		builder.append(this.telephone);
 		builder.append(';');
-		builder.append(email);
+		builder.append(this.email);
 		builder.append(';');
 
 		return builder.toString();
@@ -446,27 +446,27 @@ public class AbstractClient
 		switch (pI) {
 
 		case 0:
-			valeur = id;
+			valeur = this.id;
 			break;
 
 		case 1:
-			valeur = nom;
+			valeur = this.nom;
 			break;
 
 		case 2:
-			valeur = prenom;
+			valeur = this.prenom;
 			break;
 
 		case 3:
-			valeur = adresseLivraison;
+			valeur = this.adresseLivraison;
 			break;
 
 		case 4:
-			valeur = telephone;
+			valeur = this.telephone;
 			break;
 
 		case 5:
-			valeur = email;
+			valeur = this.email;
 			break;
 
 		default:
@@ -487,7 +487,7 @@ public class AbstractClient
 	@Column(name = "ID")
 	@Override
 	public Long getId() {
-		return id;
+		return this.id;
 	} // Fin de getId().___________________________________________________
 
 	/**
@@ -495,7 +495,7 @@ public class AbstractClient
 	 */
 	@Override
 	public void setId(final Long pId) {
-		id = pId;
+		this.id = pId;
 	} // Fin de setId(...).________________________________________________
 
 	/**
@@ -504,7 +504,7 @@ public class AbstractClient
 	@Column(name = "NOM")
 	@Override
 	public String getNom() {
-		return nom;
+		return this.nom;
 	} // Fin de getNom().__________________________________________________
 
 	/**
@@ -512,7 +512,7 @@ public class AbstractClient
 	 */
 	@Override
 	public void setNom(final String pNom) {
-		nom = pNom;
+		this.nom = pNom;
 	} // Fin de setNom(...)._______________________________________________
 
 	/**
@@ -521,7 +521,7 @@ public class AbstractClient
 	@Column(name = "PRENOM")
 	@Override
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	} // Fin de getPrenom()._______________________________________________
 
 	/**
@@ -529,7 +529,7 @@ public class AbstractClient
 	 */
 	@Override
 	public void setPrenom(final String pPrenom) {
-		prenom = pPrenom;
+		this.prenom = pPrenom;
 	} // Fin de setPrenom(...).____________________________________________
 
 	/**
@@ -538,7 +538,7 @@ public class AbstractClient
 	@Column(name = "ADRESSE")
 	@Override
 	public String getAdresseLivraison() {
-		return adresseLivraison;
+		return this.adresseLivraison;
 	} // Fin de getAdresseLivraison()._____________________________________
 
 	/**
@@ -546,7 +546,7 @@ public class AbstractClient
 	 */
 	@Override
 	public void setAdresseLivraison(final String pAdresseLivraison) {
-		adresseLivraison = pAdresseLivraison;
+		this.adresseLivraison = pAdresseLivraison;
 	} // Fin de setAdresseLivraison(...).__________________________________
 
 	/**
@@ -555,7 +555,7 @@ public class AbstractClient
 	@Column(name = "TELEPHONE")
 	@Override
 	public String getTelephone() {
-		return telephone;
+		return this.telephone;
 	} // Fin de getTelephone().____________________________________________
 
 	/**
@@ -563,7 +563,7 @@ public class AbstractClient
 	 */
 	@Override
 	public void setTelephone(final String pTelephone) {
-		telephone = pTelephone;
+		this.telephone = pTelephone;
 	} // Fin de setTelephone(...)._________________________________________
 
 	/**
@@ -572,7 +572,7 @@ public class AbstractClient
 	@Column(name = "EMAIL")
 	@Override
 	public String getEmail() {
-		return email;
+		return this.email;
 	} // Fin de getEmail().________________________________________________
 
 	/**
@@ -580,18 +580,29 @@ public class AbstractClient
 	 */
 	@Override
 	public void setEmail(final String pEmail) {
-		email = pEmail;
+		this.email = pEmail;
 	} // Fin de setEmail(...)._____________________________________________
 
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMMANDE")
 	public List<AbstractCommande> getCommandes() {
-		return commandes;
+		return this.commandes;
 	}
 
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void setCommandes(List<AbstractCommande> commandes) {
+	public void setCommandes(
+			final List<AbstractCommande> commandes) {
 		this.commandes = commandes;
 	}
 

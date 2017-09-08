@@ -160,14 +160,14 @@ public class AbstractCommande
 
 		super();
 
-		id = pId;
-		dateCommande = pDateCommande;
-		montant = pMontant;
-		modePaiement = pModePaiement;
-		statutPaiement = pStatutPaiement;
-		modeLivraison = pModeLivraison;
-		statutLivraison = pStatutLivraison;
-		client = pClient;
+		this.id = pId;
+		this.dateCommande = pDateCommande;
+		this.montant = pMontant;
+		this.modePaiement = pModePaiement;
+		this.statutPaiement = pStatutPaiement;
+		this.modeLivraison = pModeLivraison;
+		this.statutLivraison = pStatutLivraison;
+		this.client = pClient;
 
 	} // Fin de CONSTRUCTEUR COMPLET BASE._________________________________
 
@@ -181,9 +181,9 @@ public class AbstractCommande
 
 		int result = 1;
 
-		result = prime * result + (client == null ? 0 : client.hashCode());
-		result = prime * result + (dateCommande == null ? 0 : dateCommande.hashCode());
-		result = prime * result + (montant == null ? 0 : montant.hashCode());
+		result = prime * result + (this.client == null ? 0 : this.client.hashCode());
+		result = prime * result + (this.dateCommande == null ? 0 : this.dateCommande.hashCode());
+		result = prime * result + (this.montant == null ? 0 : this.montant.hashCode());
 
 		return result;
 
@@ -209,27 +209,27 @@ public class AbstractCommande
 
 		final AbstractCommande other = (AbstractCommande) pObj;
 
-		if (client == null) {
+		if (this.client == null) {
 			if (other.client != null) {
 				return false;
 			}
-		} else if (!client.equals(other.client)) {
+		} else if (!this.client.equals(other.client)) {
 			return false;
 		}
 
-		if (dateCommande == null) {
+		if (this.dateCommande == null) {
 			if (other.dateCommande != null) {
 				return false;
 			}
-		} else if (!dateCommande.equals(other.dateCommande)) {
+		} else if (!this.dateCommande.equals(other.dateCommande)) {
 			return false;
 		}
 
-		if (montant == null) {
+		if (this.montant == null) {
 			if (other.montant != null) {
 				return false;
 			}
-		} else if (!montant.equals(other.montant)) {
+		} else if (!this.montant.equals(other.montant)) {
 			return false;
 		}
 
@@ -256,7 +256,7 @@ public class AbstractCommande
 		int compareMontant = 0;
 
 		/* client. */
-		if (client == null) {
+		if (this.client == null) {
 			if (pCommande.getClient() != null) {
 				return +1;
 			}
@@ -328,8 +328,8 @@ public class AbstractCommande
 		commandeClone.setStatutLivraison(getStatutLivraison());
 
 		AbstractClient clientClone = null;
-		if (client != null) {
-			clientClone = client.clone();
+		if (this.client != null) {
+			clientClone = this.client.clone();
 		}
 
 		commandeClone.setClient(clientClone);
@@ -348,46 +348,46 @@ public class AbstractCommande
 
 		builder.append("AbstractCommande [");
 
-		if (id != null) {
+		if (this.id != null) {
 			builder.append("id=");
-			builder.append(id);
+			builder.append(this.id);
 			builder.append(", ");
 		}
-		if (dateCommande != null) {
+		if (this.dateCommande != null) {
 			builder.append("dateCommande=");
-			builder.append(dateCommande);
+			builder.append(this.dateCommande);
 			builder.append(", ");
 		}
-		if (montant != null) {
+		if (this.montant != null) {
 			builder.append("montant=");
-			builder.append(montant);
+			builder.append(this.montant);
 			builder.append(", ");
 		}
-		if (modePaiement != null) {
+		if (this.modePaiement != null) {
 			builder.append("modePaiement=");
-			builder.append(modePaiement);
+			builder.append(this.modePaiement);
 			builder.append(", ");
 		}
-		if (statutPaiement != null) {
+		if (this.statutPaiement != null) {
 			builder.append("statutPaiement=");
-			builder.append(statutPaiement);
+			builder.append(this.statutPaiement);
 			builder.append(", ");
 		}
-		if (modeLivraison != null) {
+		if (this.modeLivraison != null) {
 			builder.append("modeLivraison=");
-			builder.append(modeLivraison);
+			builder.append(this.modeLivraison);
 			builder.append(", ");
 		}
-		if (statutLivraison != null) {
+		if (this.statutLivraison != null) {
 			builder.append("statutLivraison=");
-			builder.append(statutLivraison);
+			builder.append(this.statutLivraison);
 			builder.append(", ");
 		}
-		if (client != null) {
+		if (this.client != null) {
 			builder.append("client=");
-			builder.append(client.getNom());
+			builder.append(this.client.getNom());
 			builder.append(' ');
-			builder.append(client.getPrenom());
+			builder.append(this.client.getPrenom());
 		}
 
 		builder.append(']');
@@ -417,30 +417,30 @@ public class AbstractCommande
 
 		final StringBuilder builder = new StringBuilder();
 
-		final String dateCommandeString = fournirDateFormatee(dateCommande);
+		final String dateCommandeString = fournirDateFormatee(this.dateCommande);
 
-		final String nomClient = fournirNomClient(client);
-		final String prenomClient = fournirPrenomClient(client);
+		final String nomClient = fournirNomClient(this.client);
+		final String prenomClient = fournirPrenomClient(this.client);
 
-		builder.append(id);
+		builder.append(this.id);
 		builder.append(';');
 
 		builder.append(dateCommandeString);
 		builder.append(';');
 
-		builder.append(montant);
+		builder.append(this.montant);
 		builder.append(';');
 
-		builder.append(modePaiement);
+		builder.append(this.modePaiement);
 		builder.append(';');
 
-		builder.append(statutPaiement);
+		builder.append(this.statutPaiement);
 		builder.append(';');
 
-		builder.append(modeLivraison);
+		builder.append(this.modeLivraison);
 		builder.append(';');
 
-		builder.append(statutLivraison);
+		builder.append(this.statutLivraison);
 		builder.append(';');
 
 		builder.append(nomClient);
@@ -523,39 +523,39 @@ public class AbstractCommande
 		switch (pI) {
 
 		case 0:
-			valeur = id;
+			valeur = this.id;
 			break;
 
 		case 1:
-			valeur = fournirDateFormatee(dateCommande);
+			valeur = fournirDateFormatee(this.dateCommande);
 			break;
 
 		case 2:
-			valeur = montant;
+			valeur = this.montant;
 			break;
 
 		case 3:
-			valeur = modePaiement;
+			valeur = this.modePaiement;
 			break;
 
 		case 4:
-			valeur = statutPaiement;
+			valeur = this.statutPaiement;
 			break;
 
 		case 5:
-			valeur = modeLivraison;
+			valeur = this.modeLivraison;
 			break;
 
 		case 6:
-			valeur = statutLivraison;
+			valeur = this.statutLivraison;
 			break;
 
 		case 7:
-			valeur = fournirNomClient(client);
+			valeur = fournirNomClient(this.client);
 			break;
 
 		case 8:
-			valeur = fournirPrenomClient(client);
+			valeur = fournirPrenomClient(this.client);
 			break;
 
 		default:
@@ -642,7 +642,7 @@ public class AbstractCommande
 	@Column(name = "IDCOMMANDE")
 	@Override
 	public Long getId() {
-		return id;
+		return this.id;
 	} // Fin de getId().___________________________________________________
 
 	/**
@@ -650,7 +650,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setId(final Long pId) {
-		id = pId;
+		this.id = pId;
 	} // Fin de setId().___________________________________________________
 
 	/**
@@ -660,7 +660,7 @@ public class AbstractCommande
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	public DateTime getDateCommande() {
-		return dateCommande;
+		return this.dateCommande;
 	} // Fin de getDateCommande()._________________________________________
 
 	/**
@@ -668,7 +668,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setDateCommande(final DateTime pDateCommande) {
-		dateCommande = pDateCommande;
+		this.dateCommande = pDateCommande;
 	} // Fin de setDateCommande()._________________________________________
 
 	/**
@@ -677,7 +677,7 @@ public class AbstractCommande
 	@Column(name = "MONTANT")
 	@Override
 	public Double getMontant() {
-		return montant;
+		return this.montant;
 	} // Fin de getMontant().______________________________________________
 
 	/**
@@ -685,7 +685,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setMontant(final Double pMontant) {
-		montant = pMontant;
+		this.montant = pMontant;
 	} // Fin de setMontant().______________________________________________
 
 	/**
@@ -694,7 +694,7 @@ public class AbstractCommande
 	@Column(name = "MODE_DE_PAIEMENT")
 	@Override
 	public String getModePaiement() {
-		return modePaiement;
+		return this.modePaiement;
 	} // Fin de getModePaiement()._________________________________________
 
 	/**
@@ -702,7 +702,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setModePaiement(final String pModePaiement) {
-		modePaiement = pModePaiement;
+		this.modePaiement = pModePaiement;
 	} // Fin de setModePaiement()._________________________________________
 
 	/**
@@ -711,7 +711,7 @@ public class AbstractCommande
 	@Column(name = "STATUT_PAIEMENT")
 	@Override
 	public String getStatutPaiement() {
-		return statutPaiement;
+		return this.statutPaiement;
 	} // Fin de getStatutPaiement()._______________________________________
 
 	/**
@@ -719,7 +719,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setStatutPaiement(final String pStatutPaiement) {
-		statutPaiement = pStatutPaiement;
+		this.statutPaiement = pStatutPaiement;
 	} // Fin de setStatutPaiement()._______________________________________
 
 	/**
@@ -728,7 +728,7 @@ public class AbstractCommande
 	@Column(name = "MODE_LIVRAISON")
 	@Override
 	public String getModeLivraison() {
-		return modeLivraison;
+		return this.modeLivraison;
 	} // Fin de getModeLivraison().________________________________________
 
 	/**
@@ -736,7 +736,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setModeLivraison(final String pModeLivraison) {
-		modeLivraison = pModeLivraison;
+		this.modeLivraison = pModeLivraison;
 	} // Fin de setModeLivraison().________________________________________
 
 	/**
@@ -745,7 +745,7 @@ public class AbstractCommande
 	@Column(name = "STATUT_LIVRAISON")
 	@Override
 	public String getStatutLivraison() {
-		return statutLivraison;
+		return this.statutLivraison;
 	} // Fin de getStatutLivraison().______________________________________
 
 	/**
@@ -753,7 +753,7 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setStatutLivraison(final String pStatutLivraison) {
-		statutLivraison = pStatutLivraison;
+		this.statutLivraison = pStatutLivraison;
 	} // Fin de setStatutLivraison().______________________________________
 
 	/**
@@ -763,7 +763,7 @@ public class AbstractCommande
 	@ManyToOne()
 	@JoinColumn(name = "IDCLIENT")
 	public AbstractClient getClient() {
-		return client;
+		return this.client;
 	} // Fin de getClient()._______________________________________________
 
 	/**
@@ -771,7 +771,9 @@ public class AbstractCommande
 	 */
 	@Override
 	public void setClient(final AbstractClient pClient) {
-		client = pClient;
+		this.client = pClient;
 	} // Fin de setClient()._______________________________________________
 
+	
+	
 } // FIN DE LA CLASSE AbstractCommande.--------------------------------------

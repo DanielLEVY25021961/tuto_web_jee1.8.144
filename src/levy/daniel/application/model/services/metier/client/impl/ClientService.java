@@ -87,7 +87,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Long createReturnId(AbstractClient pObject) {
+	public Long createReturnId(
+			final AbstractClient pObject) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -99,7 +100,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AbstractClient retrieve(AbstractClient pObject) {
+	public AbstractClient retrieve(
+			final AbstractClient pObject) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -111,7 +113,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AbstractClient getOne(Long pId) {
+	public AbstractClient getOne(
+			final Long pId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -135,7 +138,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<AbstractClient> findAllMax(Long pMax) {
+	public List<AbstractClient> findAllMax(
+			final Long pMax) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -147,7 +151,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Iterable<AbstractClient> findAll(Iterable<ID> pIds) {
+	public Iterable<AbstractClient> findAll(
+			final Iterable<ID> pIds) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -159,7 +164,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AbstractClient update(AbstractClient pObject) {
+	public AbstractClient update(
+			final AbstractClient pObject) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -171,7 +177,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public <S extends AbstractClient> S save(S pEntity) {
+	public <S extends AbstractClient> S save(
+			final S pEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -183,7 +190,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public <S extends AbstractClient> Iterable<S> save(Iterable<S> pEntities) {
+	public <S extends AbstractClient> Iterable<S> save(
+			final Iterable<S> pEntities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -195,7 +203,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean delete(AbstractClient pObject) {
+	public boolean delete(
+			final AbstractClient pObject) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -207,7 +216,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void delete(Long pId) {
+	public void delete(
+			final Long pId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -231,7 +241,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void delete(Iterable<? extends AbstractClient> pEntities) {
+	public void delete(
+			final Iterable<? extends AbstractClient> pEntities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -243,7 +254,8 @@ public class ClientService extends AbstractClientService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean exists(ID pId) {
+	public boolean exists(
+			final ID pId) {
 		// TODO Auto-generated method stub
 		return false;
 	}

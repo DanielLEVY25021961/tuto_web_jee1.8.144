@@ -134,15 +134,17 @@ public interface IClient extends IExportateurCsv, IExportateurJTable {
 	/**
 	 * TODO : remplir javadoc
 	 * 
-	 * @return
+	 * @return List<AbstractCommande>
 	 */
-	public List<AbstractCommande> getCommandes();
+	List<AbstractCommande> getCommandes();
 
 	/**
 	 * TODO : remplir javadoc
 	 * 
 	 * @param commandes
 	 */
-	public void setCommandes(List<AbstractCommande> commandes);
+	void setCommandes(List<AbstractCommande> commandes);
+	
+	
 
 } // FIN DE L'INTERFACE IClient.---------------------------------------------
