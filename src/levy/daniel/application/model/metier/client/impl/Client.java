@@ -61,6 +61,7 @@ public class Client extends AbstractClient {
 	 * method CONSTRUCTEUR Client(
 	 * CONSTRUCTEUR COMPLET) :<br/>
 	 * CONSTRUCTEUR COMPLET.<br/>
+	 * SANS ID en base.<br/>
 	 * <br/>
 	 *
 	 * @param pNom : String : Nom du client.<br/>
@@ -85,6 +86,7 @@ public class Client extends AbstractClient {
 	 * method CONSTRUCTEUR Client(
 	 * CONSTRUCTEUR COMPLET BASE) :<br/>
 	 * CONSTRUCTEUR COMPLET BASE.<br/>
+	 * AVEC ID en base.<br/>
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base.<br/> 
