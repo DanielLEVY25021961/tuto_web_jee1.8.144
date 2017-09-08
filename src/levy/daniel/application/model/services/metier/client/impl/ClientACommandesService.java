@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
+import levy.daniel.application.model.metier.client.AbstractClient;
 import levy.daniel.application.model.metier.client.impl.ClientACommandes;
 import levy.daniel.application.model.metier.commande.impl.Commande;
 import levy.daniel.application.model.services.metier.client.AbstractClientService;
@@ -152,6 +155,171 @@ public class ClientACommandesService extends AbstractClientService {
 	public String founirNomClasse() {
 		return CLASSE_CLIENTACOMANDES_SERVICE;
 	} // Fin de founirNomClasse()._________________________________________
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Long createReturnId(AbstractClient pObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractClient retrieve(AbstractClient pObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractClient getOne(Long pId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<AbstractClient> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<AbstractClient> findAllMax(Long pMax) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Iterable<AbstractClient> findAll(Iterable<ID> pIds) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractClient update(AbstractClient pObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <S extends AbstractClient> S save(S pEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <S extends AbstractClient> Iterable<S> save(Iterable<S> pEntities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean delete(AbstractClient pObject) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void delete(Long pId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void delete(Iterable<? extends AbstractClient> pEntities) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean exists(ID pId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 
 	

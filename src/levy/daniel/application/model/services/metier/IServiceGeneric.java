@@ -88,6 +88,8 @@ public interface IServiceGeneric<T> {
 	 * method findAll() :<br/>
 	 * Retourne la liste de tous les objets métier de Type paramétré T présents en base.<br/>
 	 * <br/>
+	 * 
+	 * @param pMax 
 	 *
 	 * @return : List&lt;T&gt; : liste de tous les objets métier de Type paramétré T présents en
 	 *         base.<br/>
@@ -98,7 +100,8 @@ public interface IServiceGeneric<T> {
 	 * Returns all instances of the type with the given IDs.
 	 *
 	 * @param ids
-	 * @return
+	 * 
+	 * @return Iterable<T>
 	 */
 	Iterable<T> findAll(Iterable<ID> ids);
 
