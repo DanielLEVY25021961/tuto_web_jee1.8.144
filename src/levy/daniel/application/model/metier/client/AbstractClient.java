@@ -2,6 +2,15 @@ package levy.daniel.application.model.metier.client;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,6 +34,9 @@ import org.apache.commons.logging.LogFactory;
  * @since 20 août 2017
  *
  */
+@Entity
+@Table(name="ABSTRACT_CLIENTS")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class AbstractClient 
 		implements Serializable, Comparable<AbstractClient>, Cloneable
 			, IClient {
@@ -527,6 +539,9 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID")
 	@Override
 	public Long getId() {
 		return this.id;
@@ -548,6 +563,7 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="NOM")
 	@Override
 	public String getNom() {
 		return this.nom;
@@ -569,6 +585,7 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="PRENOM")
 	@Override
 	public String getPrenom() {
 		return this.prenom;
@@ -590,6 +607,7 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="ADRESSE")
 	@Override
 	public String getAdresseLivraison() {
 		return this.adresseLivraison;
@@ -611,6 +629,7 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="TELEPHONE")
 	@Override
 	public String getTelephone() {
 		return this.telephone;
@@ -632,6 +651,7 @@ public class AbstractClient
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="EMAIL")
 	@Override
 	public String getEmail() {
 		return this.email;

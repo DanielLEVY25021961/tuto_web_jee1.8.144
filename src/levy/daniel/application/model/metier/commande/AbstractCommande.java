@@ -3,6 +3,15 @@ package levy.daniel.application.model.metier.commande;
 import java.io.Serializable;
 import java.util.Locale;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -31,6 +40,9 @@ import levy.daniel.application.model.metier.client.AbstractClient;
  * @since 20 août 2017
  *
  */
+@Entity
+@Table(name="ABSTRACT_COMMANDES")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class AbstractCommande 
 	implements Serializable, Comparable<AbstractCommande>, Cloneable
 		, ICommande {
@@ -723,6 +735,9 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID")
 	@Override
 	public Long getId() {
 		return this.id;
@@ -744,6 +759,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="DATE")
 	@Override
 	public DateTime getDateCommande() {
 		return this.dateCommande;
@@ -765,6 +781,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="MONTANT")
 	@Override
 	public Double getMontant() {
 		return this.montant;
@@ -786,6 +803,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="MODE_DE_PAIEMENT")
 	@Override
 	public String getModePaiement() {
 		return this.modePaiement;
@@ -807,6 +825,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="STATUT_PAIEMENT")
 	@Override
 	public String getStatutPaiement() {
 		return this.statutPaiement;
@@ -828,6 +847,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="MODE_LIVRAISON")
 	@Override
 	public String getModeLivraison() {
 		return this.modeLivraison;
@@ -849,6 +869,7 @@ public class AbstractCommande
 	/**
 	 * {@inheritDoc}
 	 */
+	@Column(name="STATUT_LIVRAISON")
 	@Override
 	public String getStatutLivraison() {
 		return this.statutLivraison;
