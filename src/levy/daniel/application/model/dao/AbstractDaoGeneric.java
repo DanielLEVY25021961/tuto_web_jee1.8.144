@@ -94,7 +94,8 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	 * <li>Récupère l'EntityManager auprès de la Factory.</li>
 	 * </ul>
 	 */
-	private void buildEntityManager() throws HibernateException {
+	private void buildEntityManager() 
+			throws HibernateException, IllegalStateException {
 		
 		/* Récupère la session Hibernate auprès de HibernateUtilNG. */
 		this.session = HibernateUtilNG.currentSession();
@@ -106,9 +107,10 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 		/* Récupère l'EntityManager auprès de la Factory. */
 		this.entityManager 
 			= this.entityManagerFactory.createEntityManager();
-		
-		
-	}
+				
+	} // Fin de buildEntityManager().______________________________________
+	
+	
 
 	/**
 	 * {@inheritDoc}
@@ -117,11 +119,17 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	public T create(
 			final T pObject) {
 
+		/* Persiste en base. */
 		this.entityManager.persist(pObject);
+		
+		/* retourne. */
 		return pObject;
 		
 	} // Fin de create(...)._______________________________________________
 
+	
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
