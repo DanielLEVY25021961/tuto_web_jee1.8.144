@@ -100,21 +100,22 @@ public class ClientACommandesService extends AbstractClientService {
 	 * @param pCommande
 	 * @return :  :  .<br/>
 	 */
-	public final Commande findCommande(Commande pCommande) {
-		
+	public final Commande findCommande(
+			final Commande pCommande) {
+		return null;
 	}
 	
 	
 	
 	/**
-	 * method ListerToutesCommandes() :<br/>
+	 * method listerToutesCommandes() :<br/>
 	 * .<br/>
 	 * <br/>
 	 *
 	 * @return :  :  .<br/>
 	 */
-	public final List<Commande> ListerToutesCommandes() {
-		
+	public final List<Commande> listerToutesCommandes() {
+		return null;
 	}
 	
 	

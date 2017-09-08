@@ -40,7 +40,7 @@ public final class HibernateUtilNG {
 	 * CLASSE_HIBERNATEUTIL : String :<br/>
 	 * "Classe HibernateUtil - ".<br/>
 	 */
-	public static final String						CLASSE_HIBERNATEUTIL	=
+	public static final String	CLASSE_HIBERNATEUTIL =
 			"Classe HibernateUtil - ";
 
 	/**
