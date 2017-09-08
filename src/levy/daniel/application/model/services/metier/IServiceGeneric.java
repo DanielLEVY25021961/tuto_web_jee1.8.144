@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.LigneRG;
 import levy.daniel.application.model.services.valideurs.IValideurGeneric;
 import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
@@ -12,56 +14,55 @@ import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
  * class IServiceGeneric :<br/>
  * .<br/>
  * <br/>
- *
  * - Exemple d'utilisation :<br/>
- *<br/>
- * 
+ * <br/>
  * - Mots-clé :<br/>
  * Généricité, Type paramétré, <br/>
  * <br/>
- *
  * - Dépendances :<br/>
  * <br/>
- *
  *
  * @author dan Lévy
  * @version 1.0
  * @param <T> : Type paramétré : Classe réelle d'un Objet métier.<br/>
  * @since 25 août 2017
- *
  */
 public interface IServiceGeneric<T> {
 
-		
-	
+	/* CREATE */
+
 	/**
 	 * method create(T pObject) :<br/>
 	 * Crée un Objet metier de type paramétré T pObject.<br/>
 	 * <br/>
 	 *
 	 * @param pObject : T : Objet métier de type paramétré T.<br/>
-	 * 
 	 * @return : T : Objet métier de type paramétré T créé.<br/>
 	 */
 	T create(T pObject);
 
-
-	
 	/**
-	 * method retrieve(
-	 * T pObject) :<br/>
+	 * method createReturnId(T pObject) :<br/>
+	 * Crée un Objet metier de type paramétré T pObject.<br/>
+	 * <br/>
+	 *
+	 * @param pObject : T : Objet métier de type paramétré T.<br/>
+	 * @return : T : Objet métier de type paramétré T créé.<br/>
+	 */
+	Long createReturnId(T pObject);
+
+	/* READ */
+
+	/**
+	 * method retrieve( T pObject) :<br/>
 	 * Recherche un objet métier de Type paramétré T pObject en base.<br/>
 	 * <br/>
 	 *
 	 * @param pObject : T : objet métier de Type paramétré T.<br/>
-	 * 
-	 * @return : T : objet métier de Type paramétré T 
-	 * existant en base.<br/>
+	 * @return : T : objet métier de Type paramétré T existant en base.<br/>
 	 */
 	T retrieve(T pObject);
-	
 
-	
 	/**
 	 * method getOne() :<br/>
 	 * Retourne un Objet métier via son ID en base.<br/>
@@ -69,162 +70,188 @@ public interface IServiceGeneric<T> {
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base de l'Objet métier.
-	 * 
 	 * @return : T : Objet métier.<br/>
 	 */
 	T getOne(Long pId);
-	
 
-	
 	/**
-	 * method update(
-	 * T pObject) :<br/>
-	 * Modifie un objet métier de Type paramétré T 
-	 * pObject existant en base.<br/>
+	 * method findAll() :<br/>
+	 * Retourne la liste de tous les objets métier de Type paramétré T présents en base.<br/>
+	 * <br/>
+	 *
+	 * @return : List&lt;T&gt; : liste de tous les objets métier de Type paramétré T présents en
+	 *         base.<br/>
+	 */
+	List<T> findAll();
+
+	/**
+	 * method findAll() :<br/>
+	 * Retourne la liste de tous les objets métier de Type paramétré T présents en base.<br/>
+	 * <br/>
+	 *
+	 * @return : List&lt;T&gt; : liste de tous les objets métier de Type paramétré T présents en
+	 *         base.<br/>
+	 */
+	List<T> findAllMax(Long pMax);
+
+	/**
+	 * Returns all instances of the type with the given IDs.
+	 *
+	 * @param ids
+	 * @return
+	 */
+	Iterable<T> findAll(Iterable<ID> ids);
+
+	/* UPDATE */
+
+	/**
+	 * method update( T pObject) :<br/>
+	 * Modifie un objet métier de Type paramétré T pObject existant en base.<br/>
 	 * <br/>
 	 *
 	 * @param pObject : T : objet métier de Type paramétré T.<br/>
-	 * 
-	 * @return : T : objet métier de Type paramétré T 
-	 * modifié en base.<br/>
+	 * @return : T : objet métier de Type paramétré T modifié en base.<br/>
 	 */
 	T update(T pObject);
-	
 
-	
 	/**
-	 * method delete(
-	 * T pObject) :<br/>
-	 * Détruit un un objet métier de Type paramétré T 
-	 * existant en base.<br/>
+	 * Saves a given entity. Use the returned instance for further operations as the save operation
+	 * might have changed the entity instance completely.
+	 *
+	 * @param entity
+	 * @return the saved entity
+	 */
+	<S extends T> S save(S entity);
+
+	/**
+	 * Saves all given entities.
+	 *
+	 * @param entities
+	 * @return the saved entities
+	 * @throws IllegalArgumentException in case the given entity is {@literal null}.
+	 */
+	<S extends T> Iterable<S> save(Iterable<S> entities);
+
+	/* DELETE */
+
+	/**
+	 * method delete( T pObject) :<br/>
+	 * Détruit un un objet métier de Type paramétré T existant en base.<br/>
 	 * <br/>
 	 *
 	 * @param pObject : T : objet métier de Type paramétré T.<br/>
-	 * 
-	 * @return : boolean : true si l'objet métier de Type paramétré T 
-	 * a été détruit en base.<br/>
+	 * @return : boolean : true si l'objet métier de Type paramétré T a été détruit en base.<br/>
 	 */
 	boolean delete(T pObject);
-	
 
-	
 	/**
-	 * method delete(
-	 * Long pId) :<br/>
-	 * Détruit un un objet métier de Type paramétré T 
-	 * existant en base via son ID.<br/>
+	 * method delete( Long pId) :<br/>
+	 * Détruit un un objet métier de Type paramétré T existant en base via son ID.<br/>
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base.<br/>
 	 */
 	void delete(Long pId);
-	
-	
-	
-	/**
-	 * method findAll() :<br/>
-	 * Retourne la liste de tous les objets métier de Type paramétré T 
-	 * présents en base.<br/>
-	 * <br/>
-	 *
-	 * @return : List&lt;T&gt; : 
-	 * liste de tous les objets métier de Type paramétré T 
-	 * présents en base.<br/>
-	 */
-	List<T> findAll();
-	
 
-	
 	/**
-	 * method validate(
-	 * T pObject) :<br/>
+	 * Deletes all entities managed by the repository.
+	 */
+	void deleteAll();
+
+	/**
+	 * Deletes the given entities.
+	 *
+	 * @param entities
+	 * @throws IllegalArgumentException in case the given {@link Iterable} is {@literal null}.
+	 */
+	void delete(Iterable<? extends T> entities);
+
+	/* TOOLS */
+
+	/**
+	 * Returns whether an entity with the given id exists.
+	 *
+	 * @param id must not be {@literal null}.
+	 * @return true if an entity with the given id exists, {@literal false} otherwise
+	 * @throws IllegalArgumentException if {@code id} is {@literal null}
+	 */
+	boolean exists(ID id);
+
+	/**
+	 * Returns the number of entities available.
+	 *
+	 * @return the number of entities
+	 */
+	long count();
+
+	/**
+	 * method validate( T pObject) :<br/>
 	 * <ul>
 	 * <li>valide l'Objet métier de type paramétré T pObject.</li>
-	 * <li>retourne une map&lt;String, map&lt;String, String&gt;&gt; 
-	 * contenant les messages d'erreur avec :
+	 * <li>retourne une map&lt;String, map&lt;String, String&gt;&gt; contenant les messages d'erreur
+	 * avec :
 	 * <ul>
-	 * <li>String : le nom de l'attribut de l'Objet métier concerné 
-	 * par le message d'erreur.</li>
-	 * <li>map&lt;String, String&gt; : une map contenant la RG violée 
-	 * ainsi que le message d'erreur relatif à la RG.</li>
+	 * <li>String : le nom de l'attribut de l'Objet métier concerné par le message d'erreur.</li>
+	 * <li>map&lt;String, String&gt; : une map contenant la RG violée ainsi que le message d'erreur
+	 * relatif à la RG.</li>
 	 * </ul>
 	 * </ul>
 	 * <br/>
 	 *
 	 * @param pObject : T : Objet métier de type paramétré T.<br/>
-	 * 
-	 * @return : map&lt;String, map&lt;String, String&gt;&gt; : 
-	 * Map contenant les attributs de l'Objet métier violant des RG 
-	 * ainsi que les messages d'erreur relatifs aux RG violées.<br/>
-	 * 
-	 * @throws MalformedURLException 
+	 * @return : map&lt;String, map&lt;String, String&gt;&gt; : Map contenant les attributs de
+	 *         l'Objet métier violant des RG ainsi que les messages d'erreur relatifs aux RG
+	 *         violées.<br/>
+	 * @throws MalformedURLException
 	 */
-	Map<String, Map<String, String>> validate(T pObject) 
-			throws MalformedURLException;
-	
+	Map<String, Map<String, String>> validate(T pObject) throws MalformedURLException;
 
-	
 	/**
 	 * method fournirEnTeteCsvRGImplementees() :<br/>
-	 * Retourne l'en-Tête Csv pour la liste des 
-	 * règles de gestion implémentées dans ce service.<br/>
+	 * Retourne l'en-Tête Csv pour la liste des règles de gestion implémentées dans ce service.<br/>
 	 * <br/>
-	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
-	 * RG implémentée;clé du type de contrôle;type de contrôle;Message d'erreur;
-	 * Objet Métier concerné;Attribut concerné;Classe implémentant la RG;
-	 * Méthode implémentant la RG;".<br/>
+	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG; RG implémentée;clé du type
+	 * de contrôle;type de contrôle;Message d'erreur; Objet Métier concerné;Attribut concerné;Classe
+	 * implémentant la RG; Méthode implémentant la RG;".<br/>
 	 * <br/>
 	 *
-	 * @return : String : 
-	 * "id;Actif;activité des contrôles sur l'attribut
-	 * ;activité de la RG;RG implémentée;clé du type de contrôle;
-	 * type de contrôle;Message d'erreur;Objet Métier concerné;
-	 * Attribut concerné;Classe implémentant la RG;
-	 * Méthode implémentant la RG;".<br/>
+	 * @return : String : "id;Actif;activité des contrôles sur l'attribut ;activité de la RG;RG
+	 *         implémentée;clé du type de contrôle; type de contrôle;Message d'erreur;Objet Métier
+	 *         concerné; Attribut concerné;Classe implémentant la RG; Méthode implémentant la
+	 *         RG;".<br/>
 	 */
 	String fournirEnTeteCsvRGImplementees();
 
-
-	
 	/**
 	 * method fournirStringListeCsvRGImplementees() :<br/>
 	 * <ul>
-	 * <li>fournit sous forme de String en csv avec séparateur ':' 
-	 * la liste des règles de gestions contrôlées 
-	 * dans le présent Service.</li>
+	 * <li>fournit sous forme de String en csv avec séparateur ':' la liste des règles de gestions
+	 * contrôlées dans le présent Service.</li>
 	 * </ul>
 	 * retourne null si this.listeRGImplementees == null.<br/>
 	 * <br/>
 	 * Une règle de gestion est décomposée comme suit :<br/>
-	 * "id;Actif;activité des contrôles sur l'attribut
-	 * ;activité de la RG;RG implémentée;clé du type de contrôle;
-	 * type de contrôle;Message d'erreur;Objet Métier concerné;
-	 * Attribut concerné;Classe implémentant la RG;
-	 * Méthode implémentant la RG;".<br/>
+	 * "id;Actif;activité des contrôles sur l'attribut ;activité de la RG;RG implémentée;clé du type
+	 * de contrôle; type de contrôle;Message d'erreur;Objet Métier concerné; Attribut
+	 * concerné;Classe implémentant la RG; Méthode implémentant la RG;".<br/>
 	 * <br/>
 	 *
-	 * @return : String : liste des règles de gestions contrôlées 
-	 * dans le présent Service en CSV.<br/>
+	 * @return : String : liste des règles de gestions contrôlées dans le présent Service en
+	 *         CSV.<br/>
 	 */
 	String fournirStringListeCsvRGImplementees();
-	
 
-	
 	/**
 	 * method fournirNomObjetMetier() :<br/>
-	 * Retourne le nom de la classe de l'objet métier géré 
-	 * par la présente classe de service.<br/>
+	 * Retourne le nom de la classe de l'objet métier géré par la présente classe de service.<br/>
 	 * <br/>
 	 * Par exemple : "Classe Client".<br/>
 	 * <br/>
 	 *
-	 * @return : String : Nom de l'objet métier 
-	 * géré par la présente classe de service.<br/>
+	 * @return : String : Nom de l'objet métier géré par la présente classe de service.<br/>
 	 */
 	String fournirNomObjetMetier();
 
-	
-	
 	/**
 	 * method founirNomClasse() :<br/>
 	 * Retourne le nom de la présente classe de service.<br/>
@@ -235,28 +262,23 @@ public interface IServiceGeneric<T> {
 	 */
 	String founirNomClasse();
 
-	
-
 	/**
 	 * method getValideur() :<br/>
-	 * Getter du Valideur dédié à la validation de l'objet métier 
-	 * de type paramétré T traité par ce service.<br/>
+	 * Getter du Valideur dédié à la validation de l'objet métier de type paramétré T traité par ce
+	 * service.<br/>
 	 * <br/>
 	 *
 	 * @return valideur : IValideurGeneric<T>.<br/>
 	 */
 	IValideurGeneric<T> getValideur();
-	
-	
-	
+
 	/**
 	 * method getListeRGImplementees() :<br/>
 	 * Getter de la Liste des RG implémentées dans le Service.<br/>
 	 * <br/>
 	 * Une LigneRG encapsule :<br/>
-	 * [id;Actif;activité des contrôles sur l'attribut;activité de la RG
-	 * ;RG implémentée;clé du type de contrôle;type de contrôle
-	 * ;Message d'erreur;Objet Métier concerné;Attribut concerné
+	 * [id;Actif;activité des contrôles sur l'attribut;activité de la RG ;RG implémentée;clé du type
+	 * de contrôle;type de contrôle ;Message d'erreur;Objet Métier concerné;Attribut concerné
 	 * ;Classe implémentant la RG;Méthode implémentant la RG;].<br/>
 	 * <br/>
 	 *
@@ -264,21 +286,19 @@ public interface IServiceGeneric<T> {
 	 */
 	List<LigneRG> getListeRGImplementees();
 
-	
-	
 	/**
 	 * method getErreurs() :<br/>
-	 * Getter de la map&lt;String, map&lt;String, String&gt;&gt; 
-	 * contenant les messages d'erreur avec :
+	 * Getter de la map&lt;String, map&lt;String, String&gt;&gt; contenant les messages d'erreur
+	 * avec :
 	 * <ul>
-	 * <li>String : le nom de l'attribut de l'Objet métier concerné 
-	 * par le message d'erreur (par exemple "prénom").</li>
+	 * <li>String : le nom de l'attribut de l'Objet métier concerné par le message d'erreur (par
+	 * exemple "prénom").</li>
 	 * <li>map&lt;String, String&gt; : une map contenant :
 	 * <ul>
-	 * <li>String : le nom de la RG violée (par exemple 
-	 * "RG_CLIENT_NOM_01 : le nom du client doit être renseigné.").</li>
-	 * <li>String : le message d'erreur relatif à la RG 
-	 * (par exemple : "Le nom n'est pas renseigné (obligatoire).").</li>
+	 * <li>String : le nom de la RG violée (par exemple "RG_CLIENT_NOM_01 : le nom du client doit
+	 * être renseigné.").</li>
+	 * <li>String : le message d'erreur relatif à la RG (par exemple : "Le nom n'est pas renseigné
+	 * (obligatoire).").</li>
 	 * </ul>
 	 * </ul>
 	 * </ul>
@@ -287,79 +307,60 @@ public interface IServiceGeneric<T> {
 	 * @return erreurs : map&lt;String, map&lt;String, String&gt;&gt;.<br/>
 	 */
 	Map<String, Map<String, String>> getErreurs();
-	
-	
-	
+
 	/**
 	 * method getControles() :<br/>
-	 * Getter de la map&lt;String, map&lt;String
-	 * , LigneRapportValidation&gt;&gt; 
-	 * contenant les rapports de contrôle (validation) avec :
+	 * Getter de la map&lt;String, map&lt;String , LigneRapportValidation&gt;&gt; contenant les
+	 * rapports de contrôle (validation) avec :
 	 * <ul>
-	 * <li>String : le nom de l'attribut de l'Objet métier concerné 
-	 * par le rapport de contrôle (par exemple "prénom").</li>
+	 * <li>String : le nom de l'attribut de l'Objet métier concerné par le rapport de contrôle (par
+	 * exemple "prénom").</li>
 	 * <li>map&lt;String, LigneRapportValidation&gt; : une map contenant :
 	 * <ul>
-	 * <li>String : le nom de la RG violée (par exemple 
-	 * "RG_CLIENT_NOM_01 : le nom du client doit être renseigné.").</li>
-	 * <li>LigneRapportValidation : Pure fabrication encapsulant 
-	 * tous les éléments d'information relatifs à un contrôle 
-	 * (validation d'une RG).</li>
-	 * <br/>
+	 * <li>String : le nom de la RG violée (par exemple "RG_CLIENT_NOM_01 : le nom du client doit
+	 * être renseigné.").</li>
+	 * <li>LigneRapportValidation : Pure fabrication encapsulant tous les éléments d'information
+	 * relatifs à un contrôle (validation d'une RG).</li> <br/>
 	 * Une LigneRapportValidation encapsule : <br/>
-	 * "id;nom de la RG;Résultat de la Validation;
-	 * Message d'Erreur du contrôle;Actif;
-	 * activité des contrôles sur l'attribut;activité de la RG;
-	 * clé du type de contrôle;type de contrôle;Message d'erreur;
-	 * Objet Métier concerné;Attribut concerné;
-	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * "id;nom de la RG;Résultat de la Validation; Message d'Erreur du contrôle;Actif; activité des
+	 * contrôles sur l'attribut;activité de la RG; clé du type de contrôle;type de contrôle;Message
+	 * d'erreur; Objet Métier concerné;Attribut concerné; Classe implémentant la RG;Méthode
+	 * implémentant la RG;".<br/>
 	 * </ul>
 	 * </ul>
 	 * </ul>
 	 * <br/>
 	 *
-	 * @return controles : map&lt;String, map&lt;String
-	 * , LigneRapportValidation&gt;&gt;.<br/>
+	 * @return controles : map&lt;String, map&lt;String , LigneRapportValidation&gt;&gt;.<br/>
 	 */
 	Map<String, Map<String, LigneRapportValidation>> getControles();
-	
 
-	
 	/**
 	 * method getControlesList() :<br/>
-	 * Getter de la Liste des Pures fabrications encapsulant 
-	 * tous les éléments d'information relatifs à un contrôle 
-	 * (validation d'une RG).</li>
-	 * <br/>
+	 * Getter de la Liste des Pures fabrications encapsulant tous les éléments d'information
+	 * relatifs à un contrôle (validation d'une RG).</li> <br/>
 	 * Une LigneRapportValidation encapsule : <br/>
-	 * "id;nom de la RG;Résultat de la Validation;
-	 * Message d'Erreur du contrôle;Actif;
-	 * activité des contrôles sur l'attribut;activité de la RG;
-	 * clé du type de contrôle;type de contrôle;Message d'erreur;
-	 * Objet Métier concerné;Attribut concerné;
-	 * Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * "id;nom de la RG;Résultat de la Validation; Message d'Erreur du contrôle;Actif; activité des
+	 * contrôles sur l'attribut;activité de la RG; clé du type de contrôle;type de contrôle;Message
+	 * d'erreur; Objet Métier concerné;Attribut concerné; Classe implémentant la RG;Méthode
+	 * implémentant la RG;".<br/>
 	 * </ul>
 	 * </ul>
 	 * </ul>
 	 * <br/>
 	 *
-	 * @return controlesList : 
-	 * List&lt;LigneRapportValidation&gt;.<br/>
+	 * @return controlesList : List&lt;LigneRapportValidation&gt;.<br/>
 	 */
 	List<LigneRapportValidation> getControlesList();
 
-	
-	
 	/**
 	 * method getValide() :<br/>
-	 * Getter du Boolean qui stipule si le contrôle effectué 
-	 * par le validateur est sans erreur ou pas.<br/>
+	 * Getter du Boolean qui stipule si le contrôle effectué par le validateur est sans erreur ou
+	 * pas.<br/>
 	 * <br/>
 	 *
 	 * @return valide : Boolean.<br/>
 	 */
 	Boolean getValide();
-	
-	
-	
+
 } // FIN DE L'INTERFACE IServiceGeneric<T>.--------------------------------
