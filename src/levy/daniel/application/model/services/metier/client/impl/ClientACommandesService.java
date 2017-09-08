@@ -1,5 +1,7 @@
 package levy.daniel.application.model.services.metier.client.impl;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -87,8 +89,36 @@ public class ClientACommandesService extends AbstractClientService {
 		
 	} // Fin de ajouterCommande(...).______________________________________
 	
+
 	
+	
+	/**
+	 * method findCommande(Commande pCommande) :<br/>
+	 * .<br/>
+	 * <br/>
+	 *
+	 * @param pCommande
+	 * @return :  :  .<br/>
+	 */
+	public final Commande findCommande(Commande pCommande) {
 		
+	}
+	
+	
+	
+	/**
+	 * method ListerToutesCommandes() :<br/>
+	 * .<br/>
+	 * <br/>
+	 *
+	 * @return :  :  .<br/>
+	 */
+	public final List<Commande> ListerToutesCommandes() {
+		
+	}
+	
+	
+	
 	/**
 	 * method retirerCommande(
 	 * Commande pCommande) :<br/>
