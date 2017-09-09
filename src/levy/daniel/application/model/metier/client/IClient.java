@@ -1,10 +1,7 @@
 package levy.daniel.application.model.metier.client;
 
-import java.util.List;
-
 import levy.daniel.application.model.metier.IExportateurCsv;
 import levy.daniel.application.model.metier.IExportateurJTable;
-import levy.daniel.application.model.metier.commande.AbstractCommande;
 
 /**
  * class IClient :<br/>
@@ -131,20 +128,6 @@ public interface IClient extends IExportateurCsv, IExportateurJTable {
 	 */
 	void setEmail(String pEmail);
 
-	/**
-	 * TODO : remplir javadoc
-	 * 
-	 * @return List<AbstractCommande>
-	 */
-	List<AbstractCommande> getCommandes();
-
-	/**
-	 * TODO : remplir javadoc
-	 * 
-	 * @param commandes
-	 */
-	void setCommandes(List<AbstractCommande> commandes);
-	
-	
+		
 
 } // FIN DE L'INTERFACE IClient.---------------------------------------------

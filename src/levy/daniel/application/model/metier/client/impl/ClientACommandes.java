@@ -243,6 +243,8 @@ public class ClientACommandes extends AbstractClient {
 	 *
 	 * @return listCommandes : List&lt;Commande&gt;.<br/>
 	 */
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "IDCOMMANDE")
 	public List<Commande> getListCommandes() {
 		return this.listCommandes;
 	} // Fin de getListCommandes().________________________________________

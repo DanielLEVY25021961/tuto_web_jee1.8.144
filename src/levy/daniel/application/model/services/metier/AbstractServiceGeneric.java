@@ -9,6 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.LigneRG;
 import levy.daniel.application.model.services.valideurs.IValideurGeneric;
 import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
@@ -192,6 +194,252 @@ public abstract class AbstractServiceGeneric<T> implements IServiceGeneric<T> {
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 	
 
+	
+	
+	/* CREATE ************/
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final T create(
+			final T pObject) {
+		
+		return null;
+		
+	} // Fin de create(...)._______________________________________________
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Long createReturnId(
+			final T pObject) {
+		
+		return null;
+		
+	} // Fin de createReturnId(...)._______________________________________
+
+	
+	
+	/* READ *************/
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final T retrieve(
+			final T pObject) {
+		
+		return null;
+		
+	} // Fin de retrieve(...)._____________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final T getOne(
+			final Long pId) {
+		
+		return null;
+		
+	} // Fin de getOne(...)._______________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final List<T> findAll() {
+		
+		return null;
+		
+	} // Fin de findAll()._________________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final List<T> findAllMax(
+			final Long pMax) {
+		
+		return null;
+		
+	} // Fin de findAllMax(...).___________________________________________
+	
+	
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Iterable<T> findAll(
+			final Iterable<ID> pIds) {
+		
+		return null;
+		
+	} // Fin de findAll(...).______________________________________________
+	
+	
+	
+
+	/* UPDATE *************/
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final T update(
+			final T pObject) {
+		
+		return null;
+		
+	} // Fin de update(...)._______________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final <S extends T> S save(
+			final S pObject) {
+		
+		return null;
+		
+	} // Fin de save(...)._________________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final <S extends T> Iterable<S> save(
+			final Iterable<S> pObjects) {
+		
+		return null;
+		
+	} // Fin de save(...)._________________________________________________
+	
+	
+	
+
+	/* DELETE *************/
+	
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final boolean delete(
+			final T pObject) {
+		
+		return false;
+		
+	} // Fin de delete(...)._______________________________________________
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final void delete(
+			final Long pId) {
+		
+		/***/
+		
+	} // Fin de delete(...)._______________________________________________
+	
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final boolean deleteBoolean(
+			final Long pId) {
+		
+		return false;
+		
+	} // Fin de deleteBoolean(...).________________________________________
+	
+	
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final void deleteAll() {
+		
+		/***/
+		
+	} // Fin de deleteAll()._______________________________________________
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final void delete(
+			final Iterable<? extends T> pObjects) {
+		
+		/****/
+		
+	} // Fin de delete(...)._______________________________________________
+
+	
+	
+	/* TOOLS *************/
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final boolean exists(
+			final ID pId) {
+		
+		return false;
+		
+	} // Fin de exists(...)._______________________________________________
+
+	
+	
+	/**
+	 * method count() :<br/>
+	 * Returns the number of entities available.<br/>
+	 * <br/>
+	 *
+	 * @return : Long : the number of entities.<br/>
+	 */
+	@Override
+	public final Long count() {
+		
+		return null;
+		
+	} // Fin de count().___________________________________________________
+
+	
+
+	/* VALIDATION ************/
+	
 	
 	/**
 	 * {@inheritDoc}

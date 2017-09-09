@@ -1,5 +1,9 @@
 package levy.daniel.application.model.metier.client.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,6 +29,9 @@ import levy.daniel.application.model.metier.client.AbstractClient;
  * @since 20 août 2017
  *
  */
+@Entity
+@Table(name = "CLIENTS")
+@PrimaryKeyJoinColumn(name = "ID_CLIENT")
 public class Client extends AbstractClient {
 
 	// ************************ATTRIBUTS************************************/

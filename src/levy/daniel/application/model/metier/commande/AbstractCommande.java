@@ -13,8 +13,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -401,6 +400,7 @@ public class AbstractCommande
 	 * retourne "id;dateCommande;montant;modePaiement;statutPaiement;
 	 * modeLivraison;statutLivraison;nomClient;prenomClient;"
 	 */
+	@Transient
 	@Override
 	public String getEnTeteCsv() {
 
@@ -658,7 +658,7 @@ public class AbstractCommande
 	 */
 	@Override
 	@Column(name = "DATE")
-	@Temporal(TemporalType.TIMESTAMP)
+//	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	public DateTime getDateCommande() {
 		return this.dateCommande;
 	} // Fin de getDateCommande()._________________________________________

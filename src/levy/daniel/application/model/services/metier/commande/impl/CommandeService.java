@@ -1,13 +1,13 @@
-package levy.daniel.application.model.services.metier.client.impl;
+package levy.daniel.application.model.services.metier.commande.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import levy.daniel.application.model.metier.client.impl.Client;
-import levy.daniel.application.model.services.metier.client.AbstractClientService;
+import levy.daniel.application.model.metier.commande.impl.Commande;
+import levy.daniel.application.model.services.metier.commande.AbstractCommandeService;
 
 /**
- * class ClientService :<br/>
+ * class CommandeService :<br/>
  * .<br/>
  * <br/>
  *
@@ -23,20 +23,20 @@ import levy.daniel.application.model.services.metier.client.AbstractClientServic
  *
  * @author dan Lévy
  * @version 1.0
- * @since 25 août 2017
+ * @since 9 sept. 2017
  *
  */
-public class ClientService extends AbstractClientService {
+public class CommandeService extends AbstractCommandeService {
 
 	// ************************ATTRIBUTS************************************/
 
 
 	/**
-	 * CLASSE_CLIENT_SERVICE : String :<br/>
-	 * "Classe ClientService".<br/>
+	 * CLASSE_COMMANDE_SERVICE : String :<br/>
+	 * "Classe CommandeService".<br/>
 	 */
-	public static final String CLASSE_CLIENT_SERVICE 
-		= "Classe ClientService";
+	public static final String CLASSE_COMMANDE_SERVICE 
+		= "Classe CommandeService";
 
 	
 	/**
@@ -44,36 +44,37 @@ public class ClientService extends AbstractClientService {
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
 	@SuppressWarnings("unused")
-	private static final Log LOG = LogFactory.getLog(ClientService.class);
+	private static final Log LOG 
+		= LogFactory.getLog(CommandeService.class);
+
 
 	// *************************METHODES************************************/
 	
+
 	
 	 /**
-	 * method CONSTRUCTEUR ClientService() :<br/>
+	 * method CONSTRUCTEUR CommandeService() :<br/>
 	 * CONSTRUCTEUR D'ARITE NULLE.<br/>
 	 * <br/>
 	 */
-	public ClientService() {
+	public CommandeService() {
 		
 		super();
-				
-		this.objetMetier = new Client();
+		
+		this.objetMetier = new Commande();
 		
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 	
-
+	
 	
 	/**
 	 * {@inheritDoc}
-	 * <br/>
-	 * "Classe ClientService".<br/>
 	 */
 	@Override
 	public String founirNomClasse() {
-		return CLASSE_CLIENT_SERVICE;
+		return CLASSE_COMMANDE_SERVICE;
 	} // Fin de founirNomClasse()._________________________________________
 
 	
-	
-} // FIN DE LA CLASSE ClientService.-----------------------------------------
+
+} // FIN DE LA CLASSE CommandeService.---------------------------------------

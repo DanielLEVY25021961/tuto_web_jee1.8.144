@@ -1,5 +1,9 @@
 package levy.daniel.application.model.metier.commande.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -27,6 +31,9 @@ import levy.daniel.application.model.metier.commande.AbstractCommande;
  * @since 21 août 2017
  *
  */
+@Entity
+@Table(name = "COMMANDES")
+@PrimaryKeyJoinColumn(name = "IDCOMMANDE")
 public class Commande extends AbstractCommande {
 
 	// ************************ATTRIBUTS************************************/

@@ -1,24 +1,19 @@
 package levy.daniel.application.model.metier.client;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import levy.daniel.application.model.metier.commande.AbstractCommande;
 
 /**
  * class AbstractClient :<br/>
@@ -86,11 +81,8 @@ public class AbstractClient
 	 */
 	protected String				email;
 
-	/**
-	 * commandes.
-	 */
-	private List<AbstractCommande>	commandes;
-
+	
+	
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
@@ -361,6 +353,7 @@ public class AbstractClient
 	 * {@inheritDoc} <br/>
 	 * retourne "id;nom;prenom;adresse;telephone;email;"
 	 */
+	@Transient
 	@Override
 	public String getEnTeteCsv() {
 		return "id;nom;prenom;adresse;telephone;email;";
@@ -484,7 +477,7 @@ public class AbstractClient
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "ID_CLIENT")
 	@Override
 	public Long getId() {
 		return this.id;
@@ -583,27 +576,6 @@ public class AbstractClient
 		this.email = pEmail;
 	} // Fin de setEmail(...)._____________________________________________
 
-	
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDCOMMANDE")
-	public List<AbstractCommande> getCommandes() {
-		return this.commandes;
-	}
 
 	
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setCommandes(
-			final List<AbstractCommande> commandes) {
-		this.commandes = commandes;
-	}
-
 } // FIN DE LA CLASSE AbstractClient.----------------------------------------

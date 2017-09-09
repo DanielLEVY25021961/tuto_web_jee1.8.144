@@ -36,7 +36,8 @@ import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
  * @since 30 août 2017
  *
  */
-public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
+public class ValideurClient 
+					extends AbstractValideurGeneric<AbstractClient> {
 
 	// ************************ATTRIBUTS************************************/
 

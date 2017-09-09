@@ -9,7 +9,9 @@ import levy.daniel.application.model.services.valideurs.metier.client.ValideurCl
 
 /**
  * class AbstractClientService :<br/>
- * .<br/>
+ * CLASSE ABSTRAITE.<br/>
+ * Abstraction des Services concrets pour les objets métier 
+ * de type Client (héritant de AbstractClient).<br>
  * <br/>
  *
  * - Exemple d'utilisation :<br/>
@@ -28,7 +30,8 @@ import levy.daniel.application.model.services.valideurs.metier.client.ValideurCl
  *
  */
 public abstract class AbstractClientService 
-	extends AbstractServiceGeneric<AbstractClient> implements IClientService {
+						extends AbstractServiceGeneric<AbstractClient> 
+									implements IClientService {
 
 	// ************************ATTRIBUTS************************************/
 
@@ -47,6 +50,7 @@ public abstract class AbstractClientService
 	@SuppressWarnings("unused")
 	private static final Log LOG 
 		= LogFactory.getLog(AbstractClientService.class);
+	
 
 	// *************************METHODES************************************/
 
@@ -64,46 +68,6 @@ public abstract class AbstractClientService
 		
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 	
-	
-	
-	/**
-	 * {@inheritDoc}
-	 * @throws MalformedURLException 
-	 */
-//	@Override
-//	public Map<String, Map<String, String>> validate(
-//			final AbstractClient pClient) throws MalformedURLException {
-//		
-//		this.valideur.validate(pClient);
-//		
-//		/* Remplit this.erreurs. */
-//		this.erreurs.putAll(this.valideur.getErreurs());
-//		
-//		/* Remplit this.Controle */
-//		this.controles.putAll(this.valideur.getControles());
-//		
-//		/* Remplit this.listeRGImplementees. */
-//		this.listeRGImplementees.addAll(
-//				this.valideur.getListeRGImplementees());
-//		
-//		/* Remplit this.controlesList. */
-//		this.controlesList.addAll(this.valideur.getControlesList());
-//		
-//		return this.erreurs;
-//		
-//	} // Fin de valisate(...)._____________________________________________
-	
-
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public AbstractClient create(
-			final AbstractClient pObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	/**
@@ -112,9 +76,11 @@ public abstract class AbstractClientService
 	@Override
 	public AbstractClient retrieveByIdMetier(
 			final AbstractClient pClient) {
+		
 		// TODO Auto-generated method stub
 		return null;
-	}
+		
+	} // Fin de retrieveByIdMetier(...).___________________________________
 
 
 			

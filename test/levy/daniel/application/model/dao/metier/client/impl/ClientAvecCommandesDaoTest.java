@@ -3,6 +3,10 @@ package levy.daniel.application.model.dao.metier.client.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -32,6 +36,9 @@ import levy.daniel.application.model.metier.commande.impl.Commande;
  * @since 8 sept. 2017
  *
  */
+@Entity
+@Table(name = "CLIENTS_AVEC_COMMANDES")
+@PrimaryKeyJoinColumn(name = "ID_CLIENT")
 public class ClientAvecCommandesDaoTest {
 
 	// ************************ATTRIBUTS************************************/

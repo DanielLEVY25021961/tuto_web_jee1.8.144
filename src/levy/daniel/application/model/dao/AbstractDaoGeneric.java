@@ -93,6 +93,9 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	 * <li>Récupère la Factory auprès de la Session.</li>
 	 * <li>Récupère l'EntityManager auprès de la Factory.</li>
 	 * </ul>
+	 * 
+	 * @throws HibernateException
+	 * @throws IllegalStateException
 	 */
 	private void buildEntityManager() 
 			throws HibernateException, IllegalStateException {
@@ -110,13 +113,15 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 				
 	} // Fin de buildEntityManager().______________________________________
 	
+
 	
+	/* CREATE ************/
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T create(
+	public final T create(
 			final T pObject) {
 
 		/* Persiste en base. */
@@ -128,139 +133,233 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	} // Fin de create(...)._______________________________________________
 
 	
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Long createReturnId(
+			final T pObject) {
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	} // Fin de createReturnId(...)._______________________________________
+
+
+	
+	/* READ *************/
 	
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Long createReturnId(T pObject) {
+	public final T retrieve(
+			final T pObject) {
+		
 		// TODO Auto-generated method stub
 		return null;
-	}
+		
+	} // Fin de retrieve(...)._____________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T retrieve(T pObject) {
+	public final T getOne(
+			final Long pId) {
+		
 		// TODO Auto-generated method stub
 		return null;
-	}
+		
+	} // Fin de getOne(...)._______________________________________________
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public T getOne(Long pId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public List<T> findAll() {
+		
 		// TODO Auto-generated method stub
 		return null;
-	}
+		
+	} // Fin de findAll()._________________________________________________
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<T> findAllMax(
+			final Long pMax) {
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	} // Fin de findAllMax(...).___________________________________________
+	
+
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Iterable<T> findAll(
+			final Iterable<ID> pIds) {
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	} // Fin de findAll(...).______________________________________________
+
+
+	
+	/* UPDATE *************/
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public T update(
+			final T pObject) {
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	} // Fin de update(...)._______________________________________________
+
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <S extends T> S save(
+			final S pObject) {
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	} // Fin de save(...)._________________________________________________
+	
+	
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<T> findAllMax(Long pMax) {
+	public <S extends T> Iterable<S> save(
+			final Iterable<S> pEntities) {
+		
 		// TODO Auto-generated method stub
 		return null;
-	}
+		
+	} // Fin de save(...)._________________________________________________
 
+	
+	
+	/* DELETE *************/
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Iterable<T> findAll(Iterable<ID> pIds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public T update(T pObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public <S extends T> S save(S pEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public <S extends T> Iterable<S> save(Iterable<S> pEntities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean delete(T pObject) {
+	public boolean delete(
+			final T pObject) {
+		
 		// TODO Auto-generated method stub
 		return false;
-	}
+		
+	} // Fin de delete(...)._______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void delete(Long pId) {
-		// TODO Auto-generated method stub
+	public void delete(
+			final Long pId) {
 		
-	}
+		/***/	
+		
+	} // Fin de delete(...)._______________________________________________
+	
 
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean deleteBoolean(
+			final Long pId) {
+		
+		return false;
+		
+	} // Fin de deleteBoolean(...).________________________________________
+	
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
 		
-	}
+		/***/
+		
+	} // Fin de deleteAll()._______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void delete(Iterable<? extends T> pEntities) {
+	public void delete(
+			final Iterable<? extends T> pEntities) {
+		
 		// TODO Auto-generated method stub
 		
-	}
+	} // Fin de delete(...)._______________________________________________
 
+	
+	
+	/* TOOLS *************/
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean exists(ID pId) {
+	public boolean exists(
+			final ID pId) {
+		
 		// TODO Auto-generated method stub
 		return false;
-	}
+		
+	} // Fin de exists(...)._______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public long count() {
+	public Long count() {
+		
 		// TODO Auto-generated method stub
-		return 0;
-	}}
+		return 0L;
+		
+	} // Fin de count().___________________________________________________
+	
+
+	
+} // FIN DE LA CLASSE AbstractDaoGeneric.------------------------------------
