@@ -4,8 +4,6 @@ import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.LigneRG;
 import levy.daniel.application.model.services.valideurs.IValideurGeneric;
 import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
@@ -147,7 +145,7 @@ public interface IServiceGeneric<T> {
 	 * @return Iterable&lt;T&gt;.<br/>
 	 */
 	Iterable<T> findAll(
-			final Iterable<ID> pIds);
+			final Iterable<Long> pIds);
 	
 	
 	
@@ -319,7 +317,7 @@ public interface IServiceGeneric<T> {
 	 * @throws IllegalArgumentException 
 	 * if {@code id} is {@literal null}
 	 */
-	boolean exists(ID pId);
+	boolean exists(Long pId);
 
 	
 	

@@ -10,7 +10,6 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 /**
  * class AbstractDaoGeneric :<br/>
@@ -211,7 +210,7 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	 */
 	@Override
 	public Iterable<T> findAll(
-			final Iterable<ID> pIds) {
+			final Iterable<Long> pIds) {
 		
 		// TODO Auto-generated method stub
 		return null;
@@ -340,7 +339,7 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	 */
 	@Override
 	public boolean exists(
-			final ID pId) {
+			final Long pId) {
 		
 		// TODO Auto-generated method stub
 		return false;

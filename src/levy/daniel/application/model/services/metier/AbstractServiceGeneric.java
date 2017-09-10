@@ -9,8 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 import levy.daniel.application.apptechnic.configurationmanagers.gestionnairesrg.LigneRG;
 import levy.daniel.application.model.services.valideurs.IValideurGeneric;
 import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
@@ -285,7 +283,7 @@ public abstract class AbstractServiceGeneric<T> implements IServiceGeneric<T> {
 	 */
 	@Override
 	public final Iterable<T> findAll(
-			final Iterable<ID> pIds) {
+			final Iterable<Long> pIds) {
 		
 		return null;
 		
@@ -414,7 +412,7 @@ public abstract class AbstractServiceGeneric<T> implements IServiceGeneric<T> {
 	 */
 	@Override
 	public final boolean exists(
-			final ID pId) {
+			final Long pId) {
 		
 		return false;
 		

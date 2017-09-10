@@ -2,8 +2,6 @@ package levy.daniel.application.model.dao;
 
 import java.util.List;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 /**
  * class IDaoGeneric :<br/>
  * .<br/>
@@ -140,7 +138,7 @@ public interface IDaoGeneric<T> {
 	 * 
 	 * @return Iterable&lt;T&gt;.<br/>
 	 */
-	Iterable<T> findAll(Iterable<ID> pIds);
+	Iterable<T> findAll(Iterable<Long> pIds);
 	
 	
 	
@@ -312,7 +310,7 @@ public interface IDaoGeneric<T> {
 	 * @throws IllegalArgumentException 
 	 * if {@code id} is {@literal null}
 	 */
-	boolean exists(ID pId);
+	boolean exists(Long pId);
 	
 	
 
