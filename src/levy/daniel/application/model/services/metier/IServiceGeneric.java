@@ -145,7 +145,7 @@ public interface IServiceGeneric<T> {
 	 * @return Iterable&lt;T&gt;.<br/>
 	 */
 	Iterable<T> findAll(
-			final Iterable<Long> pIds);
+			Iterable<Long> pIds);
 	
 	
 	

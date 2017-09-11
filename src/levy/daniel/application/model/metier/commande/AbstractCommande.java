@@ -51,60 +51,77 @@ public class AbstractCommande
 	 * .<br/>
 	 */
 	private static final long	serialVersionUID	= 1L;
+	
+	
+	/**
+	 * POINT_VIRGULE : char :<br/>
+	 * ';'.<br/>
+	 */
+	public static final char POINT_VIRGULE = ';';
+
 
 	/**
 	 * id : Long :<br/>
 	 * ID en base.<br/>
 	 */
-	protected Long				id;
+	protected Long id;
 
+	
 	/**
 	 * dateCommande : DateTime :<br/>
 	 * date de la commande.<br/>
 	 */
-	protected DateTime			dateCommande;
+	protected DateTime dateCommande;
 
+	
 	/**
 	 * montant : Double :<br/>
 	 * montant de la commande.<br/>
 	 */
-	protected Double			montant;
+	protected Double montant;
 
+	
 	/**
 	 * modePaiement : String :<br/>
 	 * mode de paiement de la commande.<br/>
 	 */
-	protected String			modePaiement;
+	protected String modePaiement;
 
+	
 	/**
 	 * statutPaiement : String :<br/>
 	 * statut du paiement de la commande.<br/>
 	 */
-	protected String			statutPaiement;
+	protected String statutPaiement;
 
+	
 	/**
 	 * modeLivraison : String :<br/>
 	 * mode de livraison de la commande.<br/>
 	 */
-	protected String			modeLivraison;
+	protected String modeLivraison;
+	
 
 	/**
 	 * statutLivraison : String :<br/>
 	 * statut de la livraison de la commande.<br/>
 	 */
-	protected String			statutLivraison;
+	protected String statutLivraison;
+	
 
 	/**
 	 * client : AbstractClient :<br/>
 	 * client de la commande.<br/>
 	 */
-	protected AbstractClient	client;
+	protected AbstractClient client;
+	
 
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
 	@SuppressWarnings("unused")
-	private static final Log	LOG					= LogFactory.getLog(AbstractCommande.class);
+	private static final Log LOG 
+		= LogFactory.getLog(AbstractCommande.class);
 
 	// *************************METHODES************************************/
 
@@ -117,45 +134,73 @@ public class AbstractCommande
 		this(null, null, null, null, null, null, null);
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 
+	
+	
 	/**
-	 * method CONSTRUCTEUR AbstractCommande( CONSTRUCTEUR COMPLET) :<br/>
+	 * method CONSTRUCTEUR AbstractCommande(CONSTRUCTEUR COMPLET) :<br/>
 	 * CONSTRUCTEUR COMPLET.<br/>
 	 * <br/>
 	 *
-	 * @param pDateCommande : org.joda.time.DateTime : date de la commande.<br/>
-	 * @param pMontant : Double : montant de la commande.<br/>
-	 * @param pModePaiement : String : mode de paiement de la commande.<br/>
-	 * @param pStatutPaiement : String : statut du paiement de la commande.<br/>
-	 * @param pModeLivraison : String : mode de livraison de la commande.<br/>
-	 * @param pStatutLivraison : String : statut de la livraison de la commande.<br/>
-	 * @param pClient : AbstractClient : client de la commande.<br/>
+	 * @param pDateCommande : org.joda.time.DateTime : 
+	 * date de la commande.<br/>
+	 * @param pMontant : Double : 
+	 * montant de la commande.<br/>
+	 * @param pModePaiement : String : 
+	 * mode de paiement de la commande.<br/>
+	 * @param pStatutPaiement : String : 
+	 * statut du paiement de la commande.<br/>
+	 * @param pModeLivraison : String : 
+	 * mode de livraison de la commande.<br/>
+	 * @param pStatutLivraison : String : 
+	 * statut de la livraison de la commande.<br/>
+	 * @param pClient : AbstractClient : 
+	 * client de la commande.<br/>
 	 */
-	public AbstractCommande(final DateTime pDateCommande, final Double pMontant,
-			final String pModePaiement, final String pStatutPaiement, final String pModeLivraison,
-			final String pStatutLivraison, final AbstractClient pClient) {
+	public AbstractCommande(
+			final DateTime pDateCommande
+			, final Double pMontant,
+			final String pModePaiement
+			, final String pStatutPaiement
+			, final String pModeLivraison
+			, final String pStatutLivraison
+			, final AbstractClient pClient) {
 
-		this(null, pDateCommande, pMontant, pModePaiement, pStatutPaiement, pModeLivraison,
-				pStatutLivraison, pClient);
+		this(null
+				, pDateCommande, pMontant
+				, pModePaiement, pStatutPaiement
+				, pModeLivraison, pStatutLivraison, pClient);
 
 	} // Fin de CONSTRUCTEUR COMPLET.______________________________________
 
+	
+	
 	/**
-	 * method CONSTRUCTEUR AbstractCommande( CONSTRUCTEUR COMPLET BASE) :<br/>
+	 * method CONSTRUCTEUR AbstractCommande(
+	 * CONSTRUCTEUR COMPLET BASE) :<br/>
 	 * CONSTRUCTEUR COMPLET BASE.<br/>
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base.<br/>
-	 * @param pDateCommande : org.joda.time.DateTime : date de la commande.<br/>
-	 * @param pMontant : Double : montant de la commande.<br/>
-	 * @param pModePaiement : String : mode de paiement de la commande.<br/>
-	 * @param pStatutPaiement : String : statut du paiement de la commande.<br/>
-	 * @param pModeLivraison : String : mode de livraison de la commande.<br/>
-	 * @param pStatutLivraison : String : statut de la livraison de la commande.<br/>
-	 * @param pClient : AbstractClient : client de la commande.<br/>
+	 * @param pDateCommande : org.joda.time.DateTime : 
+	 * date de la commande.<br/>
+	 * @param pMontant : Double : 
+	 * montant de la commande.<br/>
+	 * @param pModePaiement : String : 
+	 * mode de paiement de la commande.<br/>
+	 * @param pStatutPaiement : String : 
+	 * statut du paiement de la commande.<br/>
+	 * @param pModeLivraison : String : 
+	 * mode de livraison de la commande.<br/>
+	 * @param pStatutLivraison : String : 
+	 * statut de la livraison de la commande.<br/>
+	 * @param pClient : AbstractClient : 
+	 * client de la commande.<br/>
 	 */
-	public AbstractCommande(final Long pId, final DateTime pDateCommande, final Double pMontant,
-			final String pModePaiement, final String pStatutPaiement, final String pModeLivraison,
-			final String pStatutLivraison, final AbstractClient pClient) {
+	public AbstractCommande(final Long pId
+			, final DateTime pDateCommande, final Double pMontant
+			, final String pModePaiement, final String pStatutPaiement
+			, final String pModeLivraison, final String pStatutLivraison
+			, final AbstractClient pClient) {
 
 		super();
 
@@ -170,6 +215,8 @@ public class AbstractCommande
 
 	} // Fin de CONSTRUCTEUR COMPLET BASE._________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -180,19 +227,25 @@ public class AbstractCommande
 
 		int result = 1;
 
-		result = prime * result + (this.client == null ? 0 : this.client.hashCode());
-		result = prime * result + (this.dateCommande == null ? 0 : this.dateCommande.hashCode());
-		result = prime * result + (this.montant == null ? 0 : this.montant.hashCode());
+		result = prime * result 
+				+ (this.client == null ? 0 : this.client.hashCode());
+		result = prime * result 
+				+ (this.dateCommande == null ? 0 : this.dateCommande.hashCode());
+		result = prime * result 
+				+ (this.montant == null ? 0 : this.montant.hashCode());
 
 		return result;
 
 	} // Fin de hashCode().________________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean equals(final Object pObj) {
+	public boolean equals(
+			final Object pObj) {
 
 		if (this == pObj) {
 			return true;
@@ -236,11 +289,14 @@ public class AbstractCommande
 
 	} // Fin de equals().__________________________________________________
 
+	
+		
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int compareTo(final AbstractCommande pCommande) {
+	public int compareTo(
+			final AbstractCommande pCommande) {
 
 		if (this == pCommande) {
 			return 0;
@@ -266,7 +322,8 @@ public class AbstractCommande
 			}
 
 			compareClient =
-					getClient().getNom().compareToIgnoreCase(pCommande.getClient().getNom());
+					getClient().getNom()
+					.compareToIgnoreCase(pCommande.getClient().getNom());
 
 			if (compareClient != 0) {
 				return compareClient;
@@ -284,7 +341,8 @@ public class AbstractCommande
 				return -1;
 			}
 
-			compareDate = getDateCommande().compareTo(pCommande.getDateCommande());
+			compareDate = getDateCommande()
+					.compareTo(pCommande.getDateCommande());
 
 			if (compareDate != 0) {
 				return compareDate;
@@ -304,19 +362,23 @@ public class AbstractCommande
 			return -1;
 		}
 
-		compareMontant = getMontant().compareTo(pCommande.getMontant());
+		compareMontant = getMontant()
+				.compareTo(pCommande.getMontant());
 
 		return compareMontant;
 
 	} // Fin de compareTo()._______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public AbstractCommande clone() throws CloneNotSupportedException {
 
-		final AbstractCommande commandeClone = (AbstractCommande) super.clone();
+		final AbstractCommande commandeClone 
+			= (AbstractCommande) super.clone();
 
 		commandeClone.setId(getId());
 		commandeClone.setDateCommande(getDateCommande());
@@ -337,6 +399,8 @@ public class AbstractCommande
 
 	} // Fin de clone().___________________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -395,6 +459,8 @@ public class AbstractCommande
 
 	} // Fin de toString().________________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc} <br/>
 	 * retourne "id;dateCommande;montant;modePaiement;statutPaiement;
@@ -409,6 +475,8 @@ public class AbstractCommande
 
 	} // Fin de getEnTeteCsv().____________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -417,42 +485,45 @@ public class AbstractCommande
 
 		final StringBuilder builder = new StringBuilder();
 
-		final String dateCommandeString = fournirDateFormatee(this.dateCommande);
+		final String dateCommandeString 
+			= fournirDateFormatee(this.dateCommande);
 
 		final String nomClient = fournirNomClient(this.client);
 		final String prenomClient = fournirPrenomClient(this.client);
 
 		builder.append(this.id);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(dateCommandeString);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(this.montant);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(this.modePaiement);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(this.statutPaiement);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(this.modeLivraison);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(this.statutLivraison);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(nomClient);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		builder.append(prenomClient);
-		builder.append(';');
+		builder.append(POINT_VIRGULE);
 
 		return builder.toString();
 
 	} // Fin de toStringCsv()._____________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc} <br/>
 	 * "id;dateCommande;montant;modePaiement;statutPaiement;
@@ -511,13 +582,17 @@ public class AbstractCommande
 
 	} // Fin de getEnTeteColonne().________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc} <br/>
 	 * "id;dateCommande;montant;modePaiement;statutPaiement;
 	 * modeLivraison;statutLivraison;nomClient;prenomClient;";
 	 */
 	@Override
-	public Object getValeurColonne(final int pI) {
+	public Object getValeurColonne(
+			final int pI) {
+		
 		Object valeur = null;
 
 		switch (pI) {
@@ -568,6 +643,8 @@ public class AbstractCommande
 
 	} // Fin de getValeurColonne().________________________________________
 
+	
+	
 	/**
 	 * method fournirDateFormatee( DateTime pDate) :<br/>
 	 * Retourne une date formatée au format "dd/MM/yyyy HH:mm:ss".<br/>
@@ -576,7 +653,8 @@ public class AbstractCommande
 	 * @param pDate : org.joda.time.DateTime
 	 * @return : String : date au format "dd/MM/yyyy HH:mm:ss".<br/>
 	 */
-	private String fournirDateFormatee(final DateTime pDate) {
+	private String fournirDateFormatee(
+			final DateTime pDate) {
 
 		String dateFormatee = null;
 
@@ -585,7 +663,8 @@ public class AbstractCommande
 
 		/* Instanciation d'un DateTimeFormatter. */
 		final DateTimeFormatter dtformatterComplet =
-				DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss").withLocale(localeFr);
+				DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
+					.withLocale(localeFr);
 
 		/* Formatage de la org.joda.time.DateTime. */
 		dateFormatee = pDate.toString(dtformatterComplet);
@@ -594,15 +673,19 @@ public class AbstractCommande
 
 	} // Fin de fournirDateFormatee(...).__________________________________
 
+	
+	
 	/**
-	 * method fournirNomClient( AbstractClient pClient) :<br/>
+	 * method fournirNomClient(
+	 * AbstractClient pClient) :<br/>
 	 * Retourne le nom d'un Client.<br/>
 	 * <br/>
 	 *
 	 * @param pClient : AbstractClient.<br/>
 	 * @return : String : nom du Client.<br/>
 	 */
-	private String fournirNomClient(final AbstractClient pClient) {
+	private String fournirNomClient(
+			final AbstractClient pClient) {
 
 		String nomClient = null;
 
@@ -614,15 +697,19 @@ public class AbstractCommande
 
 	} // Fin de fournirNomClient(...)._____________________________________
 
+	
+	
 	/**
-	 * method fournirPrenomClient( AbstractClient pClient) :<br/>
+	 * method fournirPrenomClient(
+	 * AbstractClient pClient) :<br/>
 	 * Retourne le prénom d'un Client.<br/>
 	 * <br/>
 	 *
 	 * @param pClient : AbstractClient.<br/>
 	 * @return : String : prénom du Client.<br/>
 	 */
-	private String fournirPrenomClient(final AbstractClient pClient) {
+	private String fournirPrenomClient(
+			final AbstractClient pClient) {
 
 		String prenomClient = null;
 
@@ -634,6 +721,8 @@ public class AbstractCommande
 
 	} // Fin de fournirPrenomClient(...).__________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -645,6 +734,8 @@ public class AbstractCommande
 		return this.id;
 	} // Fin de getId().___________________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -653,6 +744,8 @@ public class AbstractCommande
 		this.id = pId;
 	} // Fin de setId().___________________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -663,6 +756,8 @@ public class AbstractCommande
 		return this.dateCommande;
 	} // Fin de getDateCommande()._________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -671,6 +766,8 @@ public class AbstractCommande
 		this.dateCommande = pDateCommande;
 	} // Fin de setDateCommande()._________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -680,6 +777,8 @@ public class AbstractCommande
 		return this.montant;
 	} // Fin de getMontant().______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -688,6 +787,8 @@ public class AbstractCommande
 		this.montant = pMontant;
 	} // Fin de setMontant().______________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -697,6 +798,8 @@ public class AbstractCommande
 		return this.modePaiement;
 	} // Fin de getModePaiement()._________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -705,6 +808,8 @@ public class AbstractCommande
 		this.modePaiement = pModePaiement;
 	} // Fin de setModePaiement()._________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -714,6 +819,8 @@ public class AbstractCommande
 		return this.statutPaiement;
 	} // Fin de getStatutPaiement()._______________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -722,6 +829,8 @@ public class AbstractCommande
 		this.statutPaiement = pStatutPaiement;
 	} // Fin de setStatutPaiement()._______________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -731,6 +840,8 @@ public class AbstractCommande
 		return this.modeLivraison;
 	} // Fin de getModeLivraison().________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -739,6 +850,8 @@ public class AbstractCommande
 		this.modeLivraison = pModeLivraison;
 	} // Fin de setModeLivraison().________________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -748,6 +861,8 @@ public class AbstractCommande
 		return this.statutLivraison;
 	} // Fin de getStatutLivraison().______________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -756,6 +871,8 @@ public class AbstractCommande
 		this.statutLivraison = pStatutLivraison;
 	} // Fin de setStatutLivraison().______________________________________
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -765,6 +882,8 @@ public class AbstractCommande
 	public AbstractClient getClient() {
 		return this.client;
 	} // Fin de getClient()._______________________________________________
+
+	
 
 	/**
 	 * {@inheritDoc}

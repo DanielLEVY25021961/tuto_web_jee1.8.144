@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================================= 	-->
+<!-- VERSION DE SERVLET API 3.1.0                                   -->
+<!-- Doit correspondre avec Dynamic Web Module 3.1 dans Eclipse 	-->
+<!-- http://crunchify.com/ever-wondered-difference-between-dynamic-web-module-3-0-and-3-1-how-to-setup-3-1-correct-way-in-eclipse/ -->
+<!-- ============================================================= 	-->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
 
 	<!-- Nom de l'application -->
 	<display-name>tuto_web_jee1.8.144</display-name>
