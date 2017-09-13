@@ -61,7 +61,6 @@ public abstract class AbstractDaoGeneric<T> implements IDaoGeneric<T> {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(AbstractDaoGeneric.class);
 
 

@@ -33,8 +33,9 @@ import org.apache.commons.logging.LogFactory;
 @Entity
 @Table(name = "ABSTRACT_CLIENTS")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class AbstractClient
-		implements Serializable, Comparable<AbstractClient>, Cloneable, IClient {
+public class AbstractClient 
+	implements Serializable, Comparable<AbstractClient>, Cloneable
+				, IClient {
 
 	// ************************ATTRIBUTS************************************/
 
@@ -42,52 +43,58 @@ public class AbstractClient
 	 * serialVersionUID : long :<br/>
 	 * .<br/>
 	 */
-	private static final long		serialVersionUID	= 1L;
+	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * id : Long :<br/>
 	 * ID en base.<br/>
 	 */
 	@Column(name = "IDCLIENT")
-	protected Long					id;
+	protected Long id;
+
 
 	/**
 	 * nom : String :<br/>
 	 * Nom du client.<br/>
 	 */
-	protected String				nom;
+	protected String nom;
+
 
 	/**
 	 * prenom : String :<br/>
 	 * Prénom du client.<br/>
 	 */
-	protected String				prenom;
+	protected String prenom;
+
 
 	/**
 	 * adresseLivraison : String :<br/>
 	 * adresse de livraison du client.<br/>
 	 */
-	protected String				adresseLivraison;
+	protected String adresseLivraison;
+
 
 	/**
 	 * telephone : String :<br/>
 	 * Numéro de téléphone du client.<br/>
 	 */
-	protected String				telephone;
+	protected String telephone;
+
 
 	/**
 	 * email : String :<br/>
 	 * email du client.<br/>
 	 */
-	protected String				email;
+	protected String email;
 
-	
-	
+
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
-	private static final Log		LOG					= LogFactory.getLog(AbstractClient.class);
+	private static final Log LOG = LogFactory.getLog(AbstractClient.class);
+
+
 
 	// *************************METHODES************************************/
 
@@ -100,6 +107,8 @@ public class AbstractClient
 		this(null, null, null, null, null, null);
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 
+
+
 	/**
 	 * method CONSTRUCTEUR AbstractClient( CONSTRUCTEUR COMPLET) :<br/>
 	 * CONSTRUCTEUR COMPLET.<br/>
@@ -107,16 +116,20 @@ public class AbstractClient
 	 *
 	 * @param pNom : String : Nom du client.<br/>
 	 * @param pPrenom : String : Prénom du client.<br/>
-	 * @param pAdresseLivraison : String : adresse de livraison du client.<br/>
+	 * @param pAdresseLivraison : String : adresse de livraison du
+	 * client.<br/>
 	 * @param pTelephone : String : Numéro de téléphone du client.<br/>
 	 * @param pEmail : String : email du client.<br/>
 	 */
-	public AbstractClient(final String pNom, final String pPrenom, final String pAdresseLivraison,
-			final String pTelephone, final String pEmail) {
+	public AbstractClient(final String pNom, final String pPrenom
+			, final String pAdresseLivraison
+			, final String pTelephone, final String pEmail) {
 
 		this(null, pNom, pPrenom, pAdresseLivraison, pTelephone, pEmail);
 
 	} // Fin du CONSTRUCTEUR COMPLET.______________________________________
+
+
 
 	/**
 	 * method CONSTRUCTEUR AbstractClient( CONSTRUCTEUR COMPLET BASE) :<br/>
@@ -126,12 +139,16 @@ public class AbstractClient
 	 * @param pId : Long : ID en base.<br/>
 	 * @param pNom : String : Nom du client.<br/>
 	 * @param pPrenom : String : Prénom du client.<br/>
-	 * @param pAdresseLivraison : String : adresse de livraison du client.<br/>
+	 * @param pAdresseLivraison : String : adresse de livraison du
+	 * client.<br/>
 	 * @param pTelephone : String : Numéro de téléphone du client.<br/>
 	 * @param pEmail : String : email du client.<br/>
 	 */
-	public AbstractClient(final Long pId, final String pNom, final String pPrenom,
-			final String pAdresseLivraison, final String pTelephone, final String pEmail) {
+	public AbstractClient(
+			final Long pId
+			, final String pNom, final String pPrenom
+			, final String pAdresseLivraison
+			, final String pTelephone, final String pEmail) {
 
 		super();
 
@@ -144,6 +161,8 @@ public class AbstractClient
 
 	} // Fin du CONSTRUCTEUR COMPLET BASE._________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -154,19 +173,25 @@ public class AbstractClient
 
 		int result = 1;
 
-		result = prime * result + (this.nom == null ? 0 : this.nom.hashCode());
-		result = prime * result + (this.prenom == null ? 0 : this.prenom.hashCode());
-		result = prime * result + (this.email == null ? 0 : this.email.hashCode());
+		result = prime * result 
+				+ (this.nom == null ? 0 : this.nom.hashCode());
+		result = prime * result 
+				+ (this.prenom == null ? 0 : this.prenom.hashCode());
+		result = prime * result 
+				+ (this.email == null ? 0 : this.email.hashCode());
 
 		return result;
 
 	} // Fin de hashCode().________________________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean equals(final Object pObj) {
+	public boolean equals(
+			final Object pObj) {
 
 		if (this == pObj) {
 			return true;
@@ -187,7 +212,8 @@ public class AbstractClient
 			if (other.nom != null) {
 				return false;
 			}
-		} else if (!this.nom.equals(other.nom)) {
+		}
+		else if (!this.nom.equals(other.nom)) {
 			return false;
 		}
 
@@ -196,7 +222,8 @@ public class AbstractClient
 			if (other.prenom != null) {
 				return false;
 			}
-		} else if (!this.prenom.equals(other.prenom)) {
+		}
+		else if (!this.prenom.equals(other.prenom)) {
 			return false;
 		}
 
@@ -205,7 +232,8 @@ public class AbstractClient
 			if (other.email != null) {
 				return false;
 			}
-		} else if (!this.email.equals(other.email)) {
+		}
+		else if (!this.email.equals(other.email)) {
 			return false;
 		}
 
@@ -213,11 +241,14 @@ public class AbstractClient
 
 	} // Fin de equals().__________________________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int compareTo(final AbstractClient pClient) {
+	public int compareTo(
+			final AbstractClient pClient) {
 
 		if (this == pClient) {
 			return 0;
@@ -236,12 +267,14 @@ public class AbstractClient
 			if (pClient.getNom() != null) {
 				return +1;
 			}
-		} else {
+		}
+		else {
 			if (pClient.getNom() == null) {
 				return -1;
 			}
 
-			compareNom = getNom().compareToIgnoreCase(pClient.getNom());
+			compareNom = getNom()
+					.compareToIgnoreCase(pClient.getNom());
 
 			if (compareNom != 0) {
 				return compareNom;
@@ -253,12 +286,14 @@ public class AbstractClient
 			if (pClient.getPrenom() != null) {
 				return +1;
 			}
-		} else {
+		}
+		else {
 			if (pClient.getPrenom() == null) {
 				return -1;
 			}
 
-			comparePrenom = getPrenom().compareToIgnoreCase(pClient.getPrenom());
+			comparePrenom = getPrenom()
+					.compareToIgnoreCase(pClient.getPrenom());
 
 			if (comparePrenom != 0) {
 				return comparePrenom;
@@ -284,6 +319,8 @@ public class AbstractClient
 
 	} // Fin de compareTo(...).____________________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -302,6 +339,8 @@ public class AbstractClient
 		return clientClone;
 
 	} // Fin de clone().___________________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -349,6 +388,8 @@ public class AbstractClient
 
 	} // Fin de toString().________________________________________________
 
+
+
 	/**
 	 * {@inheritDoc} <br/>
 	 * retourne "id;nom;prenom;adresse;telephone;email;"
@@ -356,8 +397,11 @@ public class AbstractClient
 	@Transient
 	@Override
 	public String getEnTeteCsv() {
+
 		return "id;nom;prenom;adresse;telephone;email;";
 	} // Fin de getEnTeteCsv().____________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -384,43 +428,46 @@ public class AbstractClient
 
 	} // Fin de toStringCsv()._____________________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getEnTeteColonne(final int pI) {
+	public String getEnTeteColonne(
+			final int pI) {
 
 		String entete = null;
 
 		switch (pI) {
 
-		case 0:
-			entete = "id";
-			break;
+			case 0:
+				entete = "id";
+				break;
 
-		case 1:
-			entete = "nom";
-			break;
+			case 1:
+				entete = "nom";
+				break;
 
-		case 2:
-			entete = "prénom";
-			break;
+			case 2:
+				entete = "prénom";
+				break;
 
-		case 3:
-			entete = "adresse";
-			break;
+			case 3:
+				entete = "adresse";
+				break;
 
-		case 4:
-			entete = "telephone";
-			break;
+			case 4:
+				entete = "telephone";
+				break;
 
-		case 5:
-			entete = "email";
-			break;
+			case 5:
+				entete = "email";
+				break;
 
-		default:
-			entete = "invalide";
-			break;
+			default:
+				entete = "invalide";
+				break;
 
 		} // Fin du Switch._________________________________
 
@@ -428,49 +475,54 @@ public class AbstractClient
 
 	} // Fin de getEnTeteColonne(...)._____________________________________
 
+
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object getValeurColonne(final int pI) {
+	public Object getValeurColonne(
+			final int pI) {
 
 		Object valeur = null;
 
 		switch (pI) {
 
-		case 0:
-			valeur = this.id;
-			break;
+			case 0:
+				valeur = this.id;
+				break;
 
-		case 1:
-			valeur = this.nom;
-			break;
+			case 1:
+				valeur = this.nom;
+				break;
 
-		case 2:
-			valeur = this.prenom;
-			break;
+			case 2:
+				valeur = this.prenom;
+				break;
 
-		case 3:
-			valeur = this.adresseLivraison;
-			break;
+			case 3:
+				valeur = this.adresseLivraison;
+				break;
 
-		case 4:
-			valeur = this.telephone;
-			break;
+			case 4:
+				valeur = this.telephone;
+				break;
 
-		case 5:
-			valeur = this.email;
-			break;
+			case 5:
+				valeur = this.email;
+				break;
 
-		default:
-			valeur = "invalide";
-			break;
+			default:
+				valeur = "invalide";
+				break;
 
 		} // Fin du Switch._________________________________
 
 		return valeur;
 
 	} // Fin de getValeurColonne(...)._____________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -480,16 +532,24 @@ public class AbstractClient
 	@Column(name = "ID_CLIENT")
 	@Override
 	public Long getId() {
+
 		return this.id;
 	} // Fin de getId().___________________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setId(final Long pId) {
+	public void setId(
+			final Long pId) {
+		
 		this.id = pId;
+		
 	} // Fin de setId(...).________________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -497,16 +557,24 @@ public class AbstractClient
 	@Column(name = "NOM")
 	@Override
 	public String getNom() {
+
 		return this.nom;
+		
 	} // Fin de getNom().__________________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setNom(final String pNom) {
+
 		this.nom = pNom;
+		
 	} // Fin de setNom(...)._______________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -514,16 +582,24 @@ public class AbstractClient
 	@Column(name = "PRENOM")
 	@Override
 	public String getPrenom() {
+
 		return this.prenom;
+		
 	} // Fin de getPrenom()._______________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setPrenom(final String pPrenom) {
+
 		this.prenom = pPrenom;
+		
 	} // Fin de setPrenom(...).____________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -531,16 +607,24 @@ public class AbstractClient
 	@Column(name = "ADRESSE")
 	@Override
 	public String getAdresseLivraison() {
+
 		return this.adresseLivraison;
+		
 	} // Fin de getAdresseLivraison()._____________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setAdresseLivraison(final String pAdresseLivraison) {
+
 		this.adresseLivraison = pAdresseLivraison;
+		
 	} // Fin de setAdresseLivraison(...).__________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -548,16 +632,24 @@ public class AbstractClient
 	@Column(name = "TELEPHONE")
 	@Override
 	public String getTelephone() {
+
 		return this.telephone;
+		
 	} // Fin de getTelephone().____________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTelephone(final String pTelephone) {
+
 		this.telephone = pTelephone;
+		
 	} // Fin de setTelephone(...)._________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -565,17 +657,23 @@ public class AbstractClient
 	@Column(name = "EMAIL")
 	@Override
 	public String getEmail() {
+
 		return this.email;
+		
 	} // Fin de getEmail().________________________________________________
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setEmail(final String pEmail) {
+
 		this.email = pEmail;
+		
 	} // Fin de setEmail(...)._____________________________________________
-
-
 	
+	
+
 } // FIN DE LA CLASSE AbstractClient.----------------------------------------

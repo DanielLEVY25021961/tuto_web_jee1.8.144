@@ -58,7 +58,6 @@ public class LigneRGTest {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(LigneRGTest.class);
 	
 

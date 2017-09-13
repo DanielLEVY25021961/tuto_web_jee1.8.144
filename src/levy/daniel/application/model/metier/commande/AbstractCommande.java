@@ -119,7 +119,6 @@ public class AbstractCommande
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG 
 		= LogFactory.getLog(AbstractCommande.class);
 

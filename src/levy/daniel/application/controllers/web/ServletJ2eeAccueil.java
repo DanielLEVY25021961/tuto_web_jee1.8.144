@@ -46,7 +46,6 @@ public class ServletJ2eeAccueil extends HttpServlet {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(ServletJ2eeAccueil.class);
 
 	// *************************METHODES************************************/

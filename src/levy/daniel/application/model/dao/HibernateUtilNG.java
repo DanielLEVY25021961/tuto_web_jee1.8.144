@@ -12,13 +12,14 @@ import org.hibernate.stat.Statistics;
 
 /**
  * APRES HIBERNATE 4 class HibernateUtil :<br/>
- * - Crée un Singleton de org.hibernate.SessionFactory capable d'ouvrir de nouvelles
- * org.hibernate.Session.<br/>
- * La SessionFactory se charge de lire le fichier hibernate.cfg.xml et d’initialiser Hibernate pour
- * une utilisation ultérieure.<br/>
- * La méthode getSession() utilise la sessionFactory pour créer une nouvelle session Hibernate
- * chargée d' accéder à la base de données.<br/>
- * Une org.hibernate.Session est une unité de travail simplement threadée.<br/>
+ * - Crée un Singleton de org.hibernate.SessionFactory capable d'ouvrir de
+ * nouvelles org.hibernate.Session.<br/>
+ * La SessionFactory se charge de lire le fichier hibernate.cfg.xml et
+ * d’initialiser Hibernate pour une utilisation ultérieure.<br/>
+ * La méthode getSession() utilise la sessionFactory pour créer une nouvelle
+ * session Hibernate chargée d' accéder à la base de données.<br/>
+ * Une org.hibernate.Session est une unité de travail simplement
+ * threadée.<br/>
  * <br/>
  * - Exemple d'utilisation :<br/>
  * <br/>
@@ -40,81 +41,105 @@ public final class HibernateUtilNG {
 	 * CLASSE_HIBERNATEUTIL : String :<br/>
 	 * "Classe HibernateUtil - ".<br/>
 	 */
-	public static final String	CLASSE_HIBERNATEUTIL =
-			"Classe HibernateUtil - ";
+	public static final String CLASSE_HIBERNATEUTIL 
+		= "Classe HibernateUtil - ";
+
 
 	/**
 	 * BLOC_STATIC : String :<br/>
-	 * "Bloc Static assurant la lecture de la configuration Hibernate - ".<br/>
+	 * "Bloc Static assurant la lecture de la configuration Hibernate -
+	 * ".<br/>
 	 */
-	public static final String						BLOC_STATIC				=
-			"Bloc Static assurant la lecture de la configuration Hibernate - ";
+	public static final String BLOC_STATIC 
+		= "Bloc Static assurant la lecture de la configuration Hibernate - ";
+
 
 	/**
 	 * SESSION_FACTORY : SessionFactory :<br/>
 	 * org.hibernate.SessionFactory.<br/>
-	 * Lit la configuration d'accès à la base stockée dans hibernate.config.xml une fois pour toutes
-	 * lors du premier accès à la base.<br/>
+	 * Lit la configuration d'accès à la base stockée dans
+	 * hibernate.config.xml une fois pour toutes lors du premier accès à la
+	 * base.<br/>
 	 */
-	private static final SessionFactory				SESSION_FACTORY;
+	private static final SessionFactory SESSION_FACTORY;
+
 
 	/**
-	 * REGISTRY: Hibernate A SessionFactory is set up once for an application! configures settings
-	 * from hibernate.cfg.xml
+	 * REGISTRY: Hibernate A SessionFactory is set up once for an
+	 * application! configures settings from hibernate.cfg.xml
 	 */
-	private static final StandardServiceRegistry	REGISTRY				=
-			new StandardServiceRegistryBuilder().configure().build();
+	private static final StandardServiceRegistry REGISTRY 
+		= new StandardServiceRegistryBuilder().configure().build();
+
 
 	/**
 	 * SESSION : ThreadLocal&lt;Session&gt; :<br/>
 	 * ThreadLocal encapsulant une org.hibernate.Session.<br/>
 	 */
-	private static final ThreadLocal<Session>		SESSION					=
-			new ThreadLocal<Session>();
+	private static final ThreadLocal<Session> SESSION 
+		= new ThreadLocal<Session>();
+
 
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
-	private static final Log						LOG						=
-			LogFactory.getLog(HibernateUtilNG.class);
+	private static final Log LOG 
+		= LogFactory.getLog(HibernateUtilNG.class);
 
 	static {
 
 		try {
 
 			/*
-			 * Création d'une SessionFactory à partir de la registry Hibenate.
+			 * Création d'une SessionFactory à partir de la registry
+			 * Hibenate.
 			 */
-			SESSION_FACTORY = new MetadataSources(REGISTRY).buildMetadata().buildSessionFactory();
+			SESSION_FACTORY 
+				= new MetadataSources(REGISTRY)
+					.buildMetadata()
+						.buildSessionFactory();
 
-		} catch (HibernateException hibEx) {
+		}
+		catch (HibernateException hibEx) {
 
-			throw new RuntimeException("Problème de Configuration : " + hibEx.getMessage(), hibEx);
+			throw new RuntimeException(
+					"Problème de Configuration : " 
+								+ hibEx.getMessage(), hibEx);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
 	} // Fin du bloc static___________________________
 
+
+
 	// -----------------------METHODES----------------------------------- /
 
 	/**
-	 * method CONSTRUCTEUR HibernateUtil() : Constructeur private pour empêcher l'instanciation.
+	 * method CONSTRUCTEUR HibernateUtil() : 
+	 * Constructeur private pour
+	 * empêcher l'instanciation.
 	 */
 	private HibernateUtilNG() {
 		super();
-	} // Fin de CONSTRUCTEUR HibernateUtil().________________________________
+	} // Fin de CONSTRUCTEUR
+		// HibernateUtil().________________________________
+
+
 
 	/**
 	 * method currentSession():<br/>
-	 * Retourne la org.hibernate.Session courante (Singleton) ou en ouvre une nouvelle.<br/>
+	 * Retourne la org.hibernate.Session courante (Singleton) 
+	 * ou en ouvre une nouvelle.<br/>
 	 *
 	 * @return mySession : Session.<br/>
-	 * @throws HibernateException lorsque : la org.hibernate.Session n'a pu être ouverte.<br/>
+	 * @throws HibernateException lorsque : la org.hibernate.Session 
+	 * n'a pu être ouverte.<br/>
 	 */
-	public static Session currentSession() throws HibernateException {
+	public static Session currentSession() 
+					throws HibernateException {
 
 		Session mySession = SESSION.get();
 
@@ -130,11 +155,14 @@ public final class HibernateUtilNG {
 
 	} // Fin de currentSession()._________________________
 
+
+
 	/**
 	 * method closeSession() :<br/>
 	 * Ferme la org.hibernate.Session courante.<br/>
 	 *
-	 * @throws HibernateException lorsque : la org.hibernate.Session n'a pu être fermée.<br/>
+	 * @throws HibernateException lorsque : la org.hibernate.Session 
+	 * n'a pu être fermée.<br/>
 	 */
 	public static void closeSession() throws HibernateException {
 
@@ -147,6 +175,8 @@ public final class HibernateUtilNG {
 
 	} // Fin de closeSession().____________________________________________
 
+
+
 	/**
 	 * method logStatistics( Statistics pStatistics) :<br/>
 	 * Logge les statistiques Hibernate.<br/>
@@ -154,7 +184,8 @@ public final class HibernateUtilNG {
 	 *
 	 * @param pStatistics : Statistics.<br/>
 	 */
-	public static void logStatistics(final Statistics pStatistics) {
+	public static void logStatistics(
+			final Statistics pStatistics) {
 
 		if (pStatistics == null) {
 			return;
@@ -172,22 +203,16 @@ public final class HibernateUtilNG {
 		long closeStatementCount = 0;
 
 		/* Elaboration des messages. */
-		final String messageSessionOpenedCount =
-				"Nombre de sessions Hibernate ouvertes (getSessionOpenCount()) : ";
-		final String messageSessionClosedCount =
-				"Nombre de sessions Hibernate fermées (getSessionCloseCount()) : ";
+		final String messageSessionOpenedCount = "Nombre de sessions Hibernate ouvertes (getSessionOpenCount()) : ";
+		final String messageSessionClosedCount = "Nombre de sessions Hibernate fermées (getSessionCloseCount()) : ";
 
-		final String messageTransactionCount =
-				"Nombre de transactions démarrées (getTransactionCount()) : ";
-		final String messageTransactionSuccessfulCount =
-				"Nombre de transactions committées (getSuccessfulTransactionCount()) : ";
+		final String messageTransactionCount = "Nombre de transactions démarrées (getTransactionCount()) : ";
+		final String messageTransactionSuccessfulCount = "Nombre de transactions committées (getSuccessfulTransactionCount()) : ";
 
 		final String messageFlushCount = "Nombre de Flushes (getFlushCount()) : ";
 
-		final String messagePreparedStmts =
-				"Nombre de Prepared Statements ouverts (getPrepareStatementCount()) : ";
-		final String messageCloseStmts =
-				"Nombre de Prepared Statements fermés (getCloseStatementCount()) : ";
+		final String messagePreparedStmts = "Nombre de Prepared Statements ouverts (getPrepareStatementCount()) : ";
+		final String messageCloseStmts = "Nombre de Prepared Statements fermés (getCloseStatementCount()) : ";
 
 		/* Calcul des statistiques Hibernate. */
 		sessionOpenedCount = pStatistics.getSessionOpenCount();
@@ -216,7 +241,10 @@ public final class HibernateUtilNG {
 		}
 
 	} // Fin de logStatistics(
-		// Statistics pStatistics).___________________________________________
+		// Statistics
+		// pStatistics).___________________________________________
+
+
 
 	/**
 	 * method getSessionFactory() :<br/>
@@ -226,7 +254,10 @@ public final class HibernateUtilNG {
 	 * @return SESSION_FACTORY : SessionFactory.<br/>
 	 */
 	public static SessionFactory getSessionFactory() {
+
 		return SESSION_FACTORY;
 	} // Fin de getSessionFactory()._______________________________________
 
+	
+	
 } // FIN DE LA CLASSE.-----------------------------------------------------
