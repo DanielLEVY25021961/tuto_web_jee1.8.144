@@ -321,7 +321,7 @@ public class AbstractCommande
 			}
 
 			compareClient =
-					getClient().getNom()
+					this.getClient().getNom()
 					.compareToIgnoreCase(pCommande.getClient().getNom());
 
 			if (compareClient != 0) {
@@ -379,13 +379,13 @@ public class AbstractCommande
 		final AbstractCommande commandeClone 
 			= (AbstractCommande) super.clone();
 
-		commandeClone.setId(getId());
-		commandeClone.setDateCommande(getDateCommande());
-		commandeClone.setMontant(getMontant());
-		commandeClone.setModePaiement(getModePaiement());
-		commandeClone.setStatutPaiement(getStatutPaiement());
-		commandeClone.setModeLivraison(getModeLivraison());
-		commandeClone.setStatutLivraison(getStatutLivraison());
+		commandeClone.setId(this.getId());
+		commandeClone.setDateCommande(this.getDateCommande());
+		commandeClone.setMontant(this.getMontant());
+		commandeClone.setModePaiement(this.getModePaiement());
+		commandeClone.setStatutPaiement(this.getStatutPaiement());
+		commandeClone.setModeLivraison(this.getModeLivraison());
+		commandeClone.setStatutLivraison(this.getStatutLivraison());
 
 		AbstractClient clientClone = null;
 		if (this.client != null) {
@@ -640,7 +640,7 @@ public class AbstractCommande
 
 		return valeur;
 
-	} // Fin de getValeurColonne().________________________________________
+	} // Fin de getValeurColonne(...)._____________________________________
 
 	
 	

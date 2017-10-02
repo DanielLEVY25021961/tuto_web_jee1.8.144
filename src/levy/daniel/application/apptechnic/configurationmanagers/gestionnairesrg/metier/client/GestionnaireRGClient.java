@@ -300,6 +300,7 @@ public final class GestionnaireRGClient {
 	 * <br/>
 	 *
 	 * @return validerNomClient : Boolean.<br/>
+	 * 
 	 * @throws MalformedURLException 
 	 */
 	public static Boolean getValiderNomClient() 

@@ -57,12 +57,14 @@ public abstract class AbstractClientService
 	 /**
 	 * method CONSTRUCTEUR AbstractClientService() :<br/>
 	 * CONSTRUCTEUR D'ARITE NULLE.<br/>
+	 * Instancie le valideur du Service.<br/>
 	 * <br/>
 	 */
 	public AbstractClientService() {
 		
 		super();
 		
+		/* Instancie le valideur du Service. */
 		this.valideur = new ValideurClient();
 		
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
