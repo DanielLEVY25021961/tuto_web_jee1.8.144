@@ -11,7 +11,7 @@ import java.util.Locale;
  * de l'ensemble de l'application.</li>
  * <p>
  * <br/>
- * <img src="../../../../../../javadoc/images/IConstantesApplicatives.png" 
+ * <img src="../../../../javadoc/images/IConstantesApplicatives.png" 
  * alt="IConstantesApplicatives" border="1" align="center" />
  * <br/>
  * </p>
