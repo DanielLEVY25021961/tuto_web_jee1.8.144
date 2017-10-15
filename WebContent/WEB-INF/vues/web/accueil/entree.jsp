@@ -23,8 +23,13 @@ DIRECTIVE DE PAGE spécifiant :
 
 	<head>
 	
+		<!-- Description du contenu de la page (HTML) et de son encodage. -->
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- Lien vers les css. -->
 		<link type="text/css" rel="stylesheet" href="<c:url value="/static/css/style_coyote.css" />" />
+		
+		<!-- Titre s'affichant dans l'onglet. -->
 		<title>context/WEB-INF/vues/web/accueil/entree.jsp</title>
 	
 	</head>

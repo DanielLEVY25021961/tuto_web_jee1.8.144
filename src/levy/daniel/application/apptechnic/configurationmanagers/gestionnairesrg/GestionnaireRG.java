@@ -108,6 +108,14 @@ public final class GestionnaireRG {
 	
 
 	/**
+	 * RG_PROPERTIES : String :<br/>
+	 * "rg.properties".<br/>
+	 */
+	public static final String RG_PROPERTIES 
+		= "rg.properties";
+	
+	
+	/**
 	 * SAUT_LIGNE : char :<br/>
 	 * '\n'.<br/>
 	 */
@@ -298,7 +306,9 @@ static {
 						, RG_CLIENT_NOM_01_MESSAGE
 						, "Client", "Nom"
 						, "ValideurClient"
-						, "validerRGClientNom01(...)");
+						, "validerRGClientNom01(...)"
+						, RG_PROPERTIES
+						, "client.nom.rgclientnom01.actif");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_01
@@ -313,7 +323,9 @@ static {
 						, RG_CLIENT_NOM_02_MESSAGE
 						, "Client", "Nom"
 						, "ValideurClient"
-						, "validerRGClientNom02(...)");
+						, "validerRGClientNom02(...)"
+						, RG_PROPERTIES
+						, "client.nom.rgclientnom02.actif");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_NOM_02
@@ -328,7 +340,9 @@ static {
 						, RG_CLIENT_PRENOM_03_MESSAGE
 						, "Client", "Prenom"
 						, "ValideurClient"
-						, "validerRGClientPrenom03(...)");
+						, "validerRGClientPrenom03(...)"
+						, RG_PROPERTIES
+						, "client.prenom.rgclientprenom03.actif");
 			
 			mapRG.put(
 					GestionnaireRG.RG_CLIENT_PRENOM_03

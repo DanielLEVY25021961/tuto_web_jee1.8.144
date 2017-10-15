@@ -13,6 +13,11 @@
 	<!-- Nom de l'application -->
 	<display-name>tuto_web_jee1.8.144</display-name>
 
+			<!-- ======================================================= -->
+			<!-- SERVLET defaut. URL : / ou /static/*  					 -->
+			<!-- Indispensable pour accéder aux ressources statiques	 -->
+			<!-- ======================================================= -->
+
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.html</url-pattern>

@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 
 /**
  * class LigneRGTest :<br/>
- * .<br/>
+ * Test JUnit de la classe LigneRG.<br/>
  * <br/>
  *
  * - Exemple d'utilisation :<br/>
@@ -34,6 +34,12 @@ import java.net.MalformedURLException;
 public class LigneRGTest {
 
 	// ************************ATTRIBUTS************************************/
+	
+	/**
+	 * AFFICHAGE_GENERAL : Boolean :<br/>
+	 * Boolean qui commande l'affichage pour tous les tests.<br/>
+	 */
+	public static final Boolean AFFICHAGE_GENERAL = true;
 
 	
 	/**
@@ -42,7 +48,7 @@ public class LigneRGTest {
 	 * "RG-Client-01 : le nom du client doit être renseigné.".<br/>
 	 */
 	public static final String RG_CLIENT_01 
-		= "RG-Client-01 : le nom du client doit être renseigné.";
+		= "RG-Client-01 : le nom du client doit être renseigné";
 
 	
 	/**
@@ -51,7 +57,15 @@ public class LigneRGTest {
 	 * "Le nom n'est pas renseigné (obligatoire)."<br/>
 	 */
 	public static final String RG_CLIENT_01_MESSAGE 
-		= "Le nom n'est pas renseigné (obligatoire).";
+		= "Le nom n'est pas renseigné (obligatoire)";
+	
+
+	/**
+	 * RG_PROPERTIES : String :<br/>
+	 * "rg.properties".<br/>
+	 */
+	public static final String RG_PROPERTIES 
+		= "rg.properties";
 	
 
 	/**
@@ -62,6 +76,7 @@ public class LigneRGTest {
 	
 
 	// *************************METHODES************************************/	
+	
 	 /**
 	 * method CONSTRUCTEUR LigneRGTest() :<br/>
 	 * CONSTRUCTEUR D'ARITE NULLE.<br/>
@@ -74,19 +89,30 @@ public class LigneRGTest {
 
 	/**
 	 * method testInstanciationNull() :<br/>
-	 * .<br/>
-	 * <br/>
+	 * <ul>
+	 * Teste l'instanciation avec le Constructeur d'arité nulle.
+	 * <li>garantit que les setters fonctionnent.</li>
+	 * </ul>
 	 */
 	@Test
 	public void testInstanciationNull() {
+		
+		// **********************************
+		// AFFICHAGE DANS LE TEST ou NON
+		final boolean affichage = false;
+		// **********************************
 		
 		final LigneRG ligneRG = new LigneRG();
 		ligneRG.setActiviteControleAttribut(true);
 		ligneRG.setActiviteRG(true);
 		ligneRG.setTypeControleInt(1);
+
+		/* AFFICHAGE A LA CONSOLE. */
+		if (AFFICHAGE_GENERAL && affichage) {
+			System.out.println(ligneRG.toString());
+		}
 		
-		System.out.println(ligneRG.toString());
-		
+		/* garantit que les setters fonctionnent. */
 		assertNotNull("ligneRG non null : ", ligneRG);
 		
 	} // Fin de testInstanciationNull().___________________________________
@@ -95,12 +121,19 @@ public class LigneRGTest {
 	
 	/**
 	 * method testInstanciationComplet() :<br/>
-	 * .<br/>
-	 * <br/>
+	 * <ul>
+	 * Teste l'instanciation avec le Constructeur Complet.
+	 * <li>garantit que le Constructeur complet fonctionne.</li>
+	 * </ul>
 	 */
 	@Test
 	public void testInstanciationComplet() {
 		
+		// **********************************
+		// AFFICHAGE DANS LE TEST ou NON
+		final boolean affichage = true;
+		// **********************************
+
 		final LigneRG ligneRG 
 			= new LigneRG(1L
 					, true, true
@@ -108,10 +141,15 @@ public class LigneRGTest {
 					, 1
 					, RG_CLIENT_01_MESSAGE
 					, "Client", "nom"
-					, "Classe ClientService", "Méthode validerNom()");
+					, "Classe ClientService", "Méthode validerNom()"
+					, RG_PROPERTIES, "client.nom.rgclientnom01.actif");
 		
-		System.out.println(ligneRG.toString());
+		/* AFFICHAGE A LA CONSOLE. */
+		if (AFFICHAGE_GENERAL && affichage) {
+			System.out.println(ligneRG.toString());
+		}
 		
+		/* garantit que le Constructeur complet fonctionne. */
 		assertNotNull("ligneRG non null : ", ligneRG);
 		
 	} // Fin de testInstanciationComplet().________________________________
@@ -120,21 +158,33 @@ public class LigneRGTest {
 	
 	/**
 	 * method testCompareTo() :<br/>
-	 * .<br/>
-	 * <br/>
+	 * <ul>
+	 * Teste la méthode compareTo(...)
+	 * <li>garantit que compareTo(...) trie sur les numéros de RG.</li>
+	 * </ul>
+	 * 
 	 * @throws MalformedURLException 
 	 */
 	@Test
 	public void testCompareTo() throws MalformedURLException {
+		
+		// **********************************
+		// AFFICHAGE DANS LE TEST ou NON
+		final boolean affichage = false;
+		// **********************************
 		
 		final LigneRG ligneRG1 
 			= GestionnaireRG.getLigneRG(GestionnaireRG.RG_CLIENT_NOM_01);
 		final LigneRG ligneRG2 
 			= GestionnaireRG.getLigneRG(GestionnaireRG.RG_CLIENT_NOM_02);
 		
-//		System.out.println("ligneRG1.compareTo(ligneRG2) = " 
-//				+ ligneRG1.compareTo(ligneRG2));
+		/* AFFICHAGE A LA CONSOLE. */
+		if (AFFICHAGE_GENERAL && affichage) {
+			System.out.println("ligneRG1.compareTo(ligneRG2) = " 
+					+ ligneRG1.compareTo(ligneRG2));
+		}
 		
+		/* garantit que compareTo(...) trie sur les numéros de RG. */
 		assertTrue("ligneRG1.compareTo(ligneRG2) < 0 : "
 				, ligneRG1.compareTo(ligneRG2) < 0);
 		
