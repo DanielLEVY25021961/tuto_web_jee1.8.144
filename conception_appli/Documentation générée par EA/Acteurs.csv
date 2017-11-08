@@ -1,0 +1,13 @@
+Name;Notes
+MOA;"Maîtrise d'Ouvrage (<b>MOA</b>). 
+La MOA est responsable du projet de développement de l'application informatique et le finance."
+Developpeur;Rôle tenu par celui qui développe l'application informatique
+TMA;"Tierce Maintenance Applicative (TMA).
+
+Ce rôle est tenu par les développeurs qui accompagnent la vie de l'application (debogage, correction d'erreurs, évolutions, ...)."
+Utilisateur;Rôle tenu par celui qui utilise l'application informatique (internaute, ...).
+Recetteur;Rôle tenu par celui qui recette l'application après chaque livraison.
+MOE;"Maîtrise d'Oeuvre (<b>MOE</b>). 
+La MOE est responsable de l'élaboration technique de l'application informatique.
+La MOE fait le lien entre la MOA et les développeurs."
+Centre Serveur;Rôle tenu par celui qui déploie (en cas d'application web) l'application informatique sur un serveur applicatif (Tomcat, ...).

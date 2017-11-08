@@ -36,7 +36,8 @@ import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
  * @since 30 août 2017
  *
  */
-public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
+public class ValideurClient 
+					extends AbstractValideurGeneric<AbstractClient> {
 
 	// ************************ATTRIBUTS************************************/
 
@@ -57,7 +58,6 @@ public class ValideurClient extends AbstractValideurGeneric<AbstractClient> {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(ValideurClient.class);
 	
 	// *************************METHODES************************************/

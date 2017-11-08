@@ -1,5 +1,9 @@
 package levy.daniel.application.model.metier.client.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,6 +29,9 @@ import levy.daniel.application.model.metier.client.AbstractClient;
  * @since 20 août 2017
  *
  */
+@Entity
+@Table(name = "CLIENTS")
+@PrimaryKeyJoinColumn(name = "ID_CLIENT")
 public class Client extends AbstractClient {
 
 	// ************************ATTRIBUTS************************************/
@@ -39,7 +46,6 @@ public class Client extends AbstractClient {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(Client.class);
 
 	// *************************METHODES************************************/
@@ -61,6 +67,7 @@ public class Client extends AbstractClient {
 	 * method CONSTRUCTEUR Client(
 	 * CONSTRUCTEUR COMPLET) :<br/>
 	 * CONSTRUCTEUR COMPLET.<br/>
+	 * SANS ID en base.<br/>
 	 * <br/>
 	 *
 	 * @param pNom : String : Nom du client.<br/>
@@ -85,6 +92,7 @@ public class Client extends AbstractClient {
 	 * method CONSTRUCTEUR Client(
 	 * CONSTRUCTEUR COMPLET BASE) :<br/>
 	 * CONSTRUCTEUR COMPLET BASE.<br/>
+	 * AVEC ID en base.<br/>
 	 * <br/>
 	 *
 	 * @param pId : Long : ID en base.<br/> 

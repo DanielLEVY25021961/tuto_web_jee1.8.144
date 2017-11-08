@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<%-- DOCTYPE (DTD pour HTML5) --%>
+<!doctype html>
 
 <%-- Import d'un Objet métier.  --%>
 <%@page import="levy.daniel.application.model.metier.personne.impl.PersonneGenius"%>
@@ -11,15 +12,18 @@ DIRECTIVE DE PAGE spécifiant :
 - que la navigateur doit décoder le résultat de la JSP en UTF-8 grâce à pageEncoding="UTF-8"
 --%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
- 	isELIgnored="false" pageEncoding="UTF-8" %> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 	isELIgnored="false" pageEncoding="UTF-8" isErrorPage="false" %> 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%-- DECLARATION DE LA TagLib JSTL --%>	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link type="text/css" rel="stylesheet" href="static/css/style_coyote.css" />
+		<link type="text/css" rel="stylesheet" href="<c:url value="/static/css/style_coyote.css" />" />
 		<title>personne.jsp</title>
 	
 	</head>
@@ -29,13 +33,13 @@ DIRECTIVE DE PAGE spécifiant :
 		<%-- FIL D'ARIANE --%>
 		<div class="ariane">
 			<p>
-				<img alt="accueil" src="static/images/home.png" />
+				<img alt="accueil" src="<c:url value="/static/images/home.png" />" />
 				<span class="filariane">
 					<a href="<c:url value="/entree" />"><c:out value="accueil" /></a>
 				</span>
-				<span><img src="static/images/arrow-right.png" alt="flèche droite" /></span>
+				<span><img src="<c:url value="/static/images/arrow-right.png" />" alt="flèche droite" /></span>
 				<span class="filariane">
-					<a href="<c:url value="/personne" />"><c:out value="${ ariane }" /></a>
+					<a href="<c:url value="/entree/personne" />"><c:out value="${ ariane }" /></a>
 				</span>				
 			</p>
 			<c:set var="ariane" value="accueil" scope="session" />
@@ -49,7 +53,7 @@ DIRECTIVE DE PAGE spécifiant :
 		<%-- CODE JAVA INSERE DANS LA JSP --%>
 		<%--============================= --%>
 				
-		<h2><u>CODE JAVA DANS LA JSP</u></h2>
+		<h2>CODE JAVA DANS LA JSP</h2>
 		
 		<%-- Utilisation de l'objet implicite request 
 		et récupération de son attribut attrMessageServlet --%>
@@ -81,7 +85,7 @@ DIRECTIVE DE PAGE spécifiant :
 		<%-- UTILISATION DE TAGLIB JSTL   --%>
 		<%--============================= --%>
 
-		<h2><u>TAGLIBS JSTL DANS LA JSP</u></h2>
+		<h2>TAGLIBS JSTL DANS LA JSP</h2>
 		
 		<%-- Utilisation de l'objet implicite request 
 		et récupération de son attribut attrMessageServlet --%>		

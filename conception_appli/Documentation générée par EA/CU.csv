@@ -1,0 +1,26 @@
+Name;Notes
+CU-CONSULTATION-RG-01 : Consulter la liste des RG implémentées dans l'application;L'application doit fournir un dispositif permettant à la MOA de <b>consulter la liste de l'ensemble des RG implémentées</b> dans l'application (<i>activées ou non</i>).
+CU-PARAMETRAGE-RG-02 : Paramétrer les contrôles des RG;"L'application doit fournir à la MOA un dispositif lui permettant de <b>activer/désactiver chaque contrôle</b> de RG séparément.
+
+Le dispositif ne doit pas nécessiter de modification du livrable de l'application (jar ou war) ni l'intervention d'un développeur (nouvelle livraison).
+
+La MOA devra pouvoir :
+&nbsp;
+<ul>
+	<li>accéder au dispositif de paramétrage</li>
+	<li>modifier les paramètres</li>
+	<li>enregistrer les paramètres</li>
+	<li>arrêter/relancer l'application pour que les nouveaux paramètres soient pris en compte.</li>
+</ul>"
+CU-ACTIVITE-RG-03 : Consulter la liste des RG actives/inactives;L'application doit fournir un dispositif permettant à la MOA de <b>consulter la liste des états d'activation des RG implémentées</b> dans l'application afin de savoir à tout moment quelles sont les RG effectivement contrôlées.
+CU-RAPPORT-CONTROLE-RG-04 : Consulter les rapports de contrôle des RG;"L'application doit fournir à l'utilisateur un <b>rapport de contrôle</b> des RG à chaque fois que celui-ci réalise une action déclenchant des contrôles.
+
+L'application doit <b>stocker</b> pendant un temps à déterminer les rapports de contrôles afin que l'utilisateur ou la MOA puisse y accéder."
+CU-IMPLEMENTATION-RG-05 : Consulter l'implémentation et la localisation des RG et de leur paramétrage;"Faux Cas d'Utilisation (CU) dans la mesure où la MOE , les développeurs ou le centre serveur n'utiliseront pas l'application pour connaître l'implémentation des RG dans l'application.
+
+Ce faux CU est présenté ici pour mémoriser que :
+&nbsp;
+<ul>
+	<li>La MOE et les développeurs ont besoin de savoir où et comment sont implémentées les RG dans l'application. C'est particulièrement vrai pour la Tierce Maintenance Applicative (TMA) qui devra faire évoluer l'application.</li>
+	<li>Le centre serveur à besoin de savoir où installer le dispositif de paramétrage des RG afin de le rendre disponible pour la MOA.</li>
+</ul>"

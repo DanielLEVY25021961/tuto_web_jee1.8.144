@@ -4,6 +4,13 @@ body, p, legend, label, input {
     font: normal 10pt verdana, helvetica, sans-serif;
 }
 
+h2 {
+	text-decoration: underline; /* Makes underline */
+}
+
+h3 {
+	text-decoration: underline; /* Makes underline */
+}
 
 /* Forms ---------------------------------------------------------------- */
 

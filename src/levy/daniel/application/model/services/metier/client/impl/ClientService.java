@@ -43,7 +43,6 @@ public class ClientService extends AbstractClientService {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(ClientService.class);
 
 	// *************************METHODES************************************/
@@ -65,18 +64,15 @@ public class ClientService extends AbstractClientService {
 
 	
 	/**
-	 * method founirNomClasse() :<br/>
-	 * Retourne le nom de la présente classe.<br/>
-	 * "Classe AbstractClientService".<br/>
+	 * {@inheritDoc}
 	 * <br/>
-	 *
-	 * @return : String : nom de la présente classe.<br/>
+	 * "Classe ClientService".<br/>
 	 */
 	@Override
 	public String founirNomClasse() {
 		return CLASSE_CLIENT_SERVICE;
 	} // Fin de founirNomClasse()._________________________________________
-	
 
+	
 	
 } // FIN DE LA CLASSE ClientService.-----------------------------------------

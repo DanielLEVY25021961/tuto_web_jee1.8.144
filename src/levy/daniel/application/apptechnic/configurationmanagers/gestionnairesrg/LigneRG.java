@@ -18,7 +18,8 @@ import levy.daniel.application.apptechnic.configurationmanagers.IExportateurJTab
  * [id;Actif;activité des contrôles sur l'attribut;activité de la RG
  * ;RG implémentée;clé du type de contrôle;type de contrôle
  * ;Message d'erreur;Objet Métier concerné;Attribut concerné
- * ;Classe implémentant la RG;Méthode implémentant la RG;].<br/>
+ * ;Classe implémentant la RG;Méthode implémentant la RG;
+ * properties;clé;].<br/>
  * <br/>
  *
  * - Exemple d'utilisation :<br/>
@@ -157,22 +158,44 @@ public class LigneRG
 	 * méthode implémentant le contrôle de la RG.<br/>
 	 */
 	private String methodeControle;
+
 	
+	/**
+	 * fichierProperties : String :<br/>
+	 * Nom du fichier properties dans lequel est implémenté 
+	 * le contrôle de la RG.<br/>
+	 * Par exemple, fichier externe 
+	 * "/ressources_externes/rg_fr_FR.properties".<br/>
+	 */
+	private String fichierProperties;
+	
+	
+	/**
+	 * cleDansProperties : String :<br/>
+	 * Clé du Boolean d'activation du contrôle de la RG dans le properties.<br/>
+	 * Par exemple : "interrogationmeteo.pays.rginterropays02.actif".<br/>
+	 */
+	private String cleDansProperties;
+
 	
 	/**
 	 * mapTypesControle : Map&lt;Integer,String&gt; :<br/>
 	 * Map contenant les types de contrôle avec :
 	 * <ul>
-	 * <li>Integer : clé numérique du type de contrôle</li>
+	 * <li>Integer : clé numérique du type de contrôle(1, 2, ...)</li>
 	 * <li>String : label du type de contrôle (nullité, format, ...).</li>
 	 * </ul>
 	 */
 	private static transient Map<Integer, String> mapTypesControle 
 		= new ConcurrentHashMap<Integer, String>();
+
 	
 static {
 	mapTypesControle.put(1, "nullité");
 	mapTypesControle.put(2, "format");
+	mapTypesControle.put(3, "fourchette [Min-Max]");
+	mapTypesControle.put(4, "nomenclature");
+	mapTypesControle.put(5, "valeur par défaut");
 }
 
 
@@ -180,7 +203,6 @@ static {
 	 * LOG : Log : 
 	 * Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(LigneRG.class);
 
 
@@ -194,7 +216,11 @@ static {
 	 * <br/>
 	 */
 	public LigneRG() {
-		this(null, null, null, null, null, null, null, null, null, null);
+		
+		this(null
+				, null, null, null
+				, null, null, null, null, null, null, null, null);
+		
 	} // Fin de CONSTRUCTEUR D'ARITE NULLE.________________________________
 	
 	
@@ -229,6 +255,10 @@ static {
 	 * le contrôle de la RG.<br/>
 	 * @param pMethodeControle : String : méthode implémentant 
 	 * le contrôle de la RG.<br/>
+	 * @param pFichierProperties : String : Nom du fichier properties 
+	 * dans lequel est implémenté le contrôle de la RG.<br/>
+	 * @param pCleDansProperties : String : Clé du Boolean d'activation 
+	 * du contrôle de la RG dans le properties.<br/>
 	 */
 	public LigneRG(
 			final Boolean pActiviteControleAttribut
@@ -239,13 +269,16 @@ static {
 			, final String pNomObjetMetier
 			, final String pNomAttributObjetMetier
 			, final String pClasseControle
-			, final String pMethodeControle) {
+			, final String pMethodeControle
+			, final String pFichierProperties
+			, final String pCleDansProperties) {
 		
 		this(null
 				, pActiviteControleAttribut, pActiviteRG
 				, pNomRG, pTypeControleInt, pMessageRG
 				, pNomObjetMetier, pNomAttributObjetMetier
-				, pClasseControle, pMethodeControle);
+				, pClasseControle, pMethodeControle
+				, pFichierProperties, pCleDansProperties);
 		
 	} // Fin de CONSTRUCTEUR COMPLET.______________________________________
 	
@@ -281,6 +314,10 @@ static {
 	 * le contrôle de la RG.<br/>
 	 * @param pMethodeControle : String : méthode implémentant 
 	 * le contrôle de la RG.<br/>
+	 * @param pFichierProperties : String : Nom du fichier properties 
+	 * dans lequel est implémenté le contrôle de la RG.<br/>
+	 * @param pCleDansProperties : String : Clé du Boolean d'activation 
+	 * du contrôle de la RG dans le properties.<br/>
 	 */
 	public LigneRG(
 			final Long pId
@@ -292,7 +329,9 @@ static {
 			, final String pNomObjetMetier
 			, final String pNomAttributObjetMetier
 			, final String pClasseControle
-			, final String pMethodeControle) {
+			, final String pMethodeControle
+			, final String pFichierProperties
+			, final String pCleDansProperties) {
 		
 		super();
 		
@@ -308,6 +347,8 @@ static {
 		this.nomAttributObjetMetier = pNomAttributObjetMetier;
 		this.classeControle = pClasseControle;
 		this.methodeControle = pMethodeControle;
+		this.fichierProperties = pFichierProperties;
+		this.cleDansProperties = pCleDansProperties;
 		
 	} // Fin de CONSTRUCTEUR COMPLET BASE._________________________________
 
@@ -586,6 +627,8 @@ static {
 				this.getNomAttributObjetMetier());
 		ligneClone.setClasseControle(this.getClasseControle());
 		ligneClone.setMethodeControle(this.getMethodeControle());
+		ligneClone.setFichierProperties(this.getFichierProperties());
+		ligneClone.setCleDansProperties(this.getCleDansProperties());
 		
 		return ligneClone;
 		
@@ -661,6 +704,16 @@ static {
 		if (this.methodeControle != null) {
 			builder.append("methodeControle=");
 			builder.append(this.methodeControle);
+			builder.append(VIRGULE_ESPACE);
+		}
+		if (this.fichierProperties != null) {
+			builder.append("properties=");
+			builder.append(this.fichierProperties);
+			builder.append(VIRGULE_ESPACE);
+		}
+		if (this.cleDansProperties != null) {
+			builder.append("clé=");
+			builder.append(this.cleDansProperties);
 		}
 		
 		builder.append(']');
@@ -676,7 +729,7 @@ static {
 	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
 	 * RG implémentée;clé du type de contrôle;type de contrôle;Message d'erreur;
 	 * Objet Métier concerné;Attribut concerné;Classe implémentant la RG;
-	 * Méthode implémentant la RG;".<br/>
+	 * Méthode implémentant la RG;properties;clé;".<br/>
 	 * <br/>
 	 *
 	 * @return : String : en-tête pour les fichiers csv.<br/>
@@ -690,7 +743,7 @@ static {
 				+ "type de contrôle;"
 				+ "Message d'erreur;Objet Métier concerné;"
 				+ "Attribut concerné;Classe implémentant la RG;"
-				+ "Méthode implémentant la RG;";
+				+ "Méthode implémentant la RG;properties;clé;";
 		
 	} // Fin de getEnTeteCsv().____________________________________________
 	
@@ -702,7 +755,8 @@ static {
 	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
 	 * RG implémentée;clé du type de contrôle;type de contrôle
 	 * ;Message d'erreur;Objet Métier concerné;Attribut concerné
-	 * ;Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * ;Classe implémentant la RG;Méthode implémentant la RG;
+	 * properties;clé;".<br/>
 	 * <br/>
 	 *
 	 * @return : String : LigneRG sous forme de Csv 
@@ -737,6 +791,10 @@ static {
 		builder.append(POINT_VIRGULE);
 		builder.append(this.methodeControle);
 		builder.append(POINT_VIRGULE);
+		builder.append(this.fichierProperties);
+		builder.append(POINT_VIRGULE);
+		builder.append(this.cleDansProperties);
+		builder.append(POINT_VIRGULE);
 		
 		return builder.toString();
 		
@@ -750,7 +808,8 @@ static {
 	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
 	 * RG implémentée;clé du type de contrôle;type de contrôle
 	 * ;Message d'erreur;Objet Métier concerné;Attribut concerné
-	 * ;Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * ;Classe implémentant la RG;Méthode implémentant la RG;
+	 * properties;clé;".<br/>
 	 */
 //	@Transient
 	@Override
@@ -809,6 +868,14 @@ static {
 			entete = "Méthode implémentant la RG";
 			break;
 			
+		case 12:
+			entete = "Properties";
+			break;
+			
+		case 13:
+			entete = "Clé";
+			break;
+			
 		default:
 			entete = "invalide";
 			break;
@@ -827,7 +894,8 @@ static {
 	 * "id;Actif;activité des contrôles sur l'attribut;activité de la RG;
 	 * RG implémentée;clé du type de contrôle;type de contrôle
 	 * ;Message d'erreur;Objet Métier concerné;Attribut concerné
-	 * ;Classe implémentant la RG;Méthode implémentant la RG;".<br/>
+	 * ;Classe implémentant la RG;Méthode implémentant la RG;
+	 * properties;clé;".<br/>
 	 */
 //	@Transient
 	@Override
@@ -884,6 +952,14 @@ static {
 			
 		case 11:
 			valeur = this.methodeControle;
+			break;
+			
+		case 12:
+			valeur = this.fichierProperties;
+			break;
+			
+		case 13:
+			valeur = this.cleDansProperties;
 			break;
 			
 		default:
@@ -1236,4 +1312,72 @@ static {
 
 
 	
+	/**
+	 * method getFichierProperties() :<br/>
+	 * Getter Nom du fichier properties dans lequel 
+	 * est implémenté le contrôle de la RG.<br/>
+	 * Par exemple, fichier externe 
+	 * "/ressources_externes/rg_fr_FR.properties".<br/>
+	 * <br/>
+	 *
+	 * @return fichierProperties : String.<br/>
+	 */
+	public String getFichierProperties() {	
+		return this.fichierProperties;
+	} // Fin de getFichierProperties().____________________________________
+
+
+	
+	/**
+	* method setFichierProperties(
+	* String pFichierProperties) :<br/>
+	* Setter Nom du fichier properties dans lequel 
+	* est implémenté le contrôle de la RG.<br/>
+	* Par exemple, fichier externe 
+	* "/ressources_externes/rg_fr_FR.properties".<br/>
+	* <br/>
+	*
+	* @param pFichierProperties : String : 
+	* valeur à passer à fichierProperties.<br/>
+	*/
+	public void setFichierProperties(
+			final String pFichierProperties) {	
+		this.fichierProperties = pFichierProperties;
+	} // Fin de setFichierProperties(...)._________________________________
+
+
+	
+	/**
+	 * method getCleDansProperties() :<br/>
+	 * Getter de la Clé du Boolean d'activation du contrôle 
+	 * de la RG dans le properties.<br/>
+	 * Par exemple : "interrogationmeteo.pays.rginterropays02.actif".<br/>
+	 * <br/>
+	 *
+	 * @return cleDansProperties : String.<br/>
+	 */
+	public String getCleDansProperties() {	
+		return this.cleDansProperties;
+	} // Fin de getCleDansProperties().____________________________________
+
+
+	
+	/**
+	* method setCleDansProperties(
+	* String pCleDansProperties) :<br/>
+	* Setter de la Clé du Boolean d'activation du contrôle 
+	* de la RG dans le properties.<br/>
+	* Par exemple : "interrogationmeteo.pays.rginterropays02.actif".<br/>
+	* <br/>
+	*
+	* @param pCleDansProperties : String : 
+	* valeur à passer à cleDansProperties.<br/>
+	*/
+	public void setCleDansProperties(
+			final String pCleDansProperties) {	
+		this.cleDansProperties = pCleDansProperties;
+	} // Fin de setCleDansProperties(...)._________________________________
+
+
+		
 } // FIN DE LA CLASSE LigneRG.-----------------------------------------------

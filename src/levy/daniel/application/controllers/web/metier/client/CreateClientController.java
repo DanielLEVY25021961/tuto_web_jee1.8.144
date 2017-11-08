@@ -213,7 +213,6 @@ public class CreateClientController extends HttpServlet {
 	/**
 	 * LOG : Log : Logger pour Log4j (utilisant commons-logging).
 	 */
-	@SuppressWarnings("unused")
 	private static final Log LOG 
 		= LogFactory.getLog(CreateClientController.class);
 
@@ -250,6 +249,7 @@ public class CreateClientController extends HttpServlet {
 		 * des paramètres transmis est vide; */
 		final boolean initialisation 
 			= this.enumSize(parametresTransmis) == 0;
+		
 
 		// ****************************************************************
 		// INITIALISATION.

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================================= 	-->
+<!-- VERSION DE SERVLET API 3.1.0                                   -->
+<!-- Doit correspondre avec Dynamic Web Module 3.1 dans Eclipse 	-->
+<!-- http://crunchify.com/ever-wondered-difference-between-dynamic-web-module-3-0-and-3-1-how-to-setup-3-1-correct-way-in-eclipse/ -->
+<!-- ============================================================= 	-->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
 
 	<!-- Nom de l'application -->
 	<display-name>tuto_web_jee1.8.144</display-name>
+
+			<!-- ======================================================= -->
+			<!-- SERVLET defaut. URL : / ou /static/*  					 -->
+			<!-- Indispensable pour accéder aux ressources statiques	 -->
+			<!-- ======================================================= -->
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
@@ -54,7 +65,7 @@
 		<servlet-name>AccueilController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/</url-pattern>
+		<url-pattern>/entree</url-pattern>
 	</servlet-mapping>
 
 
@@ -103,7 +114,7 @@
 		<servlet-name>CreateCommandeController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createCommande</url-pattern>
+		<url-pattern>/entree/createCommande</url-pattern>
 	</servlet-mapping>
 
 	
@@ -129,7 +140,7 @@
 		<servlet-name>CreateClientController</servlet-name>
 		<!-- URL à taper dans le navigateur par rapport au CONTEXTE -->
 		<!-- pour atteindre la Servlet.								-->
-		<url-pattern>/createClient</url-pattern>
+		<url-pattern>/entree/createClient</url-pattern>
 	</servlet-mapping>
 
 
@@ -174,7 +185,69 @@
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/vues/web/taglibs.jsp</include-prelude>
-		</jsp-property-group>	
+		</jsp-property-group>
+		
+		<!-- DECLARATION DES TAGLIBS -->
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/c-1_0-rt.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/c-1_0-rt.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/c-1_1.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/c-1_1.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/c.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+		</taglib>
+		
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/fmt-1_0-rt.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/fmt-1_0-rt.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/fmt.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/fn.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/fn.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/permittedTaglibs.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/permittedTaglibs.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/scriptfree.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/scriptfree.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/sql-1_0-rt.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/sql-1_0-rt.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/sql.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/sql.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/x-1_0-rt.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/x-1_0-rt.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+		    <taglib-uri>/WEB-INF/tld/x.tld</taglib-uri>
+		    <taglib-location>/WEB-INF/tld/x.tld</taglib-location>
+		</taglib>
+			
 	</jsp-config>
 
 
@@ -184,7 +257,7 @@
 	
 	<welcome-file-list>
 		
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
