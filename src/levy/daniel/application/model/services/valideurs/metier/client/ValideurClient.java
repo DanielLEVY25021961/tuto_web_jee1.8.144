@@ -18,7 +18,16 @@ import levy.daniel.application.model.services.valideurs.LigneRapportValidation;
 
 /**
  * class ValideurClient :<br/>
- * .<br/>
+ * <ul>
+ * <li>
+ * CLASSE CONCRETE <b>SERVICE</b> chargée de la <b>validation</b> 
+ * des <b>Règles de Gestion (RG)</b> s'appliquant sur chaque 
+ * <b>attribut</b> de l'Objet Métier 
+ * <b>Client</b>.</li>
+ * <li></li>
+ * <li></li>
+ * <li></li>
+ * </ul>
  * <br/>
  *
  * - Exemple d'utilisation :<br/>
@@ -107,6 +116,7 @@ public class ValideurClient
 	 * 
 	 * @return boolean : false si l'attribut 
 	 * à vérifier n'est pas valide.<br/>
+	 * 
 	 * @throws MalformedURLException 
 	 */
 	public boolean validerNom(
